@@ -8,15 +8,22 @@ namespace Esty_Models
 {
     public class Products
     {
-        // Test for conflict 
-        // test again
-     //jhjkh
-        //hjjkj
+        public int ProductId { get; set; }
 
+        public string? ProductNameEN { get; set; }
 
+        public string? ProductNameAR { get; set; }
 
-        //nada :)
+        public int ProductPrice { get; set; }
 
-        //uiui
+        public int ProductStock { get; set; }
+
+        public int ProductRating { get; set; }
+
+        public string? ProductPublisher { get; set; }
+
+        public string? ProductDescriptionEN { get; set; }
+
+        public string? ProductDescriptionAR { get; set; }
     }
 }
