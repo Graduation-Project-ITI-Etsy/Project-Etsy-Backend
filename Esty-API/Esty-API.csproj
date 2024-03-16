@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>Esty_API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Esty-Applications\Esty-Applications.csproj" />
+    <ProjectReference Include="..\Esty-Context\Esty-Context.csproj" />
+    <ProjectReference Include="..\Esty-Infrastracture\Esty-Infrastracture.csproj" />
+    <ProjectReference Include="..\Etsy-DTO\Etsy-DTO.csproj" />
+  </ItemGroup>
+
+</Project>
