@@ -10,6 +10,10 @@ namespace Esty_Context.Configration
         public void Configure(EntityTypeBuilder<Products> builder)
         {
             builder.HasKey(P => P.ProductId);
+                 
+            //builder.HasOne(p => p.category)
+            //.WithMany(c => c.Products)
+            //.HasForeignKey(p => p.CategoryId);
 
             builder.Property(P => P.ProductNameEN).HasColumnType("nvarchar(50)").IsRequired();
             builder.Property(P => P.ProductNameAR).HasColumnType("nvarchar(50)").IsRequired();
