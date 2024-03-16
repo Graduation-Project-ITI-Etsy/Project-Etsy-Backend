@@ -41,9 +41,9 @@ namespace Esty_Context.Configration
             .HasForeignKey(oi => oi.OrdersId);
 
             //>>Payment-Orders:
-            //builder.HasOne(o => o.Payment)
-            //.WithOne(p => p.Orders)
-            //.HasForeignKey<Payment>(p => p.OrdersId);
+            builder.HasOne(o => o.Payments)
+            .WithOne(p => p.Orders)
+            .HasForeignKey<Payments>(p => p.OrderId);
 
 
 

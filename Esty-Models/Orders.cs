@@ -18,9 +18,8 @@ namespace Esty_Models
 
 
         //Customer-Order one to many
-        //public int CustomerId { get; set; }
-
-        //public Customer? Customer { get; set; }
+        public int CustomerId { get; set; }
+        public Customer? Customer { get; set; }
 
 
         //OrderItem-Order one to many
@@ -28,7 +27,7 @@ namespace Esty_Models
 
 
         //Payment-Order one to one 
-        //public Payment? Payment { get; set; }
+        public Payments? Payments { get; set; }
 
 
     }

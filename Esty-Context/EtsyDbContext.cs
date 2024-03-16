@@ -17,6 +17,8 @@ namespace Esty_Context
         public DbSet<Cart> carts { get; set; }
         public DbSet<BaseCategory> baseCategories { get; set; }
         public DbSet <Category> categories { get; set; }
+        public DbSet <Orders> orders { get; set; }
+        public DbSet <OrderItem> orderItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

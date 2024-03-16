@@ -18,8 +18,8 @@ namespace Esty_Models
 
         //Product-OrderItem one to many
 
-        //public Product? Product { get; set; }
-        //public int ProductId { get; set; }
+        public Products? Products { get; set; }
+        public int ProductId { get; set; }
 
         public Orders? Orders { get; set; }
         public int OrdersId { get; set; }

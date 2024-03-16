@@ -17,6 +17,6 @@ namespace Esty_Models
         // Foreign key property
         public int OrderId { get; set; }
         // Navigation property
-        //public Order Order { get; set; }
+        public Orders Orders { get; set; }
     }
 }
