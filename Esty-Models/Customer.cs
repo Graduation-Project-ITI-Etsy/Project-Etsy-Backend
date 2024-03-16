@@ -10,6 +10,6 @@ namespace Esty_Models
 {
     public class Customer :IdentityUser
     {
-
+        public ICollection<CustomerProduct>? Products { get; set; }
     }
 }
