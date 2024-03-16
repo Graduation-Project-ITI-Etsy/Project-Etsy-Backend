@@ -21,6 +21,9 @@ namespace Esty_Models
         public Products? Products { get; set; }
         public int ProductId { get; set; }
 
+
+        //Orders-OrderItem one to many
+
         public Orders? Orders { get; set; }
         public int OrdersId { get; set; }
 

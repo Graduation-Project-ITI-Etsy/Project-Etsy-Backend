@@ -15,7 +15,7 @@ namespace Esty_Applications.Services.Order
         Orders DeleteOrder(int Id);
         public List<Orders> GetAllOrders();
 
-        void ChangeOrderStutus(int orderId, OrderStatus status);
+        void ChangeOrderStatus(int orderId, OrderStatus status);
 
     }
 }

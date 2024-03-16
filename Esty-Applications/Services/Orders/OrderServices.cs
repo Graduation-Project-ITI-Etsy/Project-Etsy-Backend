@@ -55,7 +55,7 @@ namespace Esty_Applications.Services.Order
         }
 
         
-        public void ChangeOrderStutus(int orderId, OrderStatus status)
+        public void ChangeOrderStatus(int orderId, OrderStatus status)
         {
             _OrderRepository.GetEntitybyId(orderId).Status = status.ToString();
         }
