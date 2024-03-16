@@ -12,7 +12,7 @@ namespace Esty_Models
         public string? Name { get; set; }
         public int BaseCategoryId { get; set; }
         public BaseCategory? BaseCategory { get; set; }
-        //   public ICollection<Product>? Products { get; set; }
+           public ICollection<Products>? Products { get; set; }
 
     }
 }
