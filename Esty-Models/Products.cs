@@ -25,5 +25,14 @@ namespace Esty_Models
         public string? ProductDescriptionEN { get; set; }
 
         public string? ProductDescriptionAR { get; set; }
+
+
+        public int CategoryID { get; set; }
+        //public Ctegory ctegory { get; set; }
+
+        public ICollection<CustomerProduct>? CustomerProducts { get; set; }
+
+        //public ICollection<OrderProduct>? OrderProduct { get; set; }
+
     }
 }
