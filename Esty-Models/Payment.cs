@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Esty_Models
 {
-    public class Payment
+    public class Payments
     {
         public int PaymentID { get; set; }
         public double TotalPrice { get; set; }
