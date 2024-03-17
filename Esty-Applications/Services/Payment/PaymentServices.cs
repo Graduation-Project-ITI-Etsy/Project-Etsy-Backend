@@ -45,13 +45,15 @@ namespace Esty_Applications.Services.Payment
         {
             var payment = _Payrepo.GetEntitybyId(paymentId);
             var paymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(payment);
-            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = paymentDto, Message = "Payment found" };
+            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> 
+            { Entity = paymentDto, Message = "Payment found" };
         }
 
         public ReturnResultDTO<ReturnAddUpdatePaymentDTO> UpdatePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
             var updatedPayment = _Payrepo.UpdateEntity(payment);
+            _Payrepo.Save();
             var updatedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(updatedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = updatedPaymentDto, Message = "Payment updated successfully" };
         }
@@ -60,6 +62,7 @@ namespace Esty_Applications.Services.Payment
         {
             var payment = _mapper.Map<Payments>(paymentDto);
             var deletedPayment = _Payrepo.DeleteEntity(payment.PaymentID);
+            _Payrepo.Save();
             var deletedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(deletedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = deletedPaymentDto, Message = "Payment deleted successfully" };
         }
