@@ -12,6 +12,6 @@ namespace Esty_Applications.Contract
     {
         Products SearchProductByName(string Name);
 
-        Products FilterProductByPrice(int Price);
+        List<Products> FilterProductByPrice(int MinPrice , int MaxPrice);
     }
 }
