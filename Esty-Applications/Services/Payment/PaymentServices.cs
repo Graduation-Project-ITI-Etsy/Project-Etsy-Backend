@@ -1,5 +1,9 @@
-﻿using Esty_Applications.Contract;
+﻿using AutoMapper;
+using Ecommerce.Dtos.Book;
+using Esty_Applications.Contract;
 using Esty_Models;
+using Etsy_DTO;
+using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,48 +14,67 @@ namespace Esty_Applications.Services.Payment
 {
     public class PaymentServices : IPaymentServices
     {
-        IPayment _Payrepo;
-        public PaymentServices(IPayment repo)
+        private readonly IPayment _Payrepo;
+        private readonly IMapper _mapper;
+
+        public PaymentServices(IPayment repo, IMapper mapper)
         {
             _Payrepo = repo;
-        }
-
-        public Payments CreatePayment(Payments payment)
-        {
-            var Payment = _Payrepo.CreateEntity(payment);
-            _Payrepo.Save();
-            return Payment;
-        }
-
-        public Payments DeletePayment(int paymentId)
-        {
-            var Paydelete = _Payrepo.DeleteEntity(paymentId);
-            return Paydelete;
-        }
-
-        public List<Payments> GetAllPayment()
-        {
-            return _Payrepo.GetAllEntity();
-        }
-
-        public Payments GetPaymentByID(int payment)
-        {
-            var Pay = _Payrepo.GetEntitybyId(payment);
-            return Pay;
+            _mapper = mapper;
         }
 
 
-        public Payments SerachCustomerById(int id)
+        public ReturnResultDTO<CreateOrUpdatePaymentDTO> CreatePayment(CreateOrUpdatePaymentDTO paymentDto)
         {
-            var query = _Payrepo.SerachCusromerPayById(id);
-            return query;
+            throw new NotImplementedException();
+
         }
 
-        public Payments UpdatePayment(Payments payment)
+
+
+        public ReturnResultHasObjsDTO<GetAllPaymentDTO> GetAllPayment()
         {
-            var Payupdate = _Payrepo.UpdateEntity(payment);
-            _Payrepo.Save();
-            return Payupdate;
+            var AllPayments = _Payrepo.GetAllEntity();
+            var payments = AllPayments
+                .Select(_payments => new GetAllPaymentDTO
+                {
+                    PaymentID = _payments.PaymentID,
+                    TotalPrice = _payments.TotalPrice,
+                    Response = _payments.Response,
+
+                }).ToList();
+            return new ReturnResultHasObjsDTO<GetAllPaymentDTO>
+            {
+                Entities = payments,
+                Count = AllPayments.Count(),
+                Message = "All payments were Retrieved"
+            };
+        }
+
+
+        public ReturnResultDTO<CreateOrUpdatePaymentDTO> SearchByPaymentByID(int paymentId)
+        {
+            throw new NotImplementedException();
+
+        }
+
+
+        public ReturnResultDTO<CreateOrUpdatePaymentDTO> UpdatePayment(CreateOrUpdatePaymentDTO paymentDto)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public ReturnResultDTO<CreateOrUpdatePaymentDTO> DeletePayment(CreateOrUpdatePaymentDTO payment)
+        {
+            throw new NotImplementedException();
+     
+        }
+
+        public ReturnResultDTO<CreateOrUpdatePaymentDTO> SerachCustomerById(int id)
+        {
+            throw new NotImplementedException();
+
         }
     }
 }
