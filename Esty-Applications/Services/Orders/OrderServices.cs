@@ -1,5 +1,8 @@
-﻿using Esty_Applications.Contract;
+﻿using AutoMapper;
+using Esty_Applications.Contract;
 using Esty_Models;
+using Etsy_DTO;
+using Etsy_DTO.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,13 @@ namespace Esty_Applications.Services.Order
     {
 
         IOrdersRepository _OrderRepository { get; set; }
+        private readonly IMapper _mapper;
 
-        public OrderServices(IOrdersRepository orderRepository)
+        public OrderServices(IOrdersRepository orderRepository , IMapper mapper)
         {
             _OrderRepository = orderRepository;
+            _mapper = mapper;
+
         }
 
 
@@ -60,7 +66,30 @@ namespace Esty_Applications.Services.Order
             _OrderRepository.GetEntitybyId(orderId).Status = status.ToString();
         }
 
+        ReturnResultHasObjsDTO<ReturnAllOrdersDTO> IOrderServices.GetAllOrders()
+        {
+            throw new NotImplementedException();
+        }
 
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> UpdateOrder(ReturnAddUpdateOrderDTO Order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> DeleteOrder(ReturnAddUpdateOrderDTO Order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> GetByOrderByID(int OrderId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

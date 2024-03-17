@@ -12,18 +12,18 @@ namespace Esty_Applications.Services.Payment
 {
     public interface IPaymentServices
     {
-        public ReturnResultHasObjsDTO<GetAllPaymentDTO> GetAllPayment();
+        public ReturnResultHasObjsDTO<ReturnAllPaymentDTO> GetAllPayment();
 
-        public ReturnResultDTO<CreateOrUpdatePaymentDTO> SearchByPaymentByID(int PaymentID);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SearchByPaymentByID(int PaymentID);
 
-        public ReturnResultDTO<CreateOrUpdatePaymentDTO> CreatePayment(CreateOrUpdatePaymentDTO Payment);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> CreatePayment(ReturnAddUpdatePaymentDTO Payment);
 
-        public ReturnResultDTO<CreateOrUpdatePaymentDTO> UpdatePayment(CreateOrUpdatePaymentDTO Payment);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> UpdatePayment(ReturnAddUpdatePaymentDTO Payment);
 
-        public ReturnResultDTO<CreateOrUpdatePaymentDTO> DeletePayment(CreateOrUpdatePaymentDTO payment);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> DeletePayment(ReturnAddUpdatePaymentDTO payment);
 
 
-        public ReturnResultDTO<CreateOrUpdatePaymentDTO> SerachCustomerById(int id);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(int id);
     }
 
 }
