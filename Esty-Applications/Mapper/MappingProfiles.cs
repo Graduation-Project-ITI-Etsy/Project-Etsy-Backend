@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Esty_Models;
+using Etsy_DTO.Orders;
 using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,11 @@ namespace Esty_Applications.Mapper
         {
             CreateMap<Products, ReturnAllProductsDTO>().ReverseMap();
             CreateMap<Products, ReturnAddUpdateProductDTO>().ReverseMap();
+
+            CreateMap<Orders, ReturnAllOrdersDTO>().ReverseMap();
+            CreateMap<Orders, ReturnAddUpdateOrderDTO>().ReverseMap();
+
+
         }
     }
 }
