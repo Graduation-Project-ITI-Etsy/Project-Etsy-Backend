@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Esty-Models\Esty-Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="OrdersItems\" />
-  </ItemGroup>
-
 </Project>
