@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Esty_Models
+namespace Etsy_DTO.Category
 {
-    public class BaseCategory
+    public class ReturnAllCategoryDTO
     {
         public int Id { get; set; }
         public string? NameEN { get; set; }
         public string? NameAR { get; set; }
 
-        public ICollection<Category>? Categories { get; set; }
+        public int BaseCategoryId { get; set; }
+        public ICollection<Esty_Models.Products>? Products { get; set; }
+
     }
 }

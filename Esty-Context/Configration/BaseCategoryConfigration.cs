@@ -15,7 +15,6 @@ namespace Esty_Context.Configration
         {
 
             builder.HasKey(bc => bc.Id);
-            builder.Property(bc => bc.Name).IsRequired().HasMaxLength(100);
 
             builder.HasMany(bc => bc.Categories)
                 .WithOne(c => c.BaseCategory)

@@ -3,40 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Esty_Applications.Contract;
 using Esty_Models;
+using Etsy_DTO;
+using Etsy_DTO.OrderItem;
+using Etsy_DTO.Orders;
 
 
 namespace Esty_Applications.Services.OrderItems
 {
     public class OrderItemsServices : IOrderItemsServices
     {
-        IOrderItemRepository _OrderItemRepository { get; set; }
-        public OrderItemsServices(IOrderItemRepository orderItemRepository)
+        private readonly IOrderItemRepository _OrderItemRepository;
+        private readonly IMapper _mapper;
+
+        public OrderItemsServices(IOrderItemRepository orderItemRepository, IMapper mapper)
         {
             _OrderItemRepository = orderItemRepository;
+            _mapper = mapper;
 
         }
 
-
-        public OrderItem AddItem(OrderItem item)
+  
+        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
-            var orderItem = _OrderItemRepository.CreateEntity(item);
-            if (orderItem != null)
+            var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
+            var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);
+            _OrderItemRepository.Save();
+            var createdOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(createdOrderItem);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
             {
-                _OrderItemRepository.Save();
-            }
-            return orderItem;
+                Entity = createdOrderItemDto,
+                Message = "OrderItem is Added successfully"
+            };
         }
 
-        public OrderItem DeleteItem(int Id)
+
+        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> DeleteOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
-            var orderItem = _OrderItemRepository.DeleteEntity(Id);
-            if (orderItem != null)
+            var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
+            var decreaseOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrdersId);
+            _OrderItemRepository.Save();
+            var decreaseOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(decreaseOrderItem);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
             {
-                _OrderItemRepository.Save();
-            }
-            return orderItem;
+                Entity = decreaseOrderItemDto,
+                Message = "OrderItem is decreased successfully"
+            };
         }
     }
 }

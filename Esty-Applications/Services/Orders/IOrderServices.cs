@@ -7,7 +7,6 @@ using Ecommerce.Dtos.Book;
 using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.Orders;
-using Etsy_DTO.Products;
 
 namespace Esty_Applications.Services.Order
 {
