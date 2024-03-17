@@ -1,3 +1,4 @@
+using Esty_Applications.Services.Login;
 using Esty_Context;
 using Esty_Models;
 using Microsoft.AspNetCore.Identity;
@@ -11,15 +12,25 @@ namespace Esty_Presentation
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+          
+
 
             // Add services to the container.
             var Configuration = builder.Configuration;
-            builder.Services.AddDbContext<Context>(option => option.UseSqlServer(Configuration.GetConnectionString("Connstr")));
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddIdentity<Customer,IdentityRole>().
-                AddEntityFrameworkStores<Context>().
-                AddDefaultTokenProviders();
+            builder.Services.AddDbContext<EtsyDbContext>
+                (option => option.UseSqlServer(Configuration.GetConnectionString("Connstr")));
 
+            builder.Services.AddIdentity<Customer, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 8;
+            }).AddEntityFrameworkStores<EtsyDbContext>();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<JwtHandler>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

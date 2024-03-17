@@ -1,4 +1,5 @@
 ﻿using Esty_Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,10 +21,12 @@ namespace Esty_Context
         public DbSet <Orders> orders { get; set; }
         public DbSet <OrderItem> orderItems { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public EtsyDbContext(DbContextOptions<EtsyDbContext> options, IHttpContextAccessor httpContextAccessor)
+            : base(options)
         {
-            optionsBuilder.UseSqlServer("");
-            base.OnConfiguring(optionsBuilder);
+            _httpContextAccessor = httpContextAccessor;
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,6 @@
 @Esty_API_HostAddress = http://localhost:5104
 
-GET {{Esty_API_HostAddress}}/weatherforecast/
+GET {{Esty_API_HostAddress}}/Account/
 Accept: application/json
 
 ###

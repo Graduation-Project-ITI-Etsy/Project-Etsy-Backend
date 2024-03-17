@@ -28,7 +28,7 @@ namespace Esty_Applications.Services.Order
         Orders IOrderServices.AddOrder(Orders orders)
         {
             var order = _OrderRepository.CreateEntity(orders);
-            if(order != null)
+            if (order != null)
             {
                 _OrderRepository.Save();
             }
@@ -43,7 +43,7 @@ namespace Esty_Applications.Services.Order
             return order;
         }
 
-      
+
         Orders IOrderServices.DeleteOrder(int Id)
         {
             var order = _OrderRepository.DeleteEntity(Id);
