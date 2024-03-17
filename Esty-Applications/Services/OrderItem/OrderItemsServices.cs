@@ -26,7 +26,7 @@ namespace Esty_Applications.Services.OrderItems
         }
 
   
-        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> CreateOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
+        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
             var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
             var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);

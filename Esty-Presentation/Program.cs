@@ -14,10 +14,10 @@ namespace Esty_Presentation
 
             // Add services to the container.
             var Configuration = builder.Configuration;
-            builder.Services.AddDbContext<Context>(option => option.UseSqlServer(Configuration.GetConnectionString("Connstr")));
+            builder.Services.AddDbContext<EtsyDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("Connstr")));
             builder.Services.AddControllersWithViews();
             builder.Services.AddIdentity<Customer,IdentityRole>().
-                AddEntityFrameworkStores<Context>().
+                AddEntityFrameworkStores<EtsyDbContext>().
                 AddDefaultTokenProviders();
 
             var app = builder.Build();
