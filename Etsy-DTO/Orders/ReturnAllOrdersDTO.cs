@@ -17,7 +17,7 @@ namespace Etsy_DTO.Orders
 
         public int CustomerId { get; set; }
 
-        //>>Should I Put List or Prop From class that exist in Model ??? 
+        //>>Should I Put List or Prop From these classes that exist in Model ??? 
 
         //public CustomerDTO Customer { get; set; } // Nested DTO for Customer
         //public List<OrderItemDTO> OrderItems { get; set; } // List of nested DTOs for OrderItems

@@ -11,5 +11,10 @@ namespace Etsy_DTO
         public List<T>? Entities { get; set; }
         public int Count { get; set; }
         public string? Message { get; set; }
+
+        public ReturnResultHasObjsDTO()
+        {
+            Entities = new List<T>();
+        }
     }
 }
