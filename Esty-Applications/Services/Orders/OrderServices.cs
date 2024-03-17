@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Ecommerce.Dtos.Book;
 using Esty_Applications.Contract;
 using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.Orders;
+using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,10 +17,10 @@ namespace Esty_Applications.Services.Order
     public class OrderServices : IOrderServices
     {
 
-        IOrdersRepository _OrderRepository { get; set; }
+        private readonly IOrdersRepository _OrderRepository;
         private readonly IMapper _mapper;
 
-        public OrderServices(IOrdersRepository orderRepository , IMapper mapper)
+        public OrderServices(IOrdersRepository orderRepository, IMapper mapper)
         {
             _OrderRepository = orderRepository;
             _mapper = mapper;
@@ -25,71 +28,94 @@ namespace Esty_Applications.Services.Order
         }
 
 
-        Orders IOrderServices.AddOrder(Orders orders)
+        public ReturnResultHasObjsDTO<ReturnAllOrdersDTO> GetAllOrders()
         {
-            var order = _OrderRepository.CreateEntity(orders);
-            if(order != null)
+            var AllOrders = _OrderRepository.GetAllEntity();
+            var OrderDto = _mapper.Map<List<ReturnAllOrdersDTO>>(AllOrders);
+
+            return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>
             {
-                _OrderRepository.Save();
-            }
-            return order;
+                Entities = OrderDto,
+                Count = AllOrders.Count(),
+                Message = "All Orders were Retrieved"
+            };
         }
 
-
-        public Orders GetOrderById(int Id)
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO orderDto)
         {
-            var order = _OrderRepository.GetEntitybyId(Id);
 
-            return order;
-        }
+            var orderEntity = _mapper.Map<Orders>(orderDto);
 
-      
-        Orders IOrderServices.DeleteOrder(int Id)
-        {
-            var order = _OrderRepository.DeleteEntity(Id);
-            if (order != null)
+            var createdOrder = _OrderRepository.CreateEntity(orderEntity);
+            _OrderRepository.Save();
+
+            var createdOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(createdOrder);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
             {
-                _OrderRepository.Save();
-            }
-            return order;
-        }
-
-        public List<Orders> GetAllOrders()
-        {
-            var order = _OrderRepository.GetAllEntity();
-            return order;
-        }
-
-        
-        public void ChangeOrderStatus(int orderId, OrderStatus status)
-        {
-            _OrderRepository.GetEntitybyId(orderId).Status = status.ToString();
-        }
-
-        ReturnResultHasObjsDTO<ReturnAllOrdersDTO> IOrderServices.GetAllOrders()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO order)
-        {
-            throw new NotImplementedException();
+                Entity = createdOrderDto,
+                Message = "Order created successfully"
+            };
         }
 
         public ReturnResultDTO<ReturnAddUpdateOrderDTO> UpdateOrder(ReturnAddUpdateOrderDTO Order)
         {
-            throw new NotImplementedException();
+            var orderEntity = _mapper.Map<Orders>(Order);
+            var updatedOrder = _OrderRepository.UpdateEntity(orderEntity);
+            _OrderRepository.Save();
+
+            var updatedOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(updatedOrder);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
+            {
+                Entity = updatedOrderDto,
+                Message = "Order updated successfully"
+            };
         }
 
         public ReturnResultDTO<ReturnAddUpdateOrderDTO> DeleteOrder(ReturnAddUpdateOrderDTO Order)
         {
-            throw new NotImplementedException();
+            var orderEntity = _mapper.Map<Orders>(Order);
+            var deletedOrder = _OrderRepository.DeleteEntity(orderEntity.OrdersId);
+            _OrderRepository.Save();
+
+            var deletedOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(deletedOrder);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
+            {
+                Entity = deletedOrderDto,
+                Message = "Order deleted successfully"
+            };
         }
 
         public ReturnResultDTO<ReturnAddUpdateOrderDTO> GetByOrderByID(int OrderId)
         {
-            throw new NotImplementedException();
+            var order = _OrderRepository.GetEntitybyId(OrderId);
+            var orderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(order);
+
+            return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
+            {
+                Entity = orderDto,
+                Message = "Order retrieved successfully"
+            };
         }
+
+
+        public void ChangeOrderStatus(int orderId, OrderStatus status)
+        {
+            var order = _OrderRepository.GetEntitybyId(orderId);
+            if (order != null)
+            {
+                order.Status = status.ToString();
+                _OrderRepository.Save();
+            }
+            else
+            {
+                throw new Exception("Order not found");
+            }
+        }
+
+      
     }
 
 }
