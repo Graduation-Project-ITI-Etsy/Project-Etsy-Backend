@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ecommerce.Dtos.Book;
 using Esty_Models;
+using Etsy_DTO;
+using Etsy_DTO.Orders;
+using Etsy_DTO.Products;
 
 namespace Esty_Applications.Services.Order
 {
     public interface IOrderServices
     {
-        Orders AddOrder(Orders orders);
+        public ReturnResultHasObjsDTO<ReturnAllOrdersDTO> GetAllOrders();
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO order);
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> UpdateOrder(ReturnAddUpdateOrderDTO Order);
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> DeleteOrder(ReturnAddUpdateOrderDTO Order);
 
-        Orders GetOrderById(int Id);
-        Orders DeleteOrder(int Id);
-        public List<Orders> GetAllOrders();
+        public ReturnResultDTO<ReturnAddUpdateOrderDTO> GetByOrderByID(int OrderId);
 
-        void ChangeOrderStatus(int orderId, OrderStatus status);
+        public void ChangeOrderStatus(int orderId, OrderStatus status);
 
     }
 }

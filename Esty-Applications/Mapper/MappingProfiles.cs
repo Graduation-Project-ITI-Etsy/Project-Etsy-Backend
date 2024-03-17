@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Ecommerce.Dtos.Book;
 using Esty_Models;
+using Etsy_DTO.OrderItem;
+using Etsy_DTO.Orders;
 using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
@@ -15,6 +18,17 @@ namespace Esty_Applications.Mapper
         {
             CreateMap<Products, ReturnAllProductsDTO>().ReverseMap();
             CreateMap<Products, ReturnAddUpdateProductDTO>().ReverseMap();
+
+            CreateMap<Orders, ReturnAllOrdersDTO>().ReverseMap();
+            CreateMap<Orders, ReturnAddUpdateOrderDTO>().ReverseMap();
+
+            CreateMap<OrderItem, ReturnAllOrderItemsDTO>().ReverseMap();
+            CreateMap<OrderItem, ReturnAddUpdateOrderItemsDTO>().ReverseMap();
+
+            CreateMap<Payments, ReturnAllPaymentDTO>().ReverseMap();
+            CreateMap<Payments, ReturnAddUpdatePaymentDTO>().ReverseMap();
+
+
         }
     }
 }
