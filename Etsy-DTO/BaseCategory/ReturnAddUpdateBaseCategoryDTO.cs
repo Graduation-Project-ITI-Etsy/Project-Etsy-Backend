@@ -15,14 +15,14 @@ namespace Etsy_DTO.BaseCategory
 
         [Required]
         [MaxLength(50, ErrorMessage = "Base Category name should be less than 50 Characters")]
-        public string NameEN { get; set; }
+        public string? NameEN { get; set; }
 
         [Required]
         [MaxLength(50, ErrorMessage = "Base Category name should be less than 50 Characters")]
-        public string NameAR {get; set;}
+        public string? NameAR {get; set;}
 
         [Required]
-        public ICollection<Category>? Categories { get; set; }
+        public ICollection<Esty_Models.Category>? Categories { get; set; }
 
     }
 }

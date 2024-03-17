@@ -2,6 +2,7 @@
 using Ecommerce.Dtos.Book;
 using Esty_Models;
 using Etsy_DTO.BaseCategory;
+using Etsy_DTO.Category;
 using Etsy_DTO.OrderItem;
 using Etsy_DTO.Orders;
 using Etsy_DTO.Products;
@@ -32,6 +33,10 @@ namespace Esty_Applications.Mapper
 
             CreateMap<BaseCategory, ReturnAddUpdateBaseCategoryDTO>().ReverseMap();
             CreateMap<BaseCategory, ReturnAllBaseCategoryDTO>().ReverseMap();
+
+            CreateMap<Category, ReturnAddUpdateCategoryDTO>().ReverseMap();
+            CreateMap<Category, ReturnAllCategoryDTO>().ReverseMap();
+
         }
     }
 }
