@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Dtos.Book
 {
-    public class GetAllPaymentDTO
+    public class ReturnAllPaymentDTO
     {
         public int PaymentID { get; set; }
         public double TotalPrice { get; set; }

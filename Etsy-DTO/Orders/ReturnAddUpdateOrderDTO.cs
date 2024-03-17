@@ -17,7 +17,7 @@ namespace Etsy_DTO.Orders
 
 
         [Required(ErrorMessage = "Adress Of Shipping is required !!")]
-        [StringLength(255, MinimumLength = 5, ErrorMessage = "Address should be between 5 and 100 characters")]
+        [StringLength(255, MinimumLength = 5, ErrorMessage = "Address should be between 5 and 255 characters")]
         public string Address { get; set; }
 
 

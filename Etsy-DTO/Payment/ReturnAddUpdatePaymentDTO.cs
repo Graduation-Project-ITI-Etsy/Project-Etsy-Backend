@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Dtos.Book
 {
-    public class CreateOrUpdatePaymentDTO
+    public class ReturnAddUpdatePaymentDTO
     {
         public int PaymentID { get; set; }
+
+
         [Range(0, double.MaxValue, ErrorMessage = "TotalPrice must be a positive number")]
         public double TotalPrice { get; set; }
-        [Required(ErrorMessage = "Response is required !")]
 
+
+        [Required(ErrorMessage = "Response is required !")]
         public string Response { get; set; }
 
         public int CustomerId { get; set; }
