@@ -31,9 +31,9 @@ namespace Esty_Context.Configration
 
 
             //>>Customer-Orders:
-            //builder.HasOne(o => o.Customer)
-            //.WithMany(c => c.Orders)
-            //.HasForeignKey(o => o.CustomerID);
+            builder.HasOne(o => o.Customer)
+            .WithMany(c => c.Orders)
+            .HasForeignKey(o => o.CustomerId);
 
             //>>OrderItems-Orders:
             builder.HasMany(o => o.OrderItems)

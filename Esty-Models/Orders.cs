@@ -18,7 +18,7 @@ namespace Esty_Models
 
 
         //Customer-Order one to many
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
         public Customer? Customer { get; set; }
 
 
