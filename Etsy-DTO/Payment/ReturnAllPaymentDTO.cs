@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Etsy_DTO.Orders
+namespace Etsy_DTO.Payment
 {
     public class ReturnAllPaymentDTO
     {
