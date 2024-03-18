@@ -2,7 +2,9 @@
 using Esty_Applications.Contract;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Order;
+using Esty_Applications.Services.OrderItems;
 using Esty_Context;
+using Esty_Infrastracture.OrderItemRepository;
 using Esty_Infrastracture.OrderRepository;
 using Esty_Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -43,6 +45,12 @@ namespace Esty_API
             builder.Services.AddAutoMapper(typeof(Program)); 
             builder.Services.AddScoped<IOrdersRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderServices, OrderServices>();
+
+            //For OrderItem
+            builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            builder.Services.AddScoped<IOrderItemsServices, OrderItemsServices>();
+
+
 
             builder.Services.AddAuthentication(opt =>
             {
