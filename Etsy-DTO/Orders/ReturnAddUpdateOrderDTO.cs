@@ -33,7 +33,7 @@ namespace Etsy_DTO.Orders
         public DateTime? ArrivedOn { get; set; }
 
 
-        public int CustomerId { get; set; }
+        public string? CustomerId { get; set; }
 
     }
 }

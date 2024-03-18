@@ -1,6 +1,9 @@
 
+using Esty_Applications.Contract;
 using Esty_Applications.Services.Login;
+using Esty_Applications.Services.Order;
 using Esty_Context;
+using Esty_Infrastracture.OrderRepository;
 using Esty_Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -35,6 +38,12 @@ namespace Esty_API
                 options.Password.RequiredLength = 8;
             }).AddEntityFrameworkStores<EtsyDbContext>();
             builder.Services.AddScoped<JwtHandler>();
+
+            //For Order 
+            builder.Services.AddAutoMapper(typeof(Program)); 
+            builder.Services.AddScoped<IOrdersRepository, OrderRepository>();
+            builder.Services.AddScoped<IOrderServices, OrderServices>();
+
             builder.Services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

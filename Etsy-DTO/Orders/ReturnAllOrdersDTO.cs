@@ -15,7 +15,7 @@ namespace Etsy_DTO.Orders
         public DateTime? OrderedAt { get; set; }
         public DateTime? ArrivedOn { get; set; }
 
-        public int CustomerId { get; set; }
+        public string? CustomerId { get; set; }
 
         //>>Should I Put List or Prop From these classes that exist in Model ??? 
 
