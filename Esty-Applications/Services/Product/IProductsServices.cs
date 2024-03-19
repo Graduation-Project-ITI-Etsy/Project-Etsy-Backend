@@ -23,6 +23,6 @@ namespace Esty_Applications.Services.Product
 
         public ReturnResultDTO<ReturnAddUpdateProductDTO> SearchByProductName(string ProductName);
 
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice , int MaxPrice);
+        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice , int MaxPrice, int CategoryId);
     }
 }
