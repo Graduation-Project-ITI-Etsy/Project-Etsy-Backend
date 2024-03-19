@@ -51,6 +51,7 @@ namespace Esty_API
             builder.Services.AddScoped<JwtHandler>();
 
             //For Order 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IOrdersRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderServices, OrderServices>();
