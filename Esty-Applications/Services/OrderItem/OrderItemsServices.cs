@@ -28,31 +28,65 @@ namespace Esty_Applications.Services.OrderItems
   
         public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
-            var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
-            var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);
-            _OrderItemRepository.Save();
-            var createdOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(createdOrderItem);
-
-            return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+            try
             {
-                Entity = createdOrderItemDto,
-                Message = "OrderItem is Added successfully"
-            };
+                var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
+                var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);
+                _OrderItemRepository.Save();
+
+                var createdOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(createdOrderItem);
+
+                return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+                {
+                    Entity = createdOrderItemDto,
+                    Message = "Order item added successfully"
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while adding the order item: {ex.Message}");
+
+                return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+                {
+                    Entity = null,
+                    Message = $"Failed to add the order item: {ex.Message}"
+                };
+            }
         }
 
 
         public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> DeleteOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
-            var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
-            var decreaseOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrdersId);
-            _OrderItemRepository.Save();
-            var decreaseOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(decreaseOrderItem);
-
-            return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+            try
             {
-                Entity = decreaseOrderItemDto,
-                Message = "OrderItem is decreased successfully"
-            };
+                var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
+                var deletedOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrdersId);
+
+                if (deletedOrderItem == null)
+                {
+                    throw new InvalidOperationException("Failed to delete order item. Item not found.");
+                }
+
+                _OrderItemRepository.Save();
+
+                var deletedOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(deletedOrderItem);
+
+                return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+                {
+                    Entity = deletedOrderItemDto,
+                    Message = "Order item deleted successfully"
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while deleting the order item: {ex.Message}");
+
+                return new ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>
+                {
+                    Entity = null,
+                    Message = $"Failed to delete the order item: {ex.Message}"
+                };
+            }
         }
     }
 }

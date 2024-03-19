@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Ecommerce.Dtos.Book;
+using Etsy_DTO.Payment;
 using Esty_Applications.Contract;
 using Esty_Models;
 using Etsy_DTO;

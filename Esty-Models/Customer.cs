@@ -15,5 +15,6 @@ namespace Esty_Models
        // public string gender { get; set; }
        public DateOnly BirthDate { get; set; }
         public ICollection<Cart>? Carts { get; set; }
+        public ICollection<Orders>? Orders { get; set; }
     }
 }

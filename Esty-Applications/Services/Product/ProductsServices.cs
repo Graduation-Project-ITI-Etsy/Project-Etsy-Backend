@@ -184,11 +184,11 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice, int MaxPrice)
+        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
             try
             {
-                var FilterProducts = _ProductRepository.FilterProductByPrice(MinPrice, MaxPrice)
+                var FilterProducts = _ProductRepository.FilterProductByPrice(MinPrice, MaxPrice , CategoryId)
                     .Select(_products => new ReturnAllProductsDTO
                     {
                         ProductId = _products.ProductId,

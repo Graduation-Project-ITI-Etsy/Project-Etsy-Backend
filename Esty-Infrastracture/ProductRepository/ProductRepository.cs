@@ -23,15 +23,15 @@ namespace Esty_Infrastracture.ProductRepository
             var Product = EtsyDbContext.Set<Products>()
                                        .Where(P => P.ProductNameEN!.Contains(Name) || P.ProductNameAR!.Contains(Name))
                                        .FirstOrDefault();
-            if (Product == null) 
+            if (Product == null)
                 return null!;
             return Product;
         }
 
-        public List<Products> FilterProductByPrice(int MinPrice, int MaxPrice)
+        public List<Products> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
             var FilterProducts = EtsyDbContext.Set<Products>()
-                                 .Where(P => P.ProductPrice >= MinPrice && P.ProductPrice <= MaxPrice)
+                                 .Where(P => P.ProductPrice >= MinPrice && P.ProductPrice <= MaxPrice && P.CategoryID == CategoryId)
                                  .ToList();
             if (FilterProducts == null)
                 return null!;
