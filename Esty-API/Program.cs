@@ -33,7 +33,7 @@ namespace Esty_API
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 8;
-            }).AddEntityFrameworkStores<EtsyDbContext>();
+            }).AddApiEndpoints().AddEntityFrameworkStores<EtsyDbContext>();
             builder.Services.AddScoped<JwtHandler>();
             builder.Services.AddAuthentication(opt =>
             {
@@ -52,7 +52,7 @@ namespace Esty_API
                     ValidAudience = builder.Configuration["JwtSettings:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecurityKey"]!))
                 };
-            });
+            }).AddBearerToken(IdentityConstants.BearerScheme); ;
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -61,6 +61,8 @@ namespace Esty_API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.MapIdentityApi<Customer>();
+            app.MapControllers();
             app.UseAuthentication();
             app.UseAuthorization();
 
