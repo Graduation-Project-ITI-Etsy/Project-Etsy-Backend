@@ -3,10 +3,12 @@ using Esty_Applications.Contract;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Order;
 using Esty_Applications.Services.OrderItems;
+using Esty_Applications.Services.Payment;
 using Esty_Applications.Services.Product;
 using Esty_Context;
 using Esty_Infrastracture.OrderItemRepository;
 using Esty_Infrastracture.OrderRepository;
+using Esty_Infrastracture.PaymentReposatory;
 using Esty_Infrastracture.ProductRepository;
 using Esty_Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -55,6 +57,10 @@ namespace Esty_API
             //For Product
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IProductsServices, ProductsServices>();
+
+            //For Payment
+            builder.Services.AddScoped<IPayment, PaymentRepository>();
+            builder.Services.AddScoped<IPaymentServices, PaymentServices>();
 
 
             builder.Services.AddAuthentication(opt =>
