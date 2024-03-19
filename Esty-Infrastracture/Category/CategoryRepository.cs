@@ -14,15 +14,15 @@ namespace Esty_Infrastracture.CategoryRepository
         EtsyDbContext EtsyDbContext;
         public CategoryRepository(EtsyDbContext _etsyDbContext) : base(_etsyDbContext)
         {
-            this.EtsyDbContext = EtsyDbContext;
+            this.EtsyDbContext = _etsyDbContext;
 
         }
 
         public Category SearchCategoryByName(string name)
         {
-            var CategorySearched = EtsyDbContext.Set<Category>()
-                           .Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
-                           .FirstOrDefault();
+            var CategorySearched = EtsyDbContext?.Set<Category>()
+                           ?.Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
+                           ?.FirstOrDefault();
             if (CategorySearched == null)
                 return null!;
             return CategorySearched;

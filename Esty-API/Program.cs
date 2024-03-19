@@ -1,9 +1,14 @@
 
 using Esty_Applications.Contract;
+using Esty_Applications.Services.BaseCategory;
+using Esty_Applications.Services.BaseCategoryServices;
+using Esty_Applications.Services.Category;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Order;
 using Esty_Applications.Services.OrderItems;
 using Esty_Context;
+using Esty_Infrastracture.BaseCategortRepository;
+using Esty_Infrastracture.CategoryRepository;
 using Esty_Infrastracture.OrderItemRepository;
 using Esty_Infrastracture.OrderRepository;
 using Esty_Models;
@@ -70,6 +75,15 @@ namespace Esty_API
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecurityKey"]!))
                 };
             });
+            //category
+            builder.Services.AddScoped<EtsyDbContext>();
+            builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //BaseCategory
+            builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
+            builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

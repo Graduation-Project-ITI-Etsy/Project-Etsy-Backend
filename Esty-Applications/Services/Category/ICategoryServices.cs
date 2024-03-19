@@ -21,6 +21,6 @@ namespace Esty_Applications.Services.Category
 
         public ReturnResultDTO<ReturnAddUpdateCategoryDTO> DeleteCategory(int CategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> SearchByCategoryName(string Name);
+        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> SearchCategoryByName(string Name);
     }
 }

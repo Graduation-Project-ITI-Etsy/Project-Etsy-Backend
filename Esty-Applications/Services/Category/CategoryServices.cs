@@ -72,10 +72,18 @@ namespace Esty_Applications.Services.Category
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> SearchByCategoryName(string Name)
+        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> SearchCategoryByName(string Name)
         {
             var CategoryResearched = _CategoryRepository.SearchCategoryByName(Name);
             var CategoryDTO = _mapper.Map<ReturnAddUpdateCategoryDTO>(CategoryResearched);
+            if (CategoryResearched == null)
+            {
+                return new ReturnResultDTO<ReturnAddUpdateCategoryDTO>
+                {
+                    Entity = null,
+                    Message = "Category Not Found"
+                };
+            }
             return new ReturnResultDTO<ReturnAddUpdateCategoryDTO>
             {
                 Entity = CategoryDTO,

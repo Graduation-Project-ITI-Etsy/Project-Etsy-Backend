@@ -20,6 +20,6 @@ namespace Esty_Applications.Services.BaseCategory
 
         public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> DeleteBaseCategory(int BaseCategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchByCategoryName(string Name);
+        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchBaseCategoryByName(string Name);
     }
 }

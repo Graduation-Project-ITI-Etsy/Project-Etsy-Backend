@@ -20,9 +20,9 @@ namespace Esty_Infrastracture.BaseCategortRepository
 
         public BaseCategory SearchBaseCategoryByName(string name)
         {
-            var BaseCategorySearched = EtsyDbContext.Set<BaseCategory>()
-                           .Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
-                           .FirstOrDefault();
+            var BaseCategorySearched = EtsyDbContext?.Set<BaseCategory>()
+                           ?.Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
+                           ?.FirstOrDefault();
             if (BaseCategorySearched == null)
                 return null!;
             return BaseCategorySearched;

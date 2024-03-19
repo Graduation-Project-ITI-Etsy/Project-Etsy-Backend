@@ -76,10 +76,18 @@ namespace Esty_Applications.Services.BaseCategoryServices
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchByCategoryName(string Name)
+        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchBaseCategoryByName(string Name)
         {
             var BaseCategoryResearched = _baseCategoryRepository.SearchBaseCategoryByName(Name);
             var BaseCategoryDTO = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseCategoryResearched);
+            if (BaseCategoryResearched == null)
+            {
+                return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>
+                {
+                    Entity = null,
+                    Message = "Base Category Not Found"
+                };
+            }
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>
             {
                 Entity = BaseCategoryDTO,
