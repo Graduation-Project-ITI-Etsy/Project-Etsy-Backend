@@ -51,7 +51,7 @@ namespace Esty_API
             builder.Services.AddScoped<JwtHandler>();
 
             //For Order 
-            builder.Services.AddAutoMapper(typeof(Program)); 
+            builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IOrdersRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderServices, OrderServices>();
 
@@ -67,6 +67,13 @@ namespace Esty_API
             builder.Services.AddScoped<IPayment, PaymentRepository>();
             builder.Services.AddScoped<IPaymentServices, PaymentServices>();
 
+            // For category
+            builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            //For BaseCategory
+            builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
+            builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
 
             builder.Services.AddAuthentication(opt =>
             {
