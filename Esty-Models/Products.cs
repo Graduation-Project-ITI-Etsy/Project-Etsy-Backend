@@ -14,11 +14,11 @@ namespace Esty_Models
 
         public string? ProductNameAR { get; set; }
 
-        public int ProductPrice { get; set; }
+        public float ProductPrice { get; set; }
 
         public int ProductStock { get; set; }
 
-        public int ProductRating { get; set; }
+        public float ProductRating { get; set; }
 
         public string? ProductPublisher { get; set; }
 
@@ -26,6 +26,7 @@ namespace Esty_Models
 
         public string? ProductDescriptionAR { get; set; }
 
+        public string? ProductImage { get; set; }
 
         public int CategoryID { get; set; }
         //public Ctegory ctegory { get; set; }

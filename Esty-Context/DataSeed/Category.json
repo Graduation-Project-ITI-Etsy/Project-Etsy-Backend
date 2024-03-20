@@ -1,0 +1,62 @@
+[
+    {
+        "NameEN": "Sunglasses & Eyewear",
+        "NameAR": "النظارات الشمسية والنظارات",
+        "BaseCategoryId": 1
+    },
+    {
+        "NameEN": "Keychains & Lanyards",
+        "NameAR": "سلاسل المفاتيح و اسهم",
+        "BaseCategoryId": 1
+    },
+    {
+        "NameEN": "Scarves & Wraps",
+        "NameAR": "الأوشحة والأغطية",
+        "BaseCategoryId": 1
+    },
+    {
+        "NameEN": "Hats & Caps",
+        "NameAR": "القبعات والقبعات",
+        "BaseCategoryId": 1
+    },
+
+
+
+
+
+    {
+        "NameEN": "Painting",
+        "NameAR": "تلوين",
+        "BaseCategoryId": 2
+    },
+    {
+        "NameEN": "Prints",
+        "NameAR": "مطبوعات",
+        "BaseCategoryId": 2
+    },
+    {
+        "NameEN": "Sculpture",
+        "NameAR": "النحت",
+        "BaseCategoryId": 2
+    },
+
+
+
+
+    {
+        "NameEN": "Nursery Decor",
+        "NameAR": "ديكور الحضانة",
+        "BaseCategoryId": 3
+    },
+    {
+        "NameEN": "Baby Toys",
+        "NameAR": "ألعاب الأطفال",
+        "BaseCategoryId": 3
+    },
+    {
+        "NameEN": "Baby Clothes",
+        "NameAR": "ملابس اطفال",
+        "BaseCategoryId": 3
+    }
+]
+

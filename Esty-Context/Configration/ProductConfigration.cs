@@ -15,10 +15,10 @@ namespace Esty_Context.Configration
             //.WithMany(c => c.Products)
             //.HasForeignKey(p => p.CategoryId);
 
-            builder.Property(P => P.ProductNameEN).HasColumnType("nvarchar(50)").IsRequired();
-            builder.Property(P => P.ProductNameAR).HasColumnType("nvarchar(50)").IsRequired();
+            builder.Property(P => P.ProductNameEN).HasColumnType("nvarchar(MAX)").IsRequired();
+            builder.Property(P => P.ProductNameAR).HasColumnType("nvarchar(MAX)").IsRequired();
 
-            builder.Property(P => P.ProductPublisher).HasColumnType("nvarchar(50)").IsRequired();
+            builder.Property(P => P.ProductPublisher).HasColumnType("nvarchar(MAX)").IsRequired();
 
             builder.Property(P => P.ProductDescriptionEN).HasColumnType("nvarchar(MAX)").IsRequired();
             builder.Property(P => P.ProductDescriptionAR).HasColumnType("nvarchar(MAX)").IsRequired();

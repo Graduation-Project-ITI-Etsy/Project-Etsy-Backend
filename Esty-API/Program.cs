@@ -10,6 +10,7 @@ using Esty_Applications.Services.OrderItems;
 using Esty_Applications.Services.Payment;
 using Esty_Applications.Services.Product;
 using Esty_Context;
+using Esty_Context.DataSeed;
 using Esty_Infrastracture.BaseCategortRepository;
 using Esty_Infrastracture.CategoryRepository;
 using Esty_Infrastracture.OrderItemRepository;
@@ -28,7 +29,7 @@ namespace Esty_API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -129,6 +130,24 @@ namespace Esty_API
 
            
             var app = builder.Build();
+
+
+            //Date Seeding//
+            var Scope = app.Services.CreateScope();
+            var services = Scope.ServiceProvider;
+            var dbContext = services.GetRequiredService<EtsyDbContext>();
+
+            var LoggerFactory = services.GetRequiredService<ILoggerFactory>();
+            try
+            {
+                await dbContext.Database.MigrateAsync();
+                await DataSeedContext.DataSeedingAsync(dbContext);
+            }
+            catch (Exception ex)
+            {
+                var Logger = LoggerFactory.CreateLogger<Program>();
+                Logger.LogError(ex, "Error in Migration");
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

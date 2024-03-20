@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Esty_Context.Migrations
 {
     [DbContext(typeof(EtsyDbContext))]
-    [Migration("20240317222233_inital")]
-    partial class inital
+    [Migration("20240320163403_initailMigration")]
+    partial class initailMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -216,10 +216,8 @@ namespace Esty_Context.Migrations
                     b.Property<DateTime?>("ArrivedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CustomerId1")
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("OrderedAt")
@@ -235,7 +233,7 @@ namespace Esty_Context.Migrations
 
                     b.HasKey("OrdersId");
 
-                    b.HasIndex("CustomerId1");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("orders");
                 });
@@ -288,23 +286,26 @@ namespace Esty_Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(MAX)");
 
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductNameAR")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.Property<string>("ProductNameEN")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("ProductPrice")
+                        .HasColumnType("real");
 
                     b.Property<string>("ProductPublisher")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
-                    b.Property<int>("ProductRating")
-                        .HasColumnType("int");
+                    b.Property<float>("ProductRating")
+                        .HasColumnType("real");
 
                     b.Property<int>("ProductStock")
                         .HasColumnType("int");
@@ -499,8 +500,10 @@ namespace Esty_Context.Migrations
             modelBuilder.Entity("Esty_Models.Orders", b =>
                 {
                     b.HasOne("Esty_Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1");
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });
@@ -589,6 +592,8 @@ namespace Esty_Context.Migrations
             modelBuilder.Entity("Esty_Models.Customer", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Esty_Models.Orders", b =>

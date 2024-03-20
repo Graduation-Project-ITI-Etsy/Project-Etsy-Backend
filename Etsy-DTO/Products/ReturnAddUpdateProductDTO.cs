@@ -23,7 +23,7 @@ namespace Etsy_DTO.Products
 
         [Required(ErrorMessage = "Product Price is required !!")]
         [NumbersCustomValidation]
-        public int ProductPrice { get; set; }
+        public float ProductPrice { get; set; }
 
         [Required(ErrorMessage = "Stock is required !!")]
         [NumbersCustomValidation]
@@ -31,7 +31,7 @@ namespace Etsy_DTO.Products
 
         [Required(ErrorMessage = "Product Rating is required !!")]
         [NumbersCustomValidation]
-        public int ProductRating { get; set; }
+        public float ProductRating { get; set; }
 
         [Required(ErrorMessage = "Puvlisher Name is required !!")]
         [MaxLength(50, ErrorMessage = "Product name should be less than 50 Characters")]
@@ -42,6 +42,9 @@ namespace Etsy_DTO.Products
 
         [Required(ErrorMessage = "Product Description is required !!")]
         public string? ProductDescriptionAR { get; set; }
+
+        [Required(ErrorMessage = "Product Image is required !!")]
+        public string? ProductImage { get; set; }
 
         [Required(ErrorMessage = "Category Id is required !!")]
         [NumbersCustomValidation]

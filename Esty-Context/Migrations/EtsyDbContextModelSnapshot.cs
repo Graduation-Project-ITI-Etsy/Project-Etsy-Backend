@@ -283,23 +283,26 @@ namespace Esty_Context.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(MAX)");
 
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductNameAR")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.Property<string>("ProductNameEN")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
+                    b.Property<float>("ProductPrice")
+                        .HasColumnType("real");
 
                     b.Property<string>("ProductPublisher")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(MAX)");
 
-                    b.Property<int>("ProductRating")
-                        .HasColumnType("int");
+                    b.Property<float>("ProductRating")
+                        .HasColumnType("real");
 
                     b.Property<int>("ProductStock")
                         .HasColumnType("int");

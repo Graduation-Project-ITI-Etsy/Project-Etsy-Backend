@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Esty_Context.Migrations
 {
     /// <inheritdoc />
-    public partial class inital : Migration
+    public partial class initailMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -184,17 +184,17 @@ namespace Esty_Context.Migrations
                     TotalPrice = table.Column<double>(type: "float", nullable: false),
                     OrderedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_orders", x => x.OrdersId);
                     table.ForeignKey(
-                        name: "FK_orders_AspNetUsers_CustomerId1",
-                        column: x => x.CustomerId1,
+                        name: "FK_orders_AspNetUsers_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -246,14 +246,15 @@ namespace Esty_Context.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductNameEN = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    ProductNameAR = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    ProductPrice = table.Column<int>(type: "int", nullable: false),
+                    ProductNameEN = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    ProductNameAR = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    ProductPrice = table.Column<float>(type: "real", nullable: false),
                     ProductStock = table.Column<int>(type: "int", nullable: false),
-                    ProductRating = table.Column<int>(type: "int", nullable: false),
-                    ProductPublisher = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    ProductRating = table.Column<float>(type: "real", nullable: false),
+                    ProductPublisher = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     ProductDescriptionEN = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     ProductDescriptionAR = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
+                    ProductImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -386,9 +387,9 @@ namespace Esty_Context.Migrations
                 column: "ProductsProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_orders_CustomerId1",
+                name: "IX_orders_CustomerId",
                 table: "orders",
-                column: "CustomerId1");
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_payment_OrderId",
