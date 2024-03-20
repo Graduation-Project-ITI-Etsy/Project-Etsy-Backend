@@ -23,25 +23,25 @@ namespace Esty_Presentation.Controllers
             _userManager = userManager;
             _jwtHandler = jwtHandler;
         }
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDto loginRequest)
-        {
-            var user = await _userManager.FindByNameAsync(loginRequest.Email);
-            if (user == null
-                || !await _userManager.CheckPasswordAsync(user, loginRequest.Password))
-                return Unauthorized(new LoginResult()
-                {
-                    Success = false,
-                    Message = "Invalid Email or Password."
-                });
-            var secToken = await _jwtHandler.GetTokenAsync(user);
-            var jwt = new JwtSecurityTokenHandler().WriteToken(secToken);
-            return Ok(new LoginResult()
-            {
-                Success = true,
-                Message = "Login successful",
-                Token = jwt
-            });
-        }
+        //[HttpPost("Login")]
+        //public async Task<IActionResult> Login(LoginDto loginRequest)
+        //{
+        //    var user = await _userManager.FindByNameAsync(loginRequest.Email);
+        //    if (user == null
+        //        || !await _userManager.CheckPasswordAsync(user, loginRequest.Password))
+        //        return Unauthorized(new LoginResult()
+        //        {
+        //            Success = false,
+        //            Message = "Invalid Email or Password."
+        //        });
+        //    var secToken = await _jwtHandler.GetTokenAsync(user);
+        //    var jwt = new JwtSecurityTokenHandler().WriteToken(secToken);
+        //    return Ok(new LoginResult()
+        //    {
+        //        Success = true,
+        //        Message = "Login successful",
+        //        Token = jwt
+        //    });
+        //}
     }
 }

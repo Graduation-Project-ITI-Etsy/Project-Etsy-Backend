@@ -4,10 +4,11 @@ using Etsy_DTO.BaseCategory;
 using Etsy_DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Esty_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize(Roles = "Administrator")]
     [ApiController]
     public class BaseCategoryController : ControllerBase
     {

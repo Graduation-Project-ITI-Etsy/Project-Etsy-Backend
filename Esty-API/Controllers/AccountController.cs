@@ -1,10 +1,9 @@
-﻿using Esty_Applications.Services.Login;
-using Esty_Context;
-using Esty_Models;
+﻿using Esty_Applications.Services.Authentication;
+using Etsy_DTO.Account;
 using Etsy_DTO.LoginRequest;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace Esty_API.Controllers
 {
@@ -12,37 +11,54 @@ namespace Esty_API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly EtsyDbContext _context;
-        private readonly UserManager<Customer> _userManager;
-        private readonly JwtHandler _jwtHandler;
-        public AccountController(
-            EtsyDbContext context,
-            UserManager<Customer> userManager,
-            JwtHandler jwtHandler)
+        private readonly IAuthService _authService;
+        public AccountController(IAuthService authService)
         {
-            _context = context;
-            _userManager = userManager;
-            _jwtHandler = jwtHandler;
+            _authService = authService;
         }
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody] Etsy_DTO.Account.Register model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.RegisterAsync(model);
+
+            if (!result.IsAuthenticated)
+                return BadRequest(result.Message);
+
+            return Ok(result);
+        }
+
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDto loginRequest)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginDto model)
         {
-            var user = await _userManager.FindByNameAsync(loginRequest.Email);
-            if (user == null
-                || !await _userManager.CheckPasswordAsync(user, loginRequest.Password))
-                return Unauthorized(new LoginResult()
-                {
-                    Success = false,
-                    Message = "Invalid Email or Password."
-                });
-            var secToken = await _jwtHandler.GetTokenAsync(user);
-            var jwt = new JwtSecurityTokenHandler().WriteToken(secToken);
-            return Ok(new LoginResult()
-            {
-                Success = true,
-                Message = "Login successful",
-                Token = jwt
-            });
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.GetTokenAsync(model);
+
+            if (!result.IsAuthenticated)
+                return BadRequest(result.Message);
+
+            return Ok(result);
         }
+
+
+        #region Addrole for User 
+        //[HttpPost("addrole")]
+        //public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
+
+        //    var result = await _authService.AddRoleAsync(model);
+
+        //    if (!string.IsNullOrEmpty(result))
+        //        return BadRequest("not here ");
+
+        //    return Ok(model);
+        //} 
+        #endregion
     }
 }
