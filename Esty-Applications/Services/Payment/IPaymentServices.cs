@@ -22,7 +22,7 @@ namespace Esty_Applications.Services.Payment
         public ReturnResultDTO<ReturnAddUpdatePaymentDTO> DeletePayment(ReturnAddUpdatePaymentDTO payment);
 
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(int id);
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(string id);
     }
 
 }

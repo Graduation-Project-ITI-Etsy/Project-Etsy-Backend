@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Esty_API.Controllers
 {
-    [Route("api/[controller]"),Authorize(Roles = "Administrator")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BaseCategoryController : ControllerBase
     {

@@ -10,7 +10,7 @@ namespace Esty_Models
     {
      
         public int OrdersId { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public string Address { get; set; }
         public double TotalPrice { get; set; }
         public DateTime OrderedAt { get; set; }

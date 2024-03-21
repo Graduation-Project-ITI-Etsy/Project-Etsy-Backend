@@ -15,7 +15,7 @@ namespace Esty_Context.Configration
     {
         public void Configure(EntityTypeBuilder<Payments> builder)
         {
-            builder.HasKey(p => p.PaymentID);
+            builder.HasKey(p => p.PaymentId);
 
             // Configure many-to-one relationship with Order
             //builder.HasOne<Order>()

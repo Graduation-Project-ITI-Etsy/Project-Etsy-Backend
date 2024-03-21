@@ -20,7 +20,7 @@ namespace Etsy_DTO.Payment
         [Required(ErrorMessage = "Response is required !")]
         public string Response { get; set; }
 
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         public int OrderId { get; set; }
     }

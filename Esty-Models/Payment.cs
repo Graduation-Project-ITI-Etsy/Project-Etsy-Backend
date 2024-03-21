@@ -8,11 +8,11 @@ namespace Esty_Models
 {
     public class Payments
     {
-        public int PaymentID { get; set; }
+        public int PaymentId { get; set; }
         public double TotalPrice { get; set; }
         public string Response { get; set; }
 
-        public int CustomerId { get; set; }
+        public string CustomerId { get; set; }
 
         // Foreign key property
         public int OrderId { get; set; }

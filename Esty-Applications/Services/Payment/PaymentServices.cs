@@ -61,13 +61,13 @@ namespace Esty_Applications.Services.Payment
         public ReturnResultDTO<ReturnAddUpdatePaymentDTO> DeletePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
-            var deletedPayment = _Payrepo.DeleteEntity(payment.PaymentID);
+            var deletedPayment = _Payrepo.DeleteEntity(payment.PaymentId);
             _Payrepo.Save();
             var deletedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(deletedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = deletedPaymentDto, Message = "Payment deleted successfully" };
         }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(int id)
+        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(string id)
         {
             var payment = _Payrepo.SerachCusromerPayById(id);
             var paymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(payment);

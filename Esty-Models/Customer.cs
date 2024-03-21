@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Esty_Models
 {
-    public class Customer :IdentityUser
+    public class Customer : IdentityUser
     {
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
-        public string Image { get; set; }
-       
-       public DateOnly BirthDate { get; set; }
+        public string? Image { get; set; }
+
+        public DateOnly? BirthDate { get; set; }
         public ICollection<Cart>? Carts { get; set; }
         public ICollection<Orders>? Orders { get; set; }
     }

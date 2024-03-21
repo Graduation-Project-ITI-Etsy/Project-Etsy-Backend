@@ -60,7 +60,7 @@ namespace Esty_Applications.Services.OrderItems
             try
             {
                 var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
-                var deletedOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrdersId);
+                var deletedOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrderItemId);
 
                 if (deletedOrderItem == null)
                 {

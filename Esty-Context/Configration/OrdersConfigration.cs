@@ -23,7 +23,7 @@ namespace Esty_Context.Configration
             //Constrains On Properities :
             builder.HasKey(b => b.OrdersId);
 
-            builder.Property(c => c.Status).IsRequired().HasMaxLength(50);
+            builder.Property(c => c.Status).IsRequired(false).HasMaxLength(50);
             builder.Property(o => o.Address).IsRequired().HasMaxLength(255);
             builder.Property(o => o.TotalPrice).IsRequired();
             builder.Property(o => o.OrderedAt).IsRequired();
