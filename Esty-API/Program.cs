@@ -70,8 +70,13 @@ namespace Esty_API
             var Configuration = builder.Configuration;
 
             //the configration of database connection string 
-            builder.Services.AddDbContext<EtsyDbContext>
-                (option => option.UseSqlServer(Configuration.GetConnectionString("Connstr")));
+            builder.Services.AddDbContext<EtsyDbContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString("Connstr"),
+                  sqlServerOptionsAction: sqlOptions =>
+                  {
+                      sqlOptions.CommandTimeout(60); // Set the timeout value in seconds
+                  }));
+
             builder.Services.AddIdentity<Customer, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -128,7 +133,7 @@ namespace Esty_API
             builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
             builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
 
-           
+
             var app = builder.Build();
 
 
@@ -155,7 +160,7 @@ namespace Esty_API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            
+
             app.MapControllers();
             app.UseAuthentication();
             app.UseAuthorization();

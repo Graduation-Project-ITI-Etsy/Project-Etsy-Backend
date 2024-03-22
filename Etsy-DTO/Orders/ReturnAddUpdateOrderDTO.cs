@@ -12,8 +12,10 @@ namespace Etsy_DTO.Orders
     {
         public int OrdersId { get; set; }
 
-        [StringLength(50)]
-        public string? Status { get; set; }
+
+        //For Admin
+        //[StringLength(50)]
+        //public string? Status { get; set; }
 
 
         [Required(ErrorMessage = "Adress Of Shipping is required !!")]
@@ -29,8 +31,9 @@ namespace Etsy_DTO.Orders
         public DateTime? OrderedAt { get; set; }
 
 
-        [DataType(DataType.DateTime)]
-        public DateTime? ArrivedOn { get; set; }
+        //For Admin
+        //[DataType(DataType.DateTime)]
+        //public DateTime? ArrivedOn { get; set; }
 
 
         public string? CustomerId { get; set; }
