@@ -22,9 +22,10 @@ namespace Esty_Applications.Services.Product
             _mapper = mapper;
         }
 
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> GetAllProducts(int ProductsItems, int PageNumber)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetAllProducts(int ProductsItems, int PageNumber)
         {
-            var AllProducts = _ProductRepository.GetAllEntity();
+
+            var AllProducts = await Task.Run(() => _ProductRepository.GetAllEntity());
             var Products = AllProducts.Skip(ProductsItems * (PageNumber - 1))
                 .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
@@ -46,17 +47,18 @@ namespace Esty_Applications.Services.Product
                 Count = AllProducts.Count(),
                 Message = "All Products were Retrieved"
             };
+           
         }
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> CreateProduct(ReturnAddUpdateProductDTO product)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> CreateProduct(ReturnAddUpdateProductDTO product)
         {
             if (product != null)
             {
                 try
                 {
                     var ProductWillBeCreated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    _ProductRepository.CreateEntity(ProductWillBeCreated);
-                    if (_ProductRepository.Save() > 0)
+                    await Task.Run(() => _ProductRepository.CreateEntity(ProductWillBeCreated));
+                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeCreated);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -65,6 +67,7 @@ namespace Esty_Applications.Services.Product
                             Message = "Product is Created"
                         };
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -82,15 +85,15 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> UpdateProduct(ReturnAddUpdateProductDTO product)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProduct(ReturnAddUpdateProductDTO product)
         {
             if (product != null)
             {
                 try
                 {
                     var ProductWillBeUpdated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    _ProductRepository.UpdateEntity(ProductWillBeUpdated);
-                    if (_ProductRepository.Save() > 0)
+                    await Task.Run(() => _ProductRepository.UpdateEntity(ProductWillBeUpdated));
+                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeUpdated);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -116,15 +119,15 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> DeleteProduct(ReturnAddUpdateProductDTO product)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(ReturnAddUpdateProductDTO product)
         {
             if (product != null)
             {
                 try
                 {
                     var ProductWillBeDeleted = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    _ProductRepository.DeleteEntity(ProductWillBeDeleted.ProductId);
-                    if (_ProductRepository.Save() > 0)
+                    await Task.Run(() => _ProductRepository.DeleteEntity(ProductWillBeDeleted.ProductId));
+                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeDeleted);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -150,9 +153,9 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> SearchByProductID(int ProductId)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductID(int ProductId)
         {
-            var ProductResearched = _ProductRepository.GetEntitybyId(ProductId);
+            var ProductResearched = await _ProductRepository.GetEntitybyId(ProductId);
             var ProductWillBeGet = _mapper.Map<ReturnAddUpdateProductDTO>(ProductResearched);
             if (ProductResearched != null)
                 return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -167,9 +170,9 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> SearchByProductName(string ProductName)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductName(string ProductName)
         {
-            var ProductResearched = _ProductRepository.SearchProductByName(ProductName);
+            var ProductResearched = await  _ProductRepository.SearchProductByName(ProductName);
             var ProductWillBeGet = _mapper.Map<ReturnAddUpdateProductDTO>(ProductResearched);
             if (ProductResearched != null)
                 return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -184,11 +187,12 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
             try
             {
-                var FilterProducts = _ProductRepository.FilterProductByPrice(MinPrice, MaxPrice , CategoryId)
+                var FilterProductsQuery = await _ProductRepository.FilterProductByPrice(MinPrice, MaxPrice, CategoryId);
+                var FilterProducts = FilterProductsQuery
                     .Select(_products => new ReturnAllProductsDTO
                     {
                         ProductId = _products.ProductId,

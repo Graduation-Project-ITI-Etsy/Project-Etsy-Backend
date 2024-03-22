@@ -32,8 +32,8 @@ namespace Etsy_DTO.Orders
 
 
         //For Admin
-        //[DataType(DataType.DateTime)]
-        //public DateTime? ArrivedOn { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime? ArrivedOn { get; set; }
 
 
         public string? CustomerId { get; set; }

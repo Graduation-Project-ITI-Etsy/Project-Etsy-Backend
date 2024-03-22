@@ -19,18 +19,18 @@ namespace Esty_API.Controllers
 
         [HttpGet]
         [Route("Get")]
-        public ReturnResultHasObjsDTO<ReturnAllCategoryDTO> GetAllCategories()
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategories()
         {
-            return _categoryServices.GetAllCategory();
+            return await Task.FromResult(await _categoryServices.GetAllCategory());
         }
 
         [HttpGet]
         [Route("SearchCategory")]
-        public IActionResult SearchCategoryByName(string name)
+        public async Task<IActionResult> SearchCategoryByName(string name)
         {
             try
             {
-                var category = _categoryServices.SearchCategoryByName(name);
+                var category = await Task.FromResult(_categoryServices.SearchCategoryByName(name));
                 if (category == null)
                 {
                     return NotFound("Category not found");

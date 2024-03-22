@@ -18,43 +18,50 @@ namespace Esty_Applications.Contract
             etsyDbContext = _etsyDbContext;
             DbSetEntity = _etsyDbContext.Set<T>();
         }
-        public List<T> GetAllEntity()
+       
+       
+        // Asynchronous versions implemented synchronously
+        public async Task<IQueryable<T>> GetAllEntity()
         {
-            var QueryAllEntity = DbSetEntity;
-            return QueryAllEntity.ToList();
+            return await Task.FromResult(DbSetEntity.Select(s => s));
         }
 
-        public T GetEntitybyId(TID id)
+        public async Task<T> GetEntitybyId(TID id)
         {
-            var QueryIdEntity = DbSetEntity.Find(id);
-            return QueryIdEntity!;
+            return await DbSetEntity.FindAsync(id);
         }
 
-        public T CreateEntity(T Entity)
+        public async Task<T> CreateEntity(T Entity)
         {
-            var QueryCreateEntity = DbSetEntity.Add(Entity).Entity;
-            return QueryCreateEntity;
+            DbSetEntity.Add(Entity);
+            await etsyDbContext.SaveChangesAsync();
+            return Entity;
         }
 
-        public T UpdateEntity(T Entity)
+        public async Task<T> UpdateEntity(T Entity)
         {
-            return DbSetEntity.Update(Entity).Entity;
+            DbSetEntity.Update(Entity);
+            await etsyDbContext.SaveChangesAsync();
+            return Entity;
         }
 
-        public T DeleteEntity(TID id)
+        public async Task<T> DeleteEntity(TID id)
         {
-            var EntityToDelete = DbSetEntity.Find(id);
-            if (EntityToDelete != null)
+            var entityToDelete = await DbSetEntity.FindAsync(id);
+
+            if (entityToDelete != null)
             {
-                DbSetEntity.Remove(EntityToDelete);
-                etsyDbContext.SaveChanges();
+                DbSetEntity.Remove(entityToDelete);
+                await etsyDbContext.SaveChangesAsync();
             }
-            return EntityToDelete!;
+
+            return entityToDelete;
         }
 
-        public int Save()
+        public async Task<int> Save()
         {
-            return etsyDbContext!.SaveChanges();
+            return await etsyDbContext.SaveChangesAsync();
         }
+
     }
 }

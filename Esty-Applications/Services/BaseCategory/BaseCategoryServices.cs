@@ -24,61 +24,64 @@ namespace Esty_Applications.Services.BaseCategoryServices
             _mapper = mapper;
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> CreateBaseCategory(ReturnAddUpdateBaseCategoryDTO baseCategory)
+        public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> CreateBaseCategory(ReturnAddUpdateBaseCategoryDTO baseCategory)
         {
             var baseCategoryMapped = _mapper.Map<Esty_Models.BaseCategory>(baseCategory);
-
             var BaseCreate = _baseCategoryRepository.CreateEntity(baseCategoryMapped);
-            _baseCategoryRepository.Save();
-
+            await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseCreate);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()
             {
                 Entity = BaseCategoryAfterMap,
                 Message = "Base Category Created"
             };
+            
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> DeleteBaseCategory(int BaseCategoryId)
+        public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> DeleteBaseCategory(int BaseCategoryId)
         {
-
             var BaseDeleted = _baseCategoryRepository.DeleteEntity(BaseCategoryId);
-            _baseCategoryRepository.Save();
-
+            await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseDeleted);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()
             {
                 Entity = BaseCategoryAfterMap,
                 Message = "Base Category Deleted"
             };
+           
         }
 
-        public ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO> GetAllBaseCategory()
+        public async Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategory()
         {
-            var AllBaseCategory = _baseCategoryRepository.GetAllEntity();
-            var BaseCategoryDTO = _mapper.Map<List<ReturnAllBaseCategoryDTO>>(AllBaseCategory);
+
+            var AllBaseCategoryQuery = await _baseCategoryRepository.GetAllEntity();
+            var allBaseCategory = AllBaseCategoryQuery.ToList();
+
+            var BaseCategoryDTO = _mapper.Map<List<ReturnAllBaseCategoryDTO>>(allBaseCategory);
             return new ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>
             {
                 Entities = BaseCategoryDTO,
-                Count = AllBaseCategory.Count,
-                Message = "All Base Categorty were Retrieved"
+                Count = allBaseCategory.Count,
+                Message = "All Base Category were Retrieved"
             };
+           
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> GetBaseCategoryById(int BaseCategoryId)
+        public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> GetBaseCategoryById(int BaseCategoryId)
         {
-           var _BaseCategory = _baseCategoryRepository.GetEntitybyId(BaseCategoryId);
-           var BaseCategoryDTO = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(_BaseCategory);
+            var _BaseCategory = await _baseCategoryRepository.GetEntitybyId(BaseCategoryId);
+            var BaseCategoryDTO = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(_BaseCategory);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>
             {
                 Entity = BaseCategoryDTO,
                 Message = "Base Category Found"
             };
+          
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchBaseCategoryByName(string Name)
+        public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>>  SearchBaseCategoryByName(string Name)
         {
-            var BaseCategoryResearched = _baseCategoryRepository.SearchBaseCategoryByName(Name);
+            var BaseCategoryResearched = await _baseCategoryRepository.SearchBaseCategoryByName(Name);
             var BaseCategoryDTO = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseCategoryResearched);
             if (BaseCategoryResearched == null)
             {
@@ -93,15 +96,14 @@ namespace Esty_Applications.Services.BaseCategoryServices
                 Entity = BaseCategoryDTO,
                 Message = "Base Category Found"
             };
+           
         }
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> UpdateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory)
+        public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> UpdateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory)
         {
             var baseCategoryMapped = _mapper.Map<Esty_Models.BaseCategory>(basecategory);
-
             var BaseUpdated = _baseCategoryRepository.UpdateEntity(baseCategoryMapped);
-            _baseCategoryRepository.Save();
-
+            await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseUpdated);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()
             {

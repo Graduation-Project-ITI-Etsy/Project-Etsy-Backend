@@ -22,11 +22,11 @@ namespace Esty_API.Controllers
 
 
         [HttpGet("{id}")]
-        public IActionResult GetOrderByID(int id)
+        public async Task<IActionResult> GetOrderByID(int id)
         {
             try
             {
-                var order = _orderService.GetByOrderByID(id);
+                var order = await _orderService.GetByOrderByID(id);
 
                 if (order == null)
                 {
@@ -44,11 +44,11 @@ namespace Esty_API.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] ReturnAddUpdateOrderDTO orderDTO )
+        public async Task<IActionResult> CreateOrder([FromBody] ReturnAddUpdateOrderDTO orderDTO)
         {
             try
             {
-                var result = _orderService.CreateOrder(orderDTO);
+                var result =await _orderService.CreateOrder(orderDTO);
 
                 if (result.Entity != null )
                 {
@@ -67,11 +67,11 @@ namespace Esty_API.Controllers
 
 
         [HttpPut]
-        public IActionResult UpdateOrder([FromBody] ReturnAddUpdateOrderDTO orderDTO)
+        public async Task<IActionResult> UpdateOrder(int id, [FromBody] ReturnAddUpdateOrderDTO orderDTO)
         {
             try
             {
-                var result = _orderService.UpdateOrder(orderDTO);
+                var result = await _orderService.UpdateOrder(orderDTO);
 
                 if (result.Entity != null)
                 {
@@ -90,12 +90,13 @@ namespace Esty_API.Controllers
         }
 
 
-        [HttpDelete]
-        public IActionResult DeleteOrder([FromBody] ReturnAddUpdateOrderDTO orderDTO)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrder(int id)
         {
             try
             {
-                var result = _orderService.DeleteOrder(orderDTO);
+
+                var result = await _orderService.DeleteOrder(id);
                 if (result.Message== "Order deleted successfully")
                 {
                     return NoContent(); 

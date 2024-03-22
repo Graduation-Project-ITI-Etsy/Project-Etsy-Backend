@@ -21,17 +21,19 @@ namespace Esty_Applications.Services.Payment
             _mapper = mapper;
         }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> CreatePayment(ReturnAddUpdatePaymentDTO paymentDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> CreatePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
-            var createdPayment = _Payrepo.CreateEntity(payment);
+            var createdPayment = await Task.Run(() => _Payrepo.CreateEntity(payment)); 
             var createdPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(createdPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = createdPaymentDto, Message = "Payment created successfully" };
-        }
 
-        public ReturnResultHasObjsDTO<ReturnAllPaymentDTO> GetAllPayment()
+         }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllPaymentDTO>> GetAllPayment()
         {
-            var allPayments = _Payrepo.GetAllEntity();
+            var allPaymentsQuery = await _Payrepo.GetAllEntity(); 
+            var allPayments = allPaymentsQuery.ToList(); 
             var paymentsDto = _mapper.Map<List<ReturnAllPaymentDTO>>(allPayments);
             return new ReturnResultHasObjsDTO<ReturnAllPaymentDTO>
             {
@@ -39,37 +41,40 @@ namespace Esty_Applications.Services.Payment
                 Count = allPayments.Count(),
                 Message = "All payments were Retrieved"
             };
+           
         }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SearchByPaymentByID(int paymentId)
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> SearchByPaymentByID(int paymentId)
         {
-            var payment = _Payrepo.GetEntitybyId(paymentId);
+            var payment = await Task.Run(() => _Payrepo.GetEntitybyId(paymentId));
             var paymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(payment);
-            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> 
-            { Entity = paymentDto, Message = "Payment found" };
+            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = paymentDto, Message = "Payment found" };
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> UpdatePayment(ReturnAddUpdatePaymentDTO paymentDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> UpdatePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
-            var updatedPayment = _Payrepo.UpdateEntity(payment);
-            _Payrepo.Save();
+            var updatedPayment = await Task.Run(() => _Payrepo.UpdateEntity(payment)); 
+            await Task.Run(() => _Payrepo.Save());
             var updatedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(updatedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = updatedPaymentDto, Message = "Payment updated successfully" };
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> DeletePayment(ReturnAddUpdatePaymentDTO paymentDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> DeletePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
-            var deletedPayment = _Payrepo.DeleteEntity(payment.PaymentId);
-            _Payrepo.Save();
+            var deletedPayment = await Task.Run(() => _Payrepo.DeleteEntity(payment.PaymentId)); 
+            await Task.Run(() => _Payrepo.Save());
             var deletedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(deletedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = deletedPaymentDto, Message = "Payment deleted successfully" };
-        }
 
-        public ReturnResultDTO<ReturnAddUpdatePaymentDTO> SerachCustomerById(string id)
+         }
+
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> SerachCustomerById(string id)
         {
-            var payment = _Payrepo.SerachCusromerPayById(id);
+            var payment = await Task.Run(() => _Payrepo.SerachCusromerPayById(id)); 
             var paymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(payment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = paymentDto, Message = "Payment found" };
         }

@@ -21,11 +21,11 @@ namespace Esty_API.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateOrderItem([FromBody] ReturnAddUpdateOrderItemsDTO orderDTO)
+        public async Task<IActionResult> CreateOrderItem([FromBody] ReturnAddUpdateOrderItemsDTO orderItemDTO)
         {
             try
             {
-                var result = _orderItemsServices.AddOrderItem(orderDTO);
+                var result =await _orderItemsServices.AddOrderItem(orderItemDTO);
 
                 if (result.Entity != null)
                 {
@@ -43,12 +43,12 @@ namespace Esty_API.Controllers
 
         }
 
-        [HttpDelete]
-        public IActionResult DeleteOrderItem([FromBody] ReturnAddUpdateOrderItemsDTO orderDTO)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOrderItem(int id)
         {
             try
             {
-                var result = _orderItemsServices.DeleteOrderItem(orderDTO);
+                var result =await _orderItemsServices.DeleteOrderItem(id);
                 if (result.Message == "Order deleted successfully")
                 {
                     return NoContent();

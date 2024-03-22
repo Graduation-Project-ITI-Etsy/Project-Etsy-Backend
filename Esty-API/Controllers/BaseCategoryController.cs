@@ -25,19 +25,19 @@ namespace Esty_API.Controllers
         [HttpGet]
         [Route("GetAll")]
 
-        public ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO> GetAllBaseCategories()
+        public async Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategories()
         {
-            return _BaseCategoryServices.GetAllBaseCategory();
+            return await Task.FromResult(await  _BaseCategoryServices.GetAllBaseCategory());
         }
 
 
         [HttpGet]
         [Route("Search ")]
-        public IActionResult SearchBaseCategoryByName(string name)
+        public async Task<IActionResult> SearchBaseCategoryByName(string name)
         {
             try
             {
-                var category = _BaseCategoryServices.SearchBaseCategoryByName(name);
+                var category = await Task.FromResult(_BaseCategoryServices.SearchBaseCategoryByName(name));
                 if (category == null)
                 {
                     return NotFound("BaseCategory not found");
@@ -48,6 +48,7 @@ namespace Esty_API.Controllers
             {
                 return StatusCode(503, "An error occurred while processing your request.");
             }
+
         }
     }
 }

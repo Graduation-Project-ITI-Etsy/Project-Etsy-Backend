@@ -16,11 +16,11 @@ namespace Esty_API.Controllers
         }
 
         [HttpGet("{items},{page}")]
-        public IActionResult GetAllProduct(int items, int page)
+        public async Task<IActionResult> GetAllProduct(int items, int page)
         {
             try
             {
-                var QueryAllProducts = productsServices.GetAllProducts(items, page);
+                var QueryAllProducts = await productsServices.GetAllProducts(items, page);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");
@@ -34,11 +34,11 @@ namespace Esty_API.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetProductByID(int id)
+        public async Task<IActionResult> GetProductByID(int id)
         {
             try
             {
-                var QueryProduct = productsServices.SearchByProductID(id);
+                var QueryProduct =await productsServices.SearchByProductID(id);
                 if (QueryProduct == null)
                 {
                     return NotFound();
@@ -52,11 +52,11 @@ namespace Esty_API.Controllers
         }
 
         [HttpGet("{productName}")]
-        public IActionResult GetProductByName(string productName)
+        public async Task<IActionResult> GetProductByName(string productName)
         {
             try
             {
-                var QueryProduct = productsServices.SearchByProductName(productName);
+                var QueryProduct =await productsServices.SearchByProductName(productName);
                 if (QueryProduct == null)
                 {
                     return NotFound();
@@ -70,11 +70,11 @@ namespace Esty_API.Controllers
         }
 
         [HttpGet("Filter/{MinPrice:int},{MaxPrice:int},{CategoryId:int}")]
-        public IActionResult FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
+        public async Task<IActionResult> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
             try
             {
-                var QueryAllProducts = productsServices.FilterProductByPrice(MinPrice, MaxPrice, CategoryId);
+                var QueryAllProducts = await productsServices.FilterProductByPrice(MinPrice, MaxPrice, CategoryId);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");

@@ -9,6 +9,6 @@ namespace Esty_Applications.Contract
 {
     public interface IBaseCategoryRepository : IRepo<BaseCategory , int>
     {
-        BaseCategory SearchBaseCategoryByName(string name);
+         Task<BaseCategory> SearchBaseCategoryByName(string name);
     }
 }

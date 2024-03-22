@@ -9,6 +9,8 @@ namespace Esty_Applications.Contract
 {
     public interface IPayment : IRepo<Payments, int>
     {
-        Payments SerachCusromerPayById(string id);
+        Task<Payments> SerachCusromerPayById(string id);
     }
+
+
 }

@@ -12,14 +12,14 @@ namespace Esty_Applications.Services.Order
 {
     public interface IOrderServices
     {
-        public ReturnResultHasObjsDTO<ReturnAllOrdersDTO> GetAllOrders();
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO order);
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> UpdateOrder(ReturnAddUpdateOrderDTO Order);
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> DeleteOrder(ReturnAddUpdateOrderDTO Order);
+        Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetAllOrders();
+        Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> CreateOrder(ReturnAddUpdateOrderDTO order);
+        Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> UpdateOrder(ReturnAddUpdateOrderDTO order);
+        Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> DeleteOrder(int Id);
 
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> GetByOrderByID(int OrderId);
+        Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> GetByOrderByID(int OrderId);
 
-        public void ChangeOrderStatus(int orderId, OrderStatus status);
+        Task ChangeOrderStatus(int orderId, OrderStatus status);
 
     }
 }

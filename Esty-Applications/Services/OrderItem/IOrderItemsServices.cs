@@ -12,9 +12,10 @@ namespace Esty_Applications.Services.OrderItems
 {
     public interface IOrderItemsServices
     {
-        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto);
+   
+        public Task<ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto);
 
-        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> DeleteOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto);
+        public Task<ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>> DeleteOrderItem(int Id);
 
 
     }

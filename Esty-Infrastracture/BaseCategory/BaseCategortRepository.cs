@@ -1,6 +1,7 @@
 ﻿using Esty_Applications.Contract;
 using Esty_Context;
 using Esty_Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,12 @@ namespace Esty_Infrastracture.BaseCategortRepository
             this.EtsyDbContext = EtsyDbContext;
         }
 
-        public BaseCategory SearchBaseCategoryByName(string name)
+        public async Task<BaseCategory> SearchBaseCategoryByName(string name)
         {
-            var BaseCategorySearched = EtsyDbContext?.Set<BaseCategory>()
-                           ?.Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
-                           ?.FirstOrDefault();
-            if (BaseCategorySearched == null)
-                return null!;
-            return BaseCategorySearched;
+            var baseCategorySearched = await EtsyDbContext.Set<BaseCategory>()
+                      .Where(P => P.NameEN!.Contains(name) || P.NameAR!.Contains(name))
+                      .FirstOrDefaultAsync();
+            return baseCategorySearched;
         }
     }
 }

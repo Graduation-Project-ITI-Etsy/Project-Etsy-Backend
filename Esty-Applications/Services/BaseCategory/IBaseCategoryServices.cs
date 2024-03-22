@@ -10,16 +10,19 @@ namespace Esty_Applications.Services.BaseCategory
 {
     public interface IBaseCategoryServices
     {
-        public ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO> GetAllBaseCategory();
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> GetBaseCategoryById (int BaseCategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> CreateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory);
+        Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategory();
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> UpdateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory);
+        Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> GetBaseCategoryById(int BaseCategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> DeleteBaseCategory(int BaseCategoryId);
+        Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> CreateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory);
 
-        public ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO> SearchBaseCategoryByName(string Name);
+        Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> UpdateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory);
+
+        Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> DeleteBaseCategory(int BaseCategoryId);
+
+        Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> SearchBaseCategoryByName(string Name);
+
     }
 }

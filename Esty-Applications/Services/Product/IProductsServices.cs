@@ -11,18 +11,20 @@ namespace Esty_Applications.Services.Product
 {
     public interface IProductsServices
     {
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> GetAllProducts(int ProductsItems , int PageNumber);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetAllProducts(int ProductsItems, int PageNumber);
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> CreateProduct (ReturnAddUpdateProductDTO product);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> CreateProduct(ReturnAddUpdateProductDTO product);
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> UpdateProduct (ReturnAddUpdateProductDTO product);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProduct(ReturnAddUpdateProductDTO product);
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> DeleteProduct (ReturnAddUpdateProductDTO product);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(ReturnAddUpdateProductDTO product);
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> SearchByProductID (int ProductId);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductID(int ProductId);
 
-        public ReturnResultDTO<ReturnAddUpdateProductDTO> SearchByProductName(string ProductName);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductName(string ProductName);
 
-        public ReturnResultHasObjsDTO<ReturnAllProductsDTO> FilterProductByPrice(int MinPrice , int MaxPrice, int CategoryId);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
+
+
     }
 }

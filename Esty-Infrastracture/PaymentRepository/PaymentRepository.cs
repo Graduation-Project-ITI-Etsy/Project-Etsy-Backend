@@ -17,10 +17,10 @@ namespace Esty_Infrastracture.PaymentReposatory
             this.EtsyDbContext = EtsyDbContext;
         }
 
-        public Payments SerachCusromerPayById(string id)
+       
+        public async Task<Payments> SerachCusromerPayById(string id)
         {
-            var pay = EtsyDbContext.Set<Payments>().FirstOrDefault(s => s.CustomerId == id);
-            return pay;
+            return await Task.Run(() => EtsyDbContext.Set<Payments>().FirstOrDefault(s => s.CustomerId == id));
         }
     }
 

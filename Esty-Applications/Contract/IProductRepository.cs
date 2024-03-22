@@ -10,8 +10,8 @@ namespace Esty_Applications.Contract
 {
     public interface IProductRepository : IRepo<Products, int>
     {
-        Products SearchProductByName(string Name);
+        Task<Products> SearchProductByName(string Name);
 
-        List<Products> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
+        Task<IQueryable<Products>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
     }
 }

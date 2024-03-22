@@ -28,12 +28,11 @@ namespace Esty_Applications.Services.Order
         }
 
 
-        public ReturnResultHasObjsDTO<ReturnAllOrdersDTO> GetAllOrders()
+        public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetAllOrders()
         {
             try
             {
-                var allOrders = _OrderRepository.GetAllEntity();
-
+                var allOrders = await _OrderRepository.GetAllEntity();
                 var orderDtos = _mapper.Map<List<ReturnAllOrdersDTO>>(allOrders);
 
                 return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>
@@ -45,8 +44,7 @@ namespace Esty_Applications.Services.Order
             }
             catch (Exception ex)
             {
-               Console.WriteLine($"An error occurred while retrieving all orders: {ex.Message}");
-
+                Console.WriteLine($"An error occurred while retrieving all orders: {ex.Message}");
                 return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>
                 {
                     Entities = null,
@@ -54,17 +52,16 @@ namespace Esty_Applications.Services.Order
                     Message = $"Failed to retrieve all orders: {ex.Message}"
                 };
             }
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> CreateOrder(ReturnAddUpdateOrderDTO orderDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> CreateOrder(ReturnAddUpdateOrderDTO orderDto)
         {
-
             try
             {
                 var orderEntity = _mapper.Map<Orders>(orderDto);
-
                 var createdOrder = _OrderRepository.CreateEntity(orderEntity);
-                _OrderRepository.Save();
+                await _OrderRepository.Save();
 
                 var createdOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(createdOrder);
 
@@ -76,27 +73,23 @@ namespace Esty_Applications.Services.Order
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine($"An error occurred while creating the order: {ex.Message}");
-
                 return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
                 {
                     Entity = null,
                     Message = $"Failed to create the order: {ex.Message}"
                 };
             }
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> UpdateOrder(ReturnAddUpdateOrderDTO orderDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> UpdateOrder(ReturnAddUpdateOrderDTO orderDto)
         {
-
             try
             {
                 var orderEntity = _mapper.Map<Orders>(orderDto);
-
                 var updatedOrder = _OrderRepository.UpdateEntity(orderEntity);
-
-                _OrderRepository.Save();
+                await _OrderRepository.Save();
 
                 var updatedOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(updatedOrder);
 
@@ -109,25 +102,21 @@ namespace Esty_Applications.Services.Order
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while updating the order: {ex.Message}");
-
                 return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
                 {
                     Entity = null,
                     Message = $"Failed to update the order: {ex.Message}"
                 };
             }
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> DeleteOrder(ReturnAddUpdateOrderDTO orderDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> DeleteOrder(int Id)
         {
-
             try
             {
-                var orderEntity = _mapper.Map<Orders>(orderDto);
-
-                var deletedOrder = _OrderRepository.DeleteEntity(orderEntity.OrdersId);
-
-                _OrderRepository.Save();
+                var deletedOrder = _OrderRepository.DeleteEntity(Id);
+                await _OrderRepository.Save();
 
                 var deletedOrderDto = _mapper.Map<ReturnAddUpdateOrderDTO>(deletedOrder);
 
@@ -140,20 +129,20 @@ namespace Esty_Applications.Services.Order
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while deleting the order: {ex.Message}");
-
                 return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
                 {
                     Entity = null,
                     Message = $"Failed to delete the order: {ex.Message}"
                 };
             }
+
         }
 
-        public ReturnResultDTO<ReturnAddUpdateOrderDTO> GetByOrderByID(int OrderId)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderDTO>> GetByOrderByID(int OrderId)
         {
             try
             {
-                var order = _OrderRepository.GetEntitybyId(OrderId);
+                var order = await _OrderRepository.GetEntitybyId(OrderId);
 
                 if (order != null)
                 {
@@ -176,7 +165,6 @@ namespace Esty_Applications.Services.Order
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while retrieving the order: {ex.Message}");
-
                 return new ReturnResultDTO<ReturnAddUpdateOrderDTO>
                 {
                     Entity = null,
@@ -186,16 +174,16 @@ namespace Esty_Applications.Services.Order
         }
 
 
-        public void ChangeOrderStatus(int orderId, OrderStatus status)
+        public async Task ChangeOrderStatus(int orderId, OrderStatus status)
         {
             try
             {
-                var order = _OrderRepository.GetEntitybyId(orderId);
+                var order = await _OrderRepository.GetEntitybyId(orderId);
 
                 if (order != null)
                 {
                     order.Status = status.ToString();
-                    _OrderRepository.Save();
+                    await _OrderRepository.Save();
                 }
                 else
                 {
@@ -204,7 +192,7 @@ namespace Esty_Applications.Services.Order
             }
             catch (Exception ex)
             {
-               Console.WriteLine($"An error occurred while changing the order status: {ex.Message}");
+                Console.WriteLine($"An error occurred while changing the order status: {ex.Message}");
                 throw;
             }
         }

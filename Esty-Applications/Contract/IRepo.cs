@@ -8,16 +8,17 @@ namespace Esty_Applications.Contract
 {
     public interface IRepo<T, TID>
     {
-        List<T> GetAllEntity();
+        Task<IQueryable<T>> GetAllEntity();
 
-        T GetEntitybyId(TID id);
+        Task<T> GetEntitybyId(TID id);
 
-        T CreateEntity(T Entity);
+        Task<T> CreateEntity(T Entity);
 
-        T UpdateEntity(T Entity);
+        Task<T> UpdateEntity(T Entity);
 
-        T DeleteEntity(TID id);
+        Task<T> DeleteEntity(TID id);
 
-        public int Save();
+        Task<int> Save();
+
     }
 }

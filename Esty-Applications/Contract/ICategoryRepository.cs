@@ -9,7 +9,7 @@ namespace Esty_Applications.Contract
 {
     public interface ICategoryRepository : IRepo<Category, int>
     {
-        Category  SearchCategoryByName(string name);
+        Task<Category> SearchCategoryByName(string name);
 
     }
 }

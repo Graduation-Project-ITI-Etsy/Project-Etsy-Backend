@@ -26,13 +26,13 @@ namespace Esty_Applications.Services.OrderItems
         }
 
   
-        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>> AddOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
         {
             try
             {
                 var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
                 var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);
-                _OrderItemRepository.Save();
+                await _OrderItemRepository.Save();
 
                 var createdOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(createdOrderItem);
 
@@ -52,22 +52,22 @@ namespace Esty_Applications.Services.OrderItems
                     Message = $"Failed to add the order item: {ex.Message}"
                 };
             }
+           
         }
 
 
-        public ReturnResultDTO<ReturnAddUpdateOrderItemsDTO> DeleteOrderItem(ReturnAddUpdateOrderItemsDTO OrderItemDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdateOrderItemsDTO>> DeleteOrderItem(int Id)
         {
             try
             {
-                var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
-                var deletedOrderItem = _OrderItemRepository.DeleteEntity(orderItemEntity.OrderItemId);
+                var deletedOrderItem = _OrderItemRepository.DeleteEntity(Id);
 
                 if (deletedOrderItem == null)
                 {
                     throw new InvalidOperationException("Failed to delete order item. Item not found.");
                 }
 
-                _OrderItemRepository.Save();
+                await _OrderItemRepository.Save();
 
                 var deletedOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(deletedOrderItem);
 
@@ -88,5 +88,6 @@ namespace Esty_Applications.Services.OrderItems
                 };
             }
         }
+           
     }
 }

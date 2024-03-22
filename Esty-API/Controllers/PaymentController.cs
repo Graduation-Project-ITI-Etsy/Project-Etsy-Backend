@@ -22,11 +22,11 @@ namespace YourNamespace.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult CreatePayment([FromBody] ReturnAddUpdatePaymentDTO paymentDto)
+        public async Task<IActionResult> CreatePayment([FromBody] ReturnAddUpdatePaymentDTO paymentDto)
         {
             try
             {
-                var result = _paymentService.CreatePayment(paymentDto);
+                var result = await _paymentService.CreatePayment(paymentDto);
 
                 if (result.Entity != null)
                 {
@@ -45,11 +45,11 @@ namespace YourNamespace.Controllers
 
         [HttpGet]
         [Route("{paymentId}", Name = nameof(GetPaymentByID))]
-        public IActionResult GetPaymentByID(int paymentId)
+        public async Task<IActionResult> GetPaymentByID(int paymentId)
         {
             try
             {
-                var result = _paymentService.SearchByPaymentByID(paymentId);
+                var result =await _paymentService.SearchByPaymentByID(paymentId);
                 if (result.Entity != null)
                 {
                     return Ok(result.Entity);

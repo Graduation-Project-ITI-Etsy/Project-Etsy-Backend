@@ -11,16 +11,19 @@ namespace Esty_Applications.Services.Category
 {
     public interface ICategoryServices
     {
-        public ReturnResultHasObjsDTO<ReturnAllCategoryDTO> GetAllCategory();
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> GetCategoryById(int CategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> CreateCategory(ReturnAddUpdateBaseCategoryDTO category);
+        public Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory();
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> UpdateCategory(ReturnAddUpdateCategoryDTO category);
+        public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> GetCategoryById(int CategoryId);
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> DeleteCategory(int CategoryId);
+        public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> CreateCategory(ReturnAddUpdateBaseCategoryDTO category);
 
-        public ReturnResultDTO<ReturnAddUpdateCategoryDTO> SearchCategoryByName(string Name);
+        public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> UpdateCategory(ReturnAddUpdateCategoryDTO category);
+
+        public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> DeleteCategory(int CategoryId);
+
+        public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> SearchCategoryByName(string Name);
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Esty_Applications.Contract;
 using Esty_Context;
 using Esty_Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,25 +19,27 @@ namespace Esty_Infrastracture.ProductRepository
             EtsyDbContext = _etsyDbContext;
         }
 
-        public Products SearchProductByName(string Name)
+        public async Task<Products> SearchProductByName(string Name)
         {
-            var Product = EtsyDbContext.Set<Products>()
-                                       .Where(P => P.ProductNameEN!.Contains(Name) || P.ProductNameAR!.Contains(Name))
-                                       .FirstOrDefault();
+            var Product = await EtsyDbContext.Set<Products>()
+                                      .Where(P => P.ProductNameEN!.Contains(Name) || P.ProductNameAR!.Contains(Name))
+                                      .FirstOrDefaultAsync();
             if (Product == null)
                 return null!;
             return Product;
         }
 
-        public List<Products> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
+        public async Task<IQueryable<Products>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
-            var FilterProducts = EtsyDbContext.Set<Products>()
+            var FilterProducts = await EtsyDbContext.Set<Products>()
                                  .Where(P => P.ProductPrice >= MinPrice && P.ProductPrice <= MaxPrice && P.CategoryID == CategoryId)
-                                 .ToList();
+                                 .ToListAsync();
             if (FilterProducts == null)
                 return null!;
 
-            return FilterProducts;
+            return FilterProducts.AsQueryable();
         }
+
+      
     }
 }
