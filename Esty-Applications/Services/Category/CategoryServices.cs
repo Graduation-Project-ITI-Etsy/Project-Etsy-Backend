@@ -4,6 +4,7 @@ using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.BaseCategory;
 using Etsy_DTO.Category;
+using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,12 @@ namespace Esty_Applications.Services.Category
             _CategoryRepository = CategoryRepository;
             _mapper = mapper;
         }
+
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> CreateCategory(ReturnAddUpdateBaseCategoryDTO category)
         {
             var CategoryMapped = _mapper.Map<Esty_Models.Category>(category);
 
-            var CategoryCreate =await _CategoryRepository.CreateEntity(CategoryMapped);
+            var CategoryCreate = await _CategoryRepository.CreateEntity(CategoryMapped);
             await _CategoryRepository.Save();
 
             var CategoryAfterMap = _mapper.Map<ReturnAddUpdateCategoryDTO>(CategoryCreate);
@@ -34,7 +36,7 @@ namespace Esty_Applications.Services.Category
                 Entity = CategoryAfterMap,
                 Message = "Category Created"
             };
-       
+
         }
 
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> DeleteCategory(int CategoryId)
@@ -75,7 +77,7 @@ namespace Esty_Applications.Services.Category
                 Message = "Category Found"
             };
 
-           
+
         }
 
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> SearchCategoryByName(string Name)
@@ -96,7 +98,7 @@ namespace Esty_Applications.Services.Category
                 Message = "Category Found"
             };
 
-           
+
         }
 
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> UpdateCategory(ReturnAddUpdateCategoryDTO category)
@@ -112,7 +114,37 @@ namespace Esty_Applications.Services.Category
                 Entity = CategoryAfterMap,
                 Message = "Category Updated"
             };
-          
+
+        }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetCategoriesByBaseCategoryId(int BaseCategoryId)
+        {
+
+            var CategoriesByBaseCategoryId = await _CategoryRepository.GetCategoriesByBaseCategoryId(BaseCategoryId);
+            var FilterCategories = CategoriesByBaseCategoryId
+                .Select(_Categories => new ReturnAllCategoryDTO
+                {
+                    Id = _Categories.Id,
+                    NameEN = _Categories.NameEN,
+                    NameAR = _Categories.NameAR,
+                    BaseCategoryId = BaseCategoryId
+                }).ToList();
+
+            if (FilterCategories != null)
+            {
+                return new ReturnResultHasObjsDTO<ReturnAllCategoryDTO>()
+                {
+                    Entities = FilterCategories,
+                    Count = FilterCategories.Count(),
+                    Message = "All Products were Retrieved"
+                };
+            }
+
+            return new ReturnResultHasObjsDTO<ReturnAllCategoryDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
         }
     }
 }

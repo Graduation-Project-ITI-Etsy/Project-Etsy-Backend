@@ -11,5 +11,6 @@ namespace Esty_Applications.Contract
     {
         Task<Category> SearchCategoryByName(string name);
 
+        Task<IQueryable<Category>> GetCategoriesByBaseCategoryId(int BaseCategoryId);
     }
 }

@@ -25,6 +25,14 @@ namespace Esty_API.Controllers
         }
 
         [HttpGet]
+        [Route("CategoriesByBaseCategory")]
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetCategoriesByBaseCategoryId(int id)
+        {
+            return await _categoryServices.GetCategoriesByBaseCategoryId(id);
+        }
+
+
+        [HttpGet]
         [Route("SearchCategory")]
         public async Task<IActionResult> SearchCategoryByName(string name)
         {

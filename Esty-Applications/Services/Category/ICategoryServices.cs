@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Etsy_DTO.Category;
+using Esty_Applications.Contract;
 
 namespace Esty_Applications.Services.Category
 {
     public interface ICategoryServices
     {
-
+        public Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetCategoriesByBaseCategoryId(int BaseCategoryId);
 
         public Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory();
 

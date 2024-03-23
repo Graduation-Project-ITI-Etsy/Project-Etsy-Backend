@@ -19,6 +19,17 @@ namespace Esty_Infrastracture.CategoryRepository
 
         }
 
+        public async Task<IQueryable<Category>> GetCategoriesByBaseCategoryId(int BaseCategoryId)
+        {
+            var CategoriesByBaseCategory = await EtsyDbContext.Set<Category>()
+                                  .Where(C => C.BaseCategoryId == BaseCategoryId)
+                                  .ToListAsync();
+            if (CategoriesByBaseCategory == null)
+                return null!;
+
+            return CategoriesByBaseCategory.AsQueryable();
+        }
+
         public async Task<Category> SearchCategoryByName(string name)
         {
             var CategorySearched = await EtsyDbContext.Set<Category>()
