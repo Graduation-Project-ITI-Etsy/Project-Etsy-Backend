@@ -16,8 +16,8 @@ namespace Esty_Infrastracture.BaseCategortRepository
 
         public BaseCategortRepository(EtsyDbContext EtsyDbContext) : base(EtsyDbContext)
         {
-            this.EtsyDbContext = EtsyDbContext;
-        }
+            this.EtsyDbContext = EtsyDbContext ?? throw new ArgumentNullException(nameof(EtsyDbContext));
+    }
 
         public async Task<BaseCategory> SearchBaseCategoryByName(string name)
         {

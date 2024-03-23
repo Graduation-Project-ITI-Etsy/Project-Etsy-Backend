@@ -27,7 +27,7 @@ namespace Esty_Applications.Services.BaseCategoryServices
         public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> CreateBaseCategory(ReturnAddUpdateBaseCategoryDTO baseCategory)
         {
             var baseCategoryMapped = _mapper.Map<Esty_Models.BaseCategory>(baseCategory);
-            var BaseCreate = _baseCategoryRepository.CreateEntity(baseCategoryMapped);
+            var BaseCreate = await _baseCategoryRepository.CreateEntity(baseCategoryMapped);
             await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseCreate);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()
@@ -40,7 +40,7 @@ namespace Esty_Applications.Services.BaseCategoryServices
 
         public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> DeleteBaseCategory(int BaseCategoryId)
         {
-            var BaseDeleted = _baseCategoryRepository.DeleteEntity(BaseCategoryId);
+            var BaseDeleted = await _baseCategoryRepository.DeleteEntity(BaseCategoryId);
             await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseDeleted);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()
@@ -102,7 +102,7 @@ namespace Esty_Applications.Services.BaseCategoryServices
         public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> UpdateBaseCategory(ReturnAddUpdateBaseCategoryDTO basecategory)
         {
             var baseCategoryMapped = _mapper.Map<Esty_Models.BaseCategory>(basecategory);
-            var BaseUpdated = _baseCategoryRepository.UpdateEntity(baseCategoryMapped);
+            var BaseUpdated = await _baseCategoryRepository.UpdateEntity(baseCategoryMapped);
             await _baseCategoryRepository.Save();
             var BaseCategoryAfterMap = _mapper.Map<ReturnAddUpdateBaseCategoryDTO>(BaseUpdated);
             return new ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>()

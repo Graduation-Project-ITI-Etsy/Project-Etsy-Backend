@@ -15,7 +15,7 @@ namespace Esty_Infrastracture.CategoryRepository
         EtsyDbContext EtsyDbContext;
         public CategoryRepository(EtsyDbContext _etsyDbContext) : base(_etsyDbContext)
         {
-            this.EtsyDbContext = _etsyDbContext;
+            this.EtsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(_etsyDbContext));
 
         }
 

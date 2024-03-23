@@ -10,12 +10,14 @@ namespace Esty_Applications.Contract
 {
     public class Repository<T, TID> : IRepo<T, TID> where T : class
     {
+
         EtsyDbContext? etsyDbContext { get; set; }
         DbSet<T> DbSetEntity;
 
         public Repository(EtsyDbContext _etsyDbContext)
         {
-            etsyDbContext = _etsyDbContext;
+
+            etsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(etsyDbContext));
             DbSetEntity = _etsyDbContext.Set<T>();
         }
        
@@ -23,7 +25,7 @@ namespace Esty_Applications.Contract
         // Asynchronous versions implemented synchronously
         public async Task<IQueryable<T>> GetAllEntity()
         {
-            return await Task.FromResult(DbSetEntity.Select(s => s));
+            return DbSetEntity.Select(s => s);
         }
 
         public async Task<T> GetEntitybyId(TID id)
@@ -58,9 +60,9 @@ namespace Esty_Applications.Contract
             return entityToDelete;
         }
 
-        public async Task<int> Save()
+        public Task<int> Save()
         {
-            return await etsyDbContext.SaveChangesAsync();
+            return  etsyDbContext.SaveChangesAsync();
         }
 
     }
