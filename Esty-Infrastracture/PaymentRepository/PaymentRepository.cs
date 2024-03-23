@@ -1,6 +1,7 @@
 ﻿using Esty_Applications.Contract;
 using Esty_Context;
 using Esty_Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,13 @@ namespace Esty_Infrastracture.PaymentReposatory
         EtsyDbContext EtsyDbContext;
         public PaymentRepository(EtsyDbContext EtsyDbContext) : base(EtsyDbContext)
         {
-            this.EtsyDbContext = EtsyDbContext;
+            this.EtsyDbContext = EtsyDbContext ?? throw new ArgumentNullException(nameof(EtsyDbContext));
         }
 
        
         public async Task<Payments> SerachCusromerPayById(string id)
         {
-            return await Task.Run(() => EtsyDbContext.Set<Payments>().FirstOrDefault(s => s.CustomerId == id));
+            return await EtsyDbContext.Set<Payments>().FirstOrDefaultAsync(s => s.CustomerId == id);
         }
     }
 

@@ -15,7 +15,7 @@ namespace Esty_Infrastracture.OrderRepository
 
         public OrderRepository(EtsyDbContext _etsyDbContext) : base(_etsyDbContext)
         {
-            EtsyDbContext = _etsyDbContext;
+            EtsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(_etsyDbContext));
         }
     }
 }

@@ -71,11 +71,14 @@ namespace Esty_API
 
             //the configration of database connection string 
             builder.Services.AddDbContext<EtsyDbContext>(options =>
-                 options.UseSqlServer(Configuration.GetConnectionString("Connstr"),
-                  sqlServerOptionsAction: sqlOptions =>
-                  {
-                      sqlOptions.CommandTimeout(60); // Set the timeout value in seconds
-                  }));
+            options.UseSqlServer(Configuration.GetConnectionString("Connstr"),
+            sqlServerOptionsAction: sqlOptions =>
+            {
+                sqlOptions.CommandTimeout(60); 
+            }), ServiceLifetime.Scoped);
+
+
+
 
             builder.Services.AddIdentity<Customer, IdentityRole>(options =>
             {

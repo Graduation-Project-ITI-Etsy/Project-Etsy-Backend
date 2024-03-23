@@ -4,6 +4,7 @@ using Etsy_DTO.OrderItem;
 using Etsy_DTO.Orders;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Esty_API.Controllers
@@ -49,13 +50,15 @@ namespace Esty_API.Controllers
             try
             {
                 var result =await _orderItemsServices.DeleteOrderItem(id);
-                if (result.Message == "Order deleted successfully")
+                if (result.Message == "Order item deleted successfully")
                 {
                     return NoContent();
+
                 }
                 else
                 {
-                    return NotFound(result.Message ?? "Order item not found.");
+                    return NotFound(result.Message ?? "Order item Not found.");
+
                 }
             }
             catch (Exception ex)

@@ -31,7 +31,7 @@ namespace Esty_Applications.Services.OrderItems
             try
             {
                 var orderItemEntity = _mapper.Map<OrderItem>(OrderItemDto);
-                var createdOrderItem = _OrderItemRepository.CreateEntity(orderItemEntity);
+                var createdOrderItem = await _OrderItemRepository.CreateEntity(orderItemEntity);
                 await _OrderItemRepository.Save();
 
                 var createdOrderItemDto = _mapper.Map<ReturnAddUpdateOrderItemsDTO>(createdOrderItem);
@@ -60,7 +60,7 @@ namespace Esty_Applications.Services.OrderItems
         {
             try
             {
-                var deletedOrderItem = _OrderItemRepository.DeleteEntity(Id);
+                var deletedOrderItem =await _OrderItemRepository.DeleteEntity(Id);
 
                 if (deletedOrderItem == null)
                 {

@@ -25,7 +25,7 @@ namespace Esty_Applications.Services.Product
         public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetAllProducts(int ProductsItems, int PageNumber)
         {
 
-            var AllProducts = await Task.Run(() => _ProductRepository.GetAllEntity());
+            var AllProducts = await _ProductRepository.GetAllEntity();
             var Products = AllProducts.Skip(ProductsItems * (PageNumber - 1))
                 .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
@@ -57,8 +57,8 @@ namespace Esty_Applications.Services.Product
                 try
                 {
                     var ProductWillBeCreated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    await Task.Run(() => _ProductRepository.CreateEntity(ProductWillBeCreated));
-                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
+                    await _ProductRepository.CreateEntity(ProductWillBeCreated);
+                    if (await _ProductRepository.Save() > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeCreated);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -92,8 +92,8 @@ namespace Esty_Applications.Services.Product
                 try
                 {
                     var ProductWillBeUpdated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    await Task.Run(() => _ProductRepository.UpdateEntity(ProductWillBeUpdated));
-                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
+                    await _ProductRepository.UpdateEntity(ProductWillBeUpdated);
+                    if (await _ProductRepository.Save() > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeUpdated);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -126,8 +126,8 @@ namespace Esty_Applications.Services.Product
                 try
                 {
                     var ProductWillBeDeleted = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
-                    await Task.Run(() => _ProductRepository.DeleteEntity(ProductWillBeDeleted.ProductId));
-                    if (await Task.Run(() => _ProductRepository.Save()) > 0)
+                    await _ProductRepository.DeleteEntity(ProductWillBeDeleted.ProductId);
+                    if (await _ProductRepository.Save() > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeDeleted);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()

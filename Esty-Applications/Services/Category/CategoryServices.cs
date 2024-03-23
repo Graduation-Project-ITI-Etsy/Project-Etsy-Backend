@@ -25,7 +25,7 @@ namespace Esty_Applications.Services.Category
         {
             var CategoryMapped = _mapper.Map<Esty_Models.Category>(category);
 
-            var CategoryCreate = _CategoryRepository.CreateEntity(CategoryMapped);
+            var CategoryCreate =await _CategoryRepository.CreateEntity(CategoryMapped);
             await _CategoryRepository.Save();
 
             var CategoryAfterMap = _mapper.Map<ReturnAddUpdateCategoryDTO>(CategoryCreate);
@@ -39,7 +39,7 @@ namespace Esty_Applications.Services.Category
 
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> DeleteCategory(int CategoryId)
         {
-            var CategoryDeleted = _CategoryRepository.DeleteEntity(CategoryId);
+            var CategoryDeleted = await _CategoryRepository.DeleteEntity(CategoryId);
             await _CategoryRepository.Save();
 
             var CategoryAfterMap = _mapper.Map<ReturnAddUpdateCategoryDTO>(CategoryDeleted);
@@ -103,7 +103,7 @@ namespace Esty_Applications.Services.Category
         {
             var CategoryMapped = _mapper.Map<Esty_Models.Category>(category);
 
-            var CategoryUpdated = _CategoryRepository.UpdateEntity(CategoryMapped);
+            var CategoryUpdated = await _CategoryRepository.UpdateEntity(CategoryMapped);
             await _CategoryRepository.Save();
 
             var CategoryAfterMap = _mapper.Map<ReturnAddUpdateCategoryDTO>(CategoryUpdated);

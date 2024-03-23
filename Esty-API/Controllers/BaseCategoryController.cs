@@ -27,7 +27,7 @@ namespace Esty_API.Controllers
 
         public async Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategories()
         {
-            return await Task.FromResult(await  _BaseCategoryServices.GetAllBaseCategory());
+            return await _BaseCategoryServices.GetAllBaseCategory();
         }
 
 
@@ -37,7 +37,7 @@ namespace Esty_API.Controllers
         {
             try
             {
-                var category = await Task.FromResult(_BaseCategoryServices.SearchBaseCategoryByName(name));
+                var category = await _BaseCategoryServices.SearchBaseCategoryByName(name);
                 if (category == null)
                 {
                     return NotFound("BaseCategory not found");

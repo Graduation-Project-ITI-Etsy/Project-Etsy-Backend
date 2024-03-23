@@ -16,7 +16,7 @@ namespace Esty_Infrastracture.ProductRepository
 
         public ProductRepository(EtsyDbContext _etsyDbContext) : base(_etsyDbContext)
         {
-            EtsyDbContext = _etsyDbContext;
+            EtsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(_etsyDbContext)) ;
         }
 
         public async Task<Products> SearchProductByName(string Name)
