@@ -39,6 +39,7 @@ namespace Esty_Applications.Services.Product
                     ProductPublisher = _products.ProductPublisher,
                     ProductDescriptionEN = _products.ProductDescriptionEN,
                     ProductDescriptionAR = _products.ProductDescriptionAR,
+                    ProductImage = _products.ProductImage,
                     CategoryID = _products.CategoryID
                 }).ToList();
             return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>

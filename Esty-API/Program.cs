@@ -35,6 +35,17 @@ namespace Esty_API
 
             // Add services to the container.
 
+            builder.Services.AddCors(op =>
+            {
+                op.AddPolicy("Default", policy =>
+                {
+                    //policy.WithOrigins("http://localhost:4200,null").WithMethods("get,post").WithHeaders("xyz");
+                    policy.AllowAnyHeader().
+                           AllowAnyMethod().
+                           AllowAnyOrigin();
+                });
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -164,6 +175,7 @@ namespace Esty_API
             app.MapControllers();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors("Default");
 
             app.MapControllers();
 
