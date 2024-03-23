@@ -13,6 +13,8 @@ namespace Esty_Applications.Services.Product
     {
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetAllProducts(int ProductsItems, int PageNumber);
 
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId);
+
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> CreateProduct(ReturnAddUpdateProductDTO product);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProduct(ReturnAddUpdateProductDTO product);
@@ -24,7 +26,6 @@ namespace Esty_Applications.Services.Product
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductName(string ProductName);
 
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
-
 
     }
 }

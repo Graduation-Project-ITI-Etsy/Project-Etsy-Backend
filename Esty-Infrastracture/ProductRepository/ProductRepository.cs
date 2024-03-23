@@ -19,6 +19,17 @@ namespace Esty_Infrastracture.ProductRepository
             EtsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(_etsyDbContext)) ;
         }
 
+        public async Task<IQueryable<Products>> GetByCategoryIdProducts(int CategoryId)
+        {
+            var ProductsByCategoryId = await EtsyDbContext.Set<Products>()
+                                  .Where( P=>P.CategoryID == CategoryId)
+                                  .ToListAsync();
+            if (ProductsByCategoryId == null)
+                return null!;
+
+            return ProductsByCategoryId.AsQueryable();
+        }
+
         public async Task<Products> SearchProductByName(string Name)
         {
             var Product = await EtsyDbContext.Set<Products>()
@@ -39,7 +50,6 @@ namespace Esty_Infrastracture.ProductRepository
 
             return FilterProducts.AsQueryable();
         }
-
       
     }
 }

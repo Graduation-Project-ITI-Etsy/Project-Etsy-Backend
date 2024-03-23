@@ -51,6 +51,42 @@ namespace Esty_Applications.Services.Product
            
         }
 
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId)
+        {
+
+            var ProductsByCategoryId = await _ProductRepository.GetByCategoryIdProducts(CategoryId);
+            var FilterProducts = ProductsByCategoryId
+                .Select(_products => new ReturnAllProductsDTO
+                {
+                    ProductId = _products.ProductId,
+                    ProductNameEN = _products.ProductNameEN,
+                    ProductNameAR = _products.ProductNameAR,
+                    ProductPrice = _products.ProductPrice,
+                    ProductStock = _products.ProductStock,
+                    ProductRating = _products.ProductRating,
+                    ProductPublisher = _products.ProductPublisher,
+                    ProductDescriptionEN = _products.ProductDescriptionEN,
+                    ProductDescriptionAR = _products.ProductDescriptionAR,
+                    ProductImage = _products.ProductImage,
+                    CategoryID = _products.CategoryID
+                }).ToList(); ;
+
+            if (FilterProducts != null)
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = FilterProducts,
+                    Count = FilterProducts.Count(),
+                    Message = "All Products were Retrieved"
+                };
+
+            return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+
+        }
+
         public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> CreateProduct(ReturnAddUpdateProductDTO product)
         {
             if (product != null)

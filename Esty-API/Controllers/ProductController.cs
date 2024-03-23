@@ -86,5 +86,23 @@ namespace Esty_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("FilterProduct/{id:int}")]
+        public async Task<IActionResult> GetProductsByCatetgoryId(int id)
+        {
+            try
+            {
+                var QueryAllProducts = await productsServices.GetProductsByCategoryId(id);
+                if (QueryAllProducts == null || QueryAllProducts.Count == 0)
+                {
+                    return NotFound("No Products Found !!");
+                }
+                return Ok(QueryAllProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
