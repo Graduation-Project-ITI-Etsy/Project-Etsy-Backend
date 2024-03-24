@@ -19,6 +19,9 @@ namespace Etsy_DTO.Category
         [Required]
         [MaxLength(50, ErrorMessage = "Category name should be less than 50 Characters")]
         public string? NameAR { get; set; }
+        [Required]
+        public string? CategoryImage { get; set; }
+
 
         [Required]
         public int BaseCategoryId { get; set; }

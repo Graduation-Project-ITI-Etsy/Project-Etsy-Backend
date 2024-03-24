@@ -11,6 +11,8 @@ namespace Esty_Models
         public int Id { get; set; }
         public string? NameEN { get; set; }
         public string? NameAR { get; set; }
+        public string? CategoryImage { get; set; }
+
 
         public int BaseCategoryId { get; set; }
         public BaseCategory? BaseCategory { get; set; }
