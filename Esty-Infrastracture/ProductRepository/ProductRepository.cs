@@ -50,6 +50,29 @@ namespace Esty_Infrastracture.ProductRepository
 
             return FilterProducts.AsQueryable();
         }
-      
+
+        public async Task<IQueryable<Products>> FilterPriceAscending(int CategoryId)
+        {
+            var ProductsByCategoryIdTask = GetByCategoryIdProducts(CategoryId);
+            var ProductsByCategoryId = await ProductsByCategoryIdTask;
+            var ProductPriceAscending = ProductsByCategoryId.OrderBy(P => P.ProductPrice).ToList();
+            return ProductPriceAscending.AsQueryable();
+        }
+
+        public async Task<IQueryable<Products>> FilterPriceDescending(int CategoryId)
+        {
+            var ProductsByCategoryIdTask = GetByCategoryIdProducts(CategoryId);
+            var ProductsByCategoryId = await ProductsByCategoryIdTask;
+            var ProductPriceAscending = ProductsByCategoryId.OrderByDescending(P => P.ProductPrice).ToList();
+            return ProductPriceAscending.AsQueryable();
+        }
+
+        public async Task<IQueryable<Products>> FilterByCustomerReview(int CategoryId)
+        {
+            var ProductsCustomerReviewTask = GetByCategoryIdProducts(CategoryId);
+            var Reviews = await ProductsCustomerReviewTask;
+            var CustomerReviews = Reviews.OrderByDescending(P => P.ProductRating).ToList();
+            return CustomerReviews.AsQueryable();
+        }
     }
 }

@@ -267,5 +267,107 @@ namespace Esty_Applications.Services.Product
                 };
             }
         }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId)
+        {
+            var Products = await _ProductRepository.FilterPriceAscending(CategoryId);
+            var FilterProducts = Products
+                .Select(_products => new ReturnAllProductsDTO
+                {
+                    ProductId = _products.ProductId,
+                    ProductNameEN = _products.ProductNameEN,
+                    ProductNameAR = _products.ProductNameAR,
+                    ProductPrice = _products.ProductPrice,
+                    ProductStock = _products.ProductStock,
+                    ProductRating = _products.ProductRating,
+                    ProductPublisher = _products.ProductPublisher,
+                    ProductDescriptionEN = _products.ProductDescriptionEN,
+                    ProductDescriptionAR = _products.ProductDescriptionAR,
+                    ProductImage = _products.ProductImage,
+                    CategoryID = _products.CategoryID
+                }).ToList(); ;
+
+            if (FilterProducts != null)
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = FilterProducts,
+                    Count = FilterProducts.Count(),
+                    Message = "All Products were Retrieved"
+                };
+
+            return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+        }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId)
+        {
+            var Products = await _ProductRepository.FilterPriceDescending(CategoryId);
+            var FilterProducts = Products
+                .Select(_products => new ReturnAllProductsDTO
+                {
+                    ProductId = _products.ProductId,
+                    ProductNameEN = _products.ProductNameEN,
+                    ProductNameAR = _products.ProductNameAR,
+                    ProductPrice = _products.ProductPrice,
+                    ProductStock = _products.ProductStock,
+                    ProductRating = _products.ProductRating,
+                    ProductPublisher = _products.ProductPublisher,
+                    ProductDescriptionEN = _products.ProductDescriptionEN,
+                    ProductDescriptionAR = _products.ProductDescriptionAR,
+                    ProductImage = _products.ProductImage,
+                    CategoryID = _products.CategoryID
+                }).ToList(); ;
+
+            if (FilterProducts != null)
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = FilterProducts,
+                    Count = FilterProducts.Count(),
+                    Message = "All Products were Retrieved"
+                };
+
+            return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+        }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId)
+        {
+            var Products = await _ProductRepository.FilterByCustomerReview(CategoryId);
+            var FilterProducts = Products
+                .Select(_products => new ReturnAllProductsDTO
+                {
+                    ProductId = _products.ProductId,
+                    ProductNameEN = _products.ProductNameEN,
+                    ProductNameAR = _products.ProductNameAR,
+                    ProductPrice = _products.ProductPrice,
+                    ProductStock = _products.ProductStock,
+                    ProductRating = _products.ProductRating,
+                    ProductPublisher = _products.ProductPublisher,
+                    ProductDescriptionEN = _products.ProductDescriptionEN,
+                    ProductDescriptionAR = _products.ProductDescriptionAR,
+                    ProductImage = _products.ProductImage,
+                    CategoryID = _products.CategoryID
+                }).ToList(); ;
+
+            if (FilterProducts != null)
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = FilterProducts,
+                    Count = FilterProducts.Count(),
+                    Message = "All Products were Retrieved"
+                };
+
+            return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+        }
     }
 }

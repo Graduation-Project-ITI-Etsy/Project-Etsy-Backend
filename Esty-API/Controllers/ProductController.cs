@@ -104,5 +104,59 @@ namespace Esty_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("PriceAscending/{id:int}")]
+        public async Task<IActionResult> GetProductPriceAscending(int id)
+        {
+            try
+            {
+                var QueryAllProducts = await productsServices.FilterPriceAscending(id);
+                if (QueryAllProducts == null || QueryAllProducts.Count == 0)
+                {
+                    return NotFound("No Products Found !!");
+                }
+                return Ok(QueryAllProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("PriceDescending/{id:int}")]
+        public async Task<IActionResult> GetProductPriceDescending(int id)
+        {
+            try
+            {
+                var QueryAllProducts = await productsServices.FilterPriceDescending(id);
+                if (QueryAllProducts == null || QueryAllProducts.Count == 0)
+                {
+                    return NotFound("No Products Found !!");
+                }
+                return Ok(QueryAllProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("Reviews/{id:int}")]
+        public async Task<IActionResult> GetProductCustomerReview(int id)
+        {
+            try
+            {
+                var QueryAllProducts = await productsServices.FilterProductsCustomerReview(id);
+                if (QueryAllProducts == null || QueryAllProducts.Count == 0)
+                {
+                    return NotFound("No Products Found !!");
+                }
+                return Ok(QueryAllProducts);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

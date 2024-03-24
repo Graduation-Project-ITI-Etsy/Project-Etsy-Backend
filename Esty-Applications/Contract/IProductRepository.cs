@@ -15,5 +15,11 @@ namespace Esty_Applications.Contract
         Task<IQueryable<Products>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
 
         Task<IQueryable<Products>> GetByCategoryIdProducts(int CategoryId);
+
+        Task<IQueryable<Products>> FilterPriceAscending(int CategoryId);
+
+        Task<IQueryable<Products>> FilterPriceDescending(int CategoryId);
+
+        Task<IQueryable<Products>> FilterByCustomerReview(int CategoryId);
     }
 }

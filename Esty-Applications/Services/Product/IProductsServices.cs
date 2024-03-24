@@ -1,4 +1,5 @@
-﻿using Etsy_DTO;
+﻿using Esty_Models;
+using Etsy_DTO;
 using Etsy_DTO.Products;
 using System;
 using System.Collections.Generic;
@@ -27,5 +28,10 @@ namespace Esty_Applications.Services.Product
 
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
 
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId);
+
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId);
+
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId);
     }
 }
