@@ -20,6 +20,9 @@ namespace Etsy_DTO.BaseCategory
         [Required]
         [MaxLength(50, ErrorMessage = "Base Category name should be less than 50 Characters")]
         public string? NameAR {get; set;}
+        [Required]
+        public string? BaseCategoryImage { get; set; }
+
 
         [Required]
         public ICollection<Esty_Models.Category>? Categories { get; set; }

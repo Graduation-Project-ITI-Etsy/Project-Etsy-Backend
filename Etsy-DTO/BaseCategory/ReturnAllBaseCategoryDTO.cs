@@ -12,6 +12,8 @@ namespace Etsy_DTO.BaseCategory
         public int Id { get; set; }
         public string? NameEN { get; set; }
         public string? NameAR { get; set; }
+        public string? BaseCategoryImage { get; set; }
+
         public ICollection<Esty_Models.Category>? Categories { get; set; }
     }
 }
