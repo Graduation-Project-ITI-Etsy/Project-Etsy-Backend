@@ -56,78 +56,104 @@
                 <div class="sidebar-heading">
                     Interface
                 </div>
-            <!-- Nav Item - Products Collapse Menu -->
+     
+            <!-- Nav Item -  Products Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+                   aria-expanded="true" aria-controls="collapseProducts">
                     <i class="fas fa-fw fa-shopping-bag"></i>
-                    <span>Products</span>
+                    <span>  Products</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Show All </a>
-                        <a class="collapse-item" href="cards.html">Create Product</a>
+                        <h6 class="collapse-header"> Products</h6>
+                        <a class="collapse-item" href="~/Product/index">Show All </a>
+                        <a class="collapse-item" href="~/Product/Create">Create Product</a>
                     </div>
                 </div>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Base Categories Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
+                   aria-expanded="true" aria-controls="collapseCategory">
                     <i class="fas fa-fw fa-store"></i>
-                    <span>Base Categories</span>
+                    <span> Base Categories</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseCategory" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Show All </a>
-                        <a class="collapse-item" href="cards.html">Create Base Category</a>
+                        <h6 class="collapse-header">Base Categories</h6>
+                        <a class="collapse-item" href="~/BaseCategory/index">Show All </a>
+                        <a class="collapse-item" href="~/BaseCategory/Create">Create Category</a>
                     </div>
                 </div>
             </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Categories Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-shopping-cart"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
+                   aria-expanded="true" aria-controls="collapseCategories">
+                    <i class="fas fa-fw fa-shopping-basket"></i>
                     <span>Categories</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseCategories" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Show All </a>
-                        <a class="collapse-item" href="cards.html">Create Category</a>
+                        <h6 class="collapse-header">Categories</h6>
+                        <a class="collapse-item" href="~/Category/index">Show All </a>
+                        <a class="collapse-item" href="~/Category/Create">Create Category</a>
                     </div>
                 </div>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Orders Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                   aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-shopping-basket"></i>
-
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrder"
+                   aria-expanded="true" aria-controls="collapseOrder">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>Orders</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOrder" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Show All </a>
-                        <a class="collapse-item" href="cards.html">Create Orders</a>
+                        <h6 class="collapse-header">Orders</h6>
+                        <a class="collapse-item" href="~/Orders/index">Show All </a>
+                        <a class="collapse-item" href="~/Orders/Create">Create Order</a>
                     </div>
                 </div>
             </li>
 
 
-                <!-- Nav Item - Payments Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                       aria-expanded="true" aria-controls="collapseTwo">
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Payments Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"
+                   aria-expanded="true" aria-controls="collapsePayment">
                     <i class="fas fa-fw fa-dollar-sign"></i>
                     <span>Payments</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="~/Payment/index">Show All </a>
-                        </div>
+                </a>
+                <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Payments</h6>
+                        <a class="collapse-item" href="~/Payment/index">Show All </a>
+
                     </div>
-                </li>
+                </div>
+            </li>
+
+
 
    
 
