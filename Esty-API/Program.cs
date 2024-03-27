@@ -3,6 +3,7 @@ using Esty_Applications.Contract;
 using Esty_Applications.Services.Authentication;
 using Esty_Applications.Services.BaseCategory;
 using Esty_Applications.Services.BaseCategoryServices;
+using Esty_Applications.Services.Carts;
 using Esty_Applications.Services.Category;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Order;
@@ -12,6 +13,7 @@ using Esty_Applications.Services.Product;
 using Esty_Context;
 using Esty_Context.DataSeed;
 using Esty_Infrastracture.BaseCategortRepository;
+using Esty_Infrastracture.CartRepository;
 using Esty_Infrastracture.CategoryRepository;
 using Esty_Infrastracture.OrderItemRepository;
 using Esty_Infrastracture.OrderRepository;
@@ -146,6 +148,10 @@ namespace Esty_API
             //For BaseCategory
             builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
             builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
+
+            //For Cart
+            builder.Services.AddScoped<ICartServices, CartServices>();
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
 
 
             var app = builder.Build();

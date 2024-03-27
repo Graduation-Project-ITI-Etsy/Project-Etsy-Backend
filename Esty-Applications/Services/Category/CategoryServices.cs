@@ -127,6 +127,7 @@ namespace Esty_Applications.Services.Category
                     Id = _Categories.Id,
                     NameEN = _Categories.NameEN,
                     NameAR = _Categories.NameAR,
+                    CategoryImage = _Categories.CategoryImage,
                     BaseCategoryId = BaseCategoryId
                 }).ToList();
 

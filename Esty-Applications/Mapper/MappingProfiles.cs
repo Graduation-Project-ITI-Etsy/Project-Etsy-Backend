@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Etsy_DTO.Carts;
 
 namespace Esty_Applications.Mapper
 {
@@ -36,6 +37,9 @@ namespace Esty_Applications.Mapper
 
             CreateMap<Category, ReturnAddUpdateCategoryDTO>().ReverseMap();
             CreateMap<Category, ReturnAllCategoryDTO>().ReverseMap();
+
+            CreateMap<Cart, ReturnAddUpdateCartDTO>().ReverseMap();
+            CreateMap<Cart, ReturnAllCartDTO>().ReverseMap();
 
         }
     }

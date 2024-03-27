@@ -24,8 +24,8 @@ namespace Esty_API.Controllers
             return await _categoryServices.GetAllCategory();
         }
 
-        [HttpGet]
-        [Route("CategoriesByBaseCategory")]
+        [HttpGet("{id:int}")]
+        //[Route("GetbyBaseCategory")]
         public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetCategoriesByBaseCategoryId(int id)
         {
             return await _categoryServices.GetCategoriesByBaseCategoryId(id);
