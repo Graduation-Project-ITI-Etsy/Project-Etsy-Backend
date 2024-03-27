@@ -1,0 +1,45 @@
+﻿@model ReturnResultHasObjsDTO<ReturnAllPaymentDTO>
+@using Etsy_DTO
+@using Etsy_DTO.Payment
+
+
+
+<h1 class="mt-4">All Payments</h1>
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Payment ID</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Response</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ReturnAllPaymentDTO payment in Model.Entities)
+            {
+                <tr>
+                    <td>@payment.PaymentID</td>
+                    <td>@payment.TotalPrice</td>
+                    <td>@payment.Response</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <a asp-action="Edit" asp-route-id="@payment.PaymentID" class="btn btn-primary">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@payment.PaymentID" method="post" onsubmit="return confirm('Are you sure you want to delete this payment?');">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

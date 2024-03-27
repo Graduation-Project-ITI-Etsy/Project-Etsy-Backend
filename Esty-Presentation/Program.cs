@@ -1,5 +1,9 @@
+using Esty_Applications.Contract;
+using Esty_Applications.Services.Authentication;
 using Esty_Applications.Services.Login;
+using Esty_Applications.Services.Payment;
 using Esty_Context;
+using Esty_Infrastracture.PaymentReposatory;
 using Esty_Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +35,13 @@ namespace Esty_Presentation
             }).AddEntityFrameworkStores<EtsyDbContext>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<JwtHandler>();
+
+
+            builder.Services.AddScoped<IPayment, PaymentRepository>();
+            builder.Services.AddScoped<IPaymentServices, PaymentServices>(); 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -46,7 +57,7 @@ namespace Esty_Presentation
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Payment}/{action=Index}/{id?}");
 
             app.Run();
         }

@@ -20,7 +20,7 @@ namespace Esty_Applications.Services.Payment
 
         public Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> UpdatePayment(ReturnAddUpdatePaymentDTO Payment);
 
-        public Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> DeletePayment(ReturnAddUpdatePaymentDTO payment);
+        public Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> DeletePayment(int paymentId);
 
         public Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> SerachCustomerById(string id);
 

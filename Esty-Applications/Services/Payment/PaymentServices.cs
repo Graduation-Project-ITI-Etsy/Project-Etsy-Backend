@@ -62,15 +62,14 @@ namespace Esty_Applications.Services.Payment
 
         }
 
-        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> DeletePayment(ReturnAddUpdatePaymentDTO paymentDto)
+        public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> DeletePayment(int paymentId)
         {
-            var payment = _mapper.Map<Payments>(paymentDto);
-            var deletedPayment = await _Payrepo.DeleteEntity(payment.PaymentId); 
+            var deletedPayment = await _Payrepo.DeleteEntity(paymentId);
             await _Payrepo.Save();
             var deletedPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(deletedPayment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = deletedPaymentDto, Message = "Payment deleted successfully" };
+        }
 
-         }
 
         public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> SerachCustomerById(string id)
         {

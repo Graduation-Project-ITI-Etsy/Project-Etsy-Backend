@@ -1,0 +1,31 @@
+﻿@model Etsy_DTO.Payment.ReturnAddUpdatePaymentDTO
+@using Etsy_DTO.Payment;
+
+<h1>Create New Payment</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div>@TempData["Message"]</div>
+}
+
+
+
+    <form asp-action="Create" method="post">
+    <div>
+        <label for="TotalPrice">Total Price:</label>
+        <input type="number" id="TotalPrice" name="TotalPrice" value="@Model.TotalPrice" required>
+    </div>
+    <div>
+        <label for="Response">Response:</label>
+        <input type="text" id="Response" name="Response" value="@Model.Response" required>
+    </div>
+    <div>
+        <label for="CustomerId">Customer ID:</label>
+        <input type="text" id="CustomerId" name="CustomerId" value="@Model.CustomerId" required>
+    </div>
+    <div>
+        <label for="OrderId">Order ID:</label>
+        <input type="number" id="OrderId" name="OrderId" value="@Model.OrderId" required>
+    </div>
+    <button type="submit">Create</button>
+</form>
