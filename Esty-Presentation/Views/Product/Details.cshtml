@@ -1,26 +1,25 @@
-﻿
-@using Etsy_DTO
+﻿@using Etsy_DTO
 @using Etsy_DTO.Products
-@model Etsy_DTO.Products.ReturnAllProductsDTO
+@model Etsy_DTO.Products.ReturnAddUpdateProductDTO
 
-<h1>Product Details</h1>
+<div class="container">
+    <h1>Product Details</h1>
 
-<div>
-    <h4>Product ID: @Model.ProductId</h4>
-    <h4>Product NameAR: @Model.ProductNameAR</h4>
-    <h4>Product NameEN: @Model.ProductNameEN</h4>
-    <h4>Product Publisher: @Model.ProductPublisher</h4>
-    <h4>Product Price: @Model.ProductPrice</h4>
-    <h4>Product Rating: @Model.ProductRating</h4>
-    <h4>Product Stock: @Model.ProductStock</h4>
-    <h4>Product DescriptionAR: @Model.ProductDescriptionAR</h4>
-    <h4>Product DescriptionEN: @Model.ProductDescriptionEN</h4>
-    <h4>Product ProductImage: @Model.ProductImage</h4>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Product ID: @Model.ProductId</h4>
+            <h4 class="card-text">Product NameAR: @Model.ProductNameAR</h4>
+            <h4 class="card-text">Product NameEN: @Model.ProductNameEN</h4>
+            <h4 class="card-text">Product Publisher: @Model.ProductPublisher</h4>
+            <h4 class="card-text">Product Price: @Model.ProductPrice</h4>
+            <h4 class="card-text">Product Rating: @Model.ProductRating</h4>
+            <h4 class="card-text">Product Stock: @Model.ProductStock</h4>
+            <h4 class="card-text">Product DescriptionAR: @Model.ProductDescriptionAR</h4>
+            <h4 class="card-text">Product DescriptionEN: @Model.ProductDescriptionEN</h4>
+            <h4 class="card-text">Product ProductImage: @Model.ProductImage</h4>
+            <h4 class="card-text">Category ID: @Model.CategoryID</h4>
+        </div>
+    </div>
 
-    <h4>Category ID: @Model.CategoryID</h4>
-
-
-
+    <a class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
 </div>
-
-<a asp-action="Index">Back to List</a>
