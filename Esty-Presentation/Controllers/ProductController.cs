@@ -71,10 +71,11 @@ namespace Esty_Presentation.Controllers
         }
 
         // i want this service to be  Delete(int ProdutcId)
+        //Abanoub: Solve this Problem 
         [HttpPost]
-        public async Task<IActionResult> Delete(ReturnAddUpdateProductDTO product)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await _productsServices.DeleteProduct(product);
+            var result = await _productsServices.DeleteProduct(id);
             TempData["Message"] = result.Message;
             return RedirectToAction(nameof(Index));
         }

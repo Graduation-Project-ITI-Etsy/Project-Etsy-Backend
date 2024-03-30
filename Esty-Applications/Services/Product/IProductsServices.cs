@@ -20,7 +20,7 @@ namespace Esty_Applications.Services.Product
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProduct(ReturnAddUpdateProductDTO product);
 
-        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(ReturnAddUpdateProductDTO product);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(int productId);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductID(int ProductId);
 

@@ -130,7 +130,8 @@ namespace Esty_Applications.Services.Product
                 {
                     var ProductWillBeUpdated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
                     await _ProductRepository.UpdateEntity(ProductWillBeUpdated);
-                    if (await _ProductRepository.Save() > 0)
+                    int result = await _ProductRepository.Save();
+                    if (result > 0)
                     {
                         var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(ProductWillBeUpdated);
                         return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -152,17 +153,19 @@ namespace Esty_Applications.Services.Product
             return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
             {
                 Entity = null,
-                Message = "The Object returned from the Created view is Null !!"
+                Message = "The Object returned from the Updated view is Null !!"
             };
         }
 
-        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(ReturnAddUpdateProductDTO product)
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(int productId)
         {
-            if (product != null)
+            var ProductResearched = await _ProductRepository.GetEntitybyId(productId);
+            var ProductWillBeDeleted = _mapper.Map<ReturnAddUpdateProductDTO>(ProductResearched);
+
+            if (ProductWillBeDeleted != null)
             {
                 try
                 {
-                    var ProductWillBeDeleted = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
                     await _ProductRepository.DeleteEntity(ProductWillBeDeleted.ProductId);
                     if (await _ProductRepository.Save() > 0)
                     {
