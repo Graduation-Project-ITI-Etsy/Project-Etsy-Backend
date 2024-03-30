@@ -1,0 +1,44 @@
+﻿@model ReturnResultHasObjsDTO<ReturnAllProductsDTO>
+@using Etsy_DTO
+@using Etsy_DTO.Products
+<h1>Products</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Rating</th>
+                <th>Actions</th> <!-- For Edit/Delete buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Entities)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.ProductNameEN</td>
+                    <td>@product.ProductPrice</td>
+                    <td>@product.ProductStock</td>
+                    <td>@product.ProductRating</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+
+                            <a class="btn btn-primary btn-sm  mr-1" asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
+                            <a class="btn btn-info btn-sm  mr-1" asp-action="Details" asp-route-id="@product.ProductId">Details</a>
+                        <form asp-action="Delete" asp-route-id="@product.ProductId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a class="btn btn-success" asp-action="Create">Create New</a>

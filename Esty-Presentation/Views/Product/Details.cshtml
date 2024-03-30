@@ -1,0 +1,26 @@
+﻿
+@using Etsy_DTO
+@using Etsy_DTO.Products
+@model Etsy_DTO.Products.ReturnAllProductsDTO
+
+<h1>Product Details</h1>
+
+<div>
+    <h4>Product ID: @Model.ProductId</h4>
+    <h4>Product NameAR: @Model.ProductNameAR</h4>
+    <h4>Product NameEN: @Model.ProductNameEN</h4>
+    <h4>Product Publisher: @Model.ProductPublisher</h4>
+    <h4>Product Price: @Model.ProductPrice</h4>
+    <h4>Product Rating: @Model.ProductRating</h4>
+    <h4>Product Stock: @Model.ProductStock</h4>
+    <h4>Product DescriptionAR: @Model.ProductDescriptionAR</h4>
+    <h4>Product DescriptionEN: @Model.ProductDescriptionEN</h4>
+    <h4>Product ProductImage: @Model.ProductImage</h4>
+
+    <h4>Category ID: @Model.CategoryID</h4>
+
+
+
+</div>
+
+<a asp-action="Index">Back to List</a>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Esty_Applications.Services.Payment;
 using Etsy_DTO.Payment;
+using Esty_Models;
 namespace Esty_Presentation.Controllers
 {
     
@@ -42,6 +43,10 @@ namespace Esty_Presentation.Controllers
             public async Task<IActionResult> Edit(int id)
             {
                 var paymentDto = await _paymentServices.SearchByPaymentByID(id);
+                if (paymentDto.Entity == null)
+                {
+                    return NotFound();
+                }
                 return View(paymentDto.Entity);
             }
 

@@ -1,0 +1,33 @@
+﻿@model Etsy_DTO.Category.ReturnAddUpdateCategoryDTO
+@using Etsy_DTO.Category;
+
+<h1>Edit Category</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="NameEN">NameEN:</label>
+        <input type="text" class="form-control" id="NameEN" name="NameEN" value="@Model.NameEN" required>
+    </div>
+    <div class="form-group">
+        <label for="NameAR">NameAR:</label>
+        <input type="text" class="form-control" id="NameAR" name="NameAR" value="@Model.NameAR" required>
+    </div>
+    <div class="form-group">
+        <label for="BaseCategoryId">BaseCategoryId:</label>
+        <input type="number" class="form-control" id="BaseCategoryId" name="BaseCategoryId" value="@Model.BaseCategoryId" required>
+    </div>
+    <div class="form-group">
+        <label for="CategoryImage">CategoryImage:</label>
+        <input type="text" class="form-control" id="CategoryImage" name="CategoryImage" value="@Model.CategoryImage" required>
+    </div>
+
+  
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
