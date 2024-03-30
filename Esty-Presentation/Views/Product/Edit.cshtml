@@ -1,0 +1,76 @@
+﻿@using Etsy_DTO
+@using Etsy_DTO.Products
+@model Etsy_DTO.Products.ReturnAddUpdateProductDTO
+
+<h1 class="mt-4">Edit Product</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+
+<form asp-action="Edit">
+    <div class="text-danger"> </div>
+    <div>
+        <label asp-for="ProductNameAR"></label>
+        <input asp-for="ProductNameAR" class="form-control" />
+        <span asp-validation-for="ProductNameAR" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ProductNameEN"></label>
+        <input asp-for="ProductNameEN" class="form-control" />
+        <span asp-validation-for="ProductNameEN" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ProductPublisher"></label>
+        <input asp-for="ProductPublisher" class="form-control" />
+        <span asp-validation-for="ProductPublisher" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductPrice"></label>
+        <input asp-for="ProductPrice" class="form-control" />
+        <span asp-validation-for="ProductPrice" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ProductRating"></label>
+        <input asp-for="ProductRating" class="form-control" />
+        <span asp-validation-for="ProductRating" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductStock"></label>
+        <input asp-for="ProductStock" class="form-control" />
+        <span asp-validation-for="ProductStock" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ProductDescriptionAR"></label>
+        <input asp-for="ProductDescriptionAR" class="form-control" />
+        <span asp-validation-for="ProductDescriptionAR" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ProductDescriptionEN"></label>
+        <input asp-for="ProductDescriptionEN" class="form-control" />
+        <span asp-validation-for="ProductDescriptionEN" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductImage"></label>
+        <input asp-for="ProductImage" class="form-control" />
+        <span asp-validation-for="ProductImage" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="CategoryID"></label>
+        <input asp-for="CategoryID" class="form-control" />
+        <span asp-validation-for="CategoryID" style="color:red"></span>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Update</button>
+</form>
+
+<a asp-action="Index" class="btn btn-info mt-3" >Back to List</a>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}

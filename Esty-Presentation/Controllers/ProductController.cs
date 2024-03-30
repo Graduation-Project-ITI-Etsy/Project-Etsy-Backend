@@ -15,7 +15,7 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productsServices.GetAllProducts(5,1);
+            var products = await _productsServices.GetAllProducts(100,1);
             return View(products);
         }
 
@@ -39,13 +39,14 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var product = await _productsServices.SearchByProductID(id);
-            if (product == null)
+            if (product.Entity == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(product.Entity);
         }
 
+        //Cheek this in services didnt work correctly
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ReturnAddUpdateProductDTO product)
@@ -69,8 +70,8 @@ namespace Esty_Presentation.Controllers
             return View(product.Entity);
         }
 
+        // i want this service to be  Delete(int ProdutcId)
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(ReturnAddUpdateProductDTO product)
         {
             var result = await _productsServices.DeleteProduct(product);

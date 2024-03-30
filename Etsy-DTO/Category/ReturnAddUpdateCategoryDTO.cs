@@ -26,7 +26,6 @@ namespace Etsy_DTO.Category
         [Required]
         public int BaseCategoryId { get; set; }
 
-        [Required]
         public ICollection<Esty_Models.Products>? Products { get; set; }
 
     }
