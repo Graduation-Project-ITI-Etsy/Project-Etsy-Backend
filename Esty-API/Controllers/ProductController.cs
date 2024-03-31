@@ -87,12 +87,12 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("FilterProduct/{id:int}")]
-        public async Task<IActionResult> GetProductsByCatetgoryId(int id)
+        [HttpGet("FilterProduct/{id}/{items},{page}")]
+        public async Task<IActionResult> GetProductsByCatetgoryId(int id, int items, int page)
         {
             try
             {
-                var QueryAllProducts = await productsServices.GetProductsByCategoryId(id);
+                var QueryAllProducts = await productsServices.GetProductsByCategoryId(id, items, page);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");
@@ -105,12 +105,12 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("PriceAscending/{id:int}")]
-        public async Task<IActionResult> GetProductPriceAscending(int id)
+        [HttpGet("PriceAscending/{id}/{items},{page}")]
+        public async Task<IActionResult> GetProductPriceAscending(int id, int items, int page)
         {
             try
             {
-                var QueryAllProducts = await productsServices.FilterPriceAscending(id);
+                var QueryAllProducts = await productsServices.FilterPriceAscending(id, items, page);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");
@@ -123,12 +123,12 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("PriceDescending/{id:int}")]
-        public async Task<IActionResult> GetProductPriceDescending(int id)
+        [HttpGet("PriceDescending/{id}/{items},{page}")]
+        public async Task<IActionResult> GetProductPriceDescending(int id, int items, int page)
         {
             try
             {
-                var QueryAllProducts = await productsServices.FilterPriceDescending(id);
+                var QueryAllProducts = await productsServices.FilterPriceDescending(id, items, page);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");
@@ -141,12 +141,12 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("Reviews/{id:int}")]
-        public async Task<IActionResult> GetProductCustomerReview(int id)
+        [HttpGet("Reviews/{id}/{items},{page}")]
+        public async Task<IActionResult> GetProductCustomerReview(int id, int items, int page)
         {
             try
             {
-                var QueryAllProducts = await productsServices.FilterProductsCustomerReview(id);
+                var QueryAllProducts = await productsServices.FilterProductsCustomerReview(id, items, page);
                 if (QueryAllProducts == null || QueryAllProducts.Count == 0)
                 {
                     return NotFound("No Products Found !!");

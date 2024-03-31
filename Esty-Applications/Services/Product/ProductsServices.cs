@@ -51,11 +51,12 @@ namespace Esty_Applications.Services.Product
            
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId, int ProductsItems, int PageNumber)
         {
 
             var ProductsByCategoryId = await _ProductRepository.GetByCategoryIdProducts(CategoryId);
-            var FilterProducts = ProductsByCategoryId
+            var FilterProducts = ProductsByCategoryId.Skip(ProductsItems * (PageNumber - 1))
+               .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
                 {
                     ProductId = _products.ProductId,
@@ -271,10 +272,11 @@ namespace Esty_Applications.Services.Product
             }
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId, int ProductsItems, int PageNumber)
         {
             var Products = await _ProductRepository.FilterPriceAscending(CategoryId);
-            var FilterProducts = Products
+            var FilterProducts = Products.Skip(ProductsItems * (PageNumber - 1))
+                .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
                 {
                     ProductId = _products.ProductId,
@@ -305,10 +307,11 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId, int ProductsItems, int PageNumber)
         {
             var Products = await _ProductRepository.FilterPriceDescending(CategoryId);
-            var FilterProducts = Products
+            var FilterProducts = Products.Skip(ProductsItems * (PageNumber - 1))
+                .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
                 {
                     ProductId = _products.ProductId,
@@ -339,10 +342,11 @@ namespace Esty_Applications.Services.Product
             };
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId, int ProductsItems, int PageNumber)
         {
             var Products = await _ProductRepository.FilterByCustomerReview(CategoryId);
-            var FilterProducts = Products
+            var FilterProducts = Products.Skip(ProductsItems * (PageNumber - 1))
+                .Take(ProductsItems)
                 .Select(_products => new ReturnAllProductsDTO
                 {
                     ProductId = _products.ProductId,
