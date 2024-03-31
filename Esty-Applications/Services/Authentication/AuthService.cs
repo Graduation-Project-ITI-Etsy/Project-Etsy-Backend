@@ -66,66 +66,85 @@ namespace Esty_Applications.Services.Authentication
                 return authModel;
             }
 
+            var data = new UserDto
+            {
+                Email = user.Email,
+                Address = user.Address,
+                PhoneNumber = user.PhoneNumber,
+                UserName = user.UserName,
+                Image = user.Image,
+
+            };
             var jwtSecurityToken = await CreateJwtToken(user);
             var rolesList = await _userManager.GetRolesAsync(user);
 
             authModel.IsAuthenticated = true;
             authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             authModel.Email = user.Email;
-            authModel.ExpiresOn = jwtSecurityToken.ValidTo;
+            authModel.customer = data;
+            // authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
-
             return authModel;
         }
+
+
         public async Task<AuthModel> RegisterAsync(Register model)
         {
             try
             {
-                var result1 = await _userManager.FindByEmailAsync(model.Email);
+                var existingUserByEmail = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUserByEmail != null)
+                {
+                    return new AuthModel { Message = "Email is already registered!" };
+                }
+                var existingUserByUsername = await _userManager.FindByNameAsync(model.Username);
+                if (existingUserByUsername != null)
+                {
+                    return new AuthModel { Message = "Username is already registered!" };
+                }
             }
-            catch 
+            catch (Exception ex)
             {
-                return new AuthModel { Message = "Email  is already registered!" };
+                return new AuthModel { Message = "An error occurred during registration." };
             }
-            try
-            {
-                var resultName = await _userManager.FindByNameAsync(model.Username);
-            }
-            catch
-            {
-                return new AuthModel { Message = "Username  is already registered!" };
-            }
-
             var user = new Customer
             {
+                EmailConfirmed = true,
+                LockoutEnabled = false,
                 UserName = model.Username,
                 Email = model.Email,
             };
-
             var result = await _userManager.CreateAsync(user, model.Password);
-
             if (!result.Succeeded)
             {
                 var errors = string.Empty;
-
                 foreach (var error in result.Errors)
                     errors += $"{error.Description},";
-
-                return new AuthModel { Message = errors , IsAuthenticated = false };
+                return new AuthModel { Message = errors, IsAuthenticated = false };
             }
-
-            await _userManager.AddToRoleAsync(user, "RegisteredUser");
-
+            var roleName = "ClassicUser";
+            if (!await _roleManager.RoleExistsAsync(roleName))
+            {
+                var newRole = new IdentityRole(roleName);
+                var createRoleResult = await _roleManager.CreateAsync(newRole);
+                if (!createRoleResult.Succeeded)
+                {
+                    return new AuthModel { Message = "Failed to create user role." };
+                }
+            }
+            // Add the "User" role to the user
+            await _userManager.AddToRoleAsync(user, roleName);
+            var userRoles = await _userManager.GetRolesAsync(user);
             var jwtSecurityToken = await CreateJwtToken(user);
-
             return new AuthModel
             {
                 Email = user.Email,
-                ExpiresOn = jwtSecurityToken.ValidTo,
+                //ExpiresOn = jwtSecurityToken.ValidTo,
+                customer = new UserDto { Email = user.Email, Address = user.Address, PhoneNumber = user.PhoneNumber, Image = user.Image, UserName = user.UserName },
                 IsAuthenticated = true,
-                Roles = new List<string> { "RegisteredUser" },
+                Roles = userRoles.ToList(),
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-               
+
             };
         }
 
