@@ -1,8 +1,8 @@
-﻿@model ReturnResultHasObjsDTO<ReturnAllCategoryDTO>
+﻿@model ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>
 @using Etsy_DTO
-@using Etsy_DTO.Category
+@using Etsy_DTO.BaseCategory
 
-<h1>Categories</h1>
+<h1> BaseCategories</h1>
 <div class="d-flex justify-content-end mt-3">
     <a class="btn btn-success" asp-action="Create">Create New</a>
 </div>
@@ -18,15 +18,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (ReturnAllCategoryDTO category in Model.Entities)
+            @foreach (ReturnAllBaseCategoryDTO category in Model.Entities)
             {
                 <tr>
                     <td>@category.NameEN</td>
                     <td>@category.NameAR</td>
-                    <td><img src="@category.CategoryImage" class="w-25" /></td>
-
-
-
+                    <th><img src="@category.BaseCategoryImage" class="w-25"/> </th>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
                             <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-info btn-sm mr-1">Details</a>

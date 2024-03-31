@@ -39,10 +39,7 @@ namespace Esty_Presentation.Controllers
             public async Task<IActionResult> Edit(int id)
             {
                 var category = await _categoryServices.GetCategoryById(id);
-                if (category.Entity == null)
-                {
-                    return NotFound();
-                }
+             
                 return View(category.Entity);
             }
 

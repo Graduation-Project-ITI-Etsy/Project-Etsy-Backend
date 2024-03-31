@@ -1,10 +1,13 @@
 using Esty_Applications.Contract;
 using Esty_Applications.Services.Authentication;
+using Esty_Applications.Services.BaseCategory;
+using Esty_Applications.Services.BaseCategoryServices;
 using Esty_Applications.Services.Category;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Payment;
 using Esty_Applications.Services.Product;
 using Esty_Context;
+using Esty_Infrastracture.BaseCategortRepository;
 using Esty_Infrastracture.CategoryRepository;
 using Esty_Infrastracture.PaymentReposatory;
 using Esty_Infrastracture.ProductRepository;
@@ -49,6 +52,9 @@ namespace Esty_Presentation
             //For Product
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IProductsServices, ProductsServices>();
+            //For BaseCategory
+            builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
+            builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

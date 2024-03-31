@@ -9,11 +9,12 @@
     <table class="table table-bordered table-striped">
         <thead class="">
             <tr>
-                <th>ID</th>
                 <th>Name</th>
+                <th>Image</th>
+
                 <th>Price</th>
                 <th>Stock</th>
-                <th>Rating</th>
+
                 <th>Actions</th> <!-- For Edit/Delete buttons -->
             </tr>
         </thead>
@@ -21,11 +22,11 @@
             @foreach (var product in Model.Entities)
             {
                 <tr>
-                    <td>@product.ProductId</td>
                     <td>@product.ProductNameEN</td>
+                    <th><img src="@product.ProductImage" class="w-25" /> </th>
+
                     <td>@product.ProductPrice</td>
                     <td>@product.ProductStock</td>
-                    <td>@product.ProductRating</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
 

@@ -3,23 +3,60 @@
 @model Etsy_DTO.Products.ReturnAddUpdateProductDTO
 
 <div class="container">
-    <h1>Product Details</h1>
+    <h1 class="my-4">Product Details</h1>
 
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-body">
-            <h4 class="card-title">Product ID: @Model.ProductId</h4>
-            <h4 class="card-text">Product NameAR: @Model.ProductNameAR</h4>
-            <h4 class="card-text">Product NameEN: @Model.ProductNameEN</h4>
-            <h4 class="card-text">Product Publisher: @Model.ProductPublisher</h4>
-            <h4 class="card-text">Product Price: @Model.ProductPrice</h4>
-            <h4 class="card-text">Product Rating: @Model.ProductRating</h4>
-            <h4 class="card-text">Product Stock: @Model.ProductStock</h4>
-            <h4 class="card-text">Product DescriptionAR: @Model.ProductDescriptionAR</h4>
-            <h4 class="card-text">Product DescriptionEN: @Model.ProductDescriptionEN</h4>
-            <h4 class="card-text">Product ProductImage: @Model.ProductImage</h4>
-            <h4 class="card-text">Category ID: @Model.CategoryID</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@Model.ProductImage" class="img-fluid rounded" alt="Product Image">
+                </div>
+                <div class="col-md-8">
+                    <h5 class="card-title">
+                        Product ID: <span class="card-text">@Model.ProductId</span>
+                    </h5>
+                    
+
+                    <h5 class="card-title">
+                        Product Name (EN):                    <span class="card-text">@Model.ProductNameEN</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Name (AR):                    <span class="card-text">@Model.ProductNameAR</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Publisher:                    <span class="card-text">@Model.ProductPublisher</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Price:                    <span class="card-text">@Model.ProductPrice</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Rating:                    <span class="card-text">@Model.ProductRating</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Stock:                    <span class="card-text">@Model.ProductStock</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Description (EN):                    <span class="card-text">@Model.ProductDescriptionEN</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Product Description (AR):                    <span class="card-text">@Model.ProductDescriptionAR</span>
+                    </h5>
+
+                    <h5 class="card-title">
+                        Category ID:                    <span class="card-text">@Model.CategoryID</span>
+                    </h5>
+                </div>
+            </div>
         </div>
     </div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-primary">Edit</a> |
 
     <a class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
 </div>

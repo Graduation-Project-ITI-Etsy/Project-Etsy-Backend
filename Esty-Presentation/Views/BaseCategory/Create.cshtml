@@ -1,0 +1,31 @@
+﻿@model Etsy_DTO.BaseCategory.ReturnAddUpdateBaseCategoryDTO
+@using Etsy_DTO.BaseCategory;
+
+<h1>Create Base Category</h1>
+<form method="post">
+    <div class="text-danger"> </div>
+    <div>
+        <label asp-for="NameEN"></label>
+        <input asp-for="NameEN" class="form-control" />
+        <span asp-validation-for="NameEN" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="NameAR"></label>
+        <input asp-for="NameAR" class="form-control" />
+        <span asp-validation-for="NameAR" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="BaseCategoryImage"></label>
+        <input asp-for="BaseCategoryImage" class="form-control" />
+        <span asp-validation-for="BaseCategoryImage" style="color:red"></span>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Create</button>
+</form>
+<a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}
