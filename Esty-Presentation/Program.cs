@@ -1,9 +1,16 @@
 using Esty_Applications.Contract;
 using Esty_Applications.Services.Authentication;
+using Esty_Applications.Services.BaseCategory;
+using Esty_Applications.Services.BaseCategoryServices;
+using Esty_Applications.Services.Category;
 using Esty_Applications.Services.Login;
 using Esty_Applications.Services.Payment;
+using Esty_Applications.Services.Product;
 using Esty_Context;
+using Esty_Infrastracture.BaseCategortRepository;
+using Esty_Infrastracture.CategoryRepository;
 using Esty_Infrastracture.PaymentReposatory;
+using Esty_Infrastracture.ProductRepository;
 using Esty_Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +45,17 @@ namespace Esty_Presentation
 
 
             builder.Services.AddScoped<IPayment, PaymentRepository>();
-            builder.Services.AddScoped<IPaymentServices, PaymentServices>(); 
+            builder.Services.AddScoped<IPaymentServices, PaymentServices>();
+            // For category
+            builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            //For Product
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductsServices, ProductsServices>();
+            //For BaseCategory
+            builder.Services.AddScoped<IBaseCategoryServices, BaseCategoryServices>();
+            builder.Services.AddScoped<IBaseCategoryRepository, BaseCategortRepository>();
+
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
@@ -57,7 +74,7 @@ namespace Esty_Presentation
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Payment}/{action=Index}/{id?}");
+                pattern: "{controller=Product}/{action=Index}/{id?}");
 
             app.Run();
         }

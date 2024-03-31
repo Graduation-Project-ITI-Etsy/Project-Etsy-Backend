@@ -23,7 +23,7 @@ namespace Esty_Applications.Services.Category
             _mapper = mapper;
         }
 
-        public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> CreateCategory(ReturnAddUpdateBaseCategoryDTO category)
+        public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> CreateCategory(ReturnAddUpdateCategoryDTO category)
         {
             var CategoryMapped = _mapper.Map<Esty_Models.Category>(category);
 

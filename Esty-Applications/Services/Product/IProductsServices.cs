@@ -14,13 +14,13 @@ namespace Esty_Applications.Services.Product
     {
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetAllProducts(int ProductsItems, int PageNumber);
 
-        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId , int ProductsItems, int PageNumber);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> CreateProduct(ReturnAddUpdateProductDTO product);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProduct(ReturnAddUpdateProductDTO product);
 
-        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(ReturnAddUpdateProductDTO product);
+        public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> DeleteProduct(int productId);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductID(int ProductId);
 
@@ -28,10 +28,10 @@ namespace Esty_Applications.Services.Product
 
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId);
 
-        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceAscending(int CategoryId, int ProductsItems, int PageNumber);
 
-        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId, int ProductsItems, int PageNumber);
 
-        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId);
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId, int ProductsItems, int PageNumber);
     }
 }

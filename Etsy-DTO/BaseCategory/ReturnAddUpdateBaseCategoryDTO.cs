@@ -24,7 +24,6 @@ namespace Etsy_DTO.BaseCategory
         public string? BaseCategoryImage { get; set; }
 
 
-        [Required]
         public ICollection<Esty_Models.Category>? Categories { get; set; }
 
     }
