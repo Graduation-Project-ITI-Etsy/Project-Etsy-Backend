@@ -1,8 +1,10 @@
 ﻿using Esty_Applications.Services.Carts;
 using Esty_Applications.Services.Product;
+using Esty_Models;
 using Etsy_DTO.Carts;
 using Etsy_DTO.Orders;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Esty_API.Controllers
@@ -12,10 +14,12 @@ namespace Esty_API.Controllers
     public class CartController : ControllerBase
     {
         private readonly ICartServices CartServices;
+        private readonly UserManager<Customer> _userManager;
 
-        public CartController(ICartServices cartServices)
+        public CartController(ICartServices cartServices , UserManager<Customer> userManager)
         {
             CartServices = cartServices;
+            _userManager = userManager;
         }
 
         [HttpPost]
@@ -23,11 +27,20 @@ namespace Esty_API.Controllers
         {
             try
             {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
+
+                CartDTO.CustomerId = userId;
                 var result = await CartServices.CreateCart(CartDTO);
 
                 if (result.Entity != null)
                 {
-                    return CreatedAtAction(nameof(CartDTO), new { id = result.Entity.CartID }, result.Entity);
+                    return Ok("Cart is Created");
                 }
                 else
                 {
@@ -46,6 +59,16 @@ namespace Esty_API.Controllers
         {
             try
             {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
+
+                CustomerId = userId;
+
                 var QueryCards = await CartServices.GetAllCards(CustomerId);
                 if (QueryCards == null)
                 {
