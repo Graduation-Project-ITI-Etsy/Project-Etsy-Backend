@@ -162,7 +162,7 @@ namespace Esty_Applications.Services.Authentication
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id)
+                new Claim("Sid", user.Id)
             }
             .Union(userClaims)
             .Union(roleClaims);
