@@ -1,4 +1,5 @@
 ﻿using Esty_Models;
+using Etsy_DTO.Carts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Esty_Applications.Contract
 {
     public interface ICartRepository : IRepo<Cart, int>
     {
-        public Task<IQueryable<Cart>> GetcartsByCustomerId(string customerId);
+        public Task<IQueryable<ReturnAllCartDTO>> GetcartsByCustomerId(string customerId);
     }
 }
