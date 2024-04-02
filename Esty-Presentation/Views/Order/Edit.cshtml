@@ -1,0 +1,40 @@
+﻿@model Etsy_DTO.Orders.ReturnAddUpdateOrderDTO
+@using Etsy_DTO.Orders;
+
+<h1>Edit Category</h1>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+<form asp-action="Edit">
+    <input type="hidden" asp-for="OrdersId" />
+    <div>
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="TotalPrice"></label>
+        <input asp-for="TotalPrice" class="form-control" />
+        <span asp-validation-for="TotalPrice" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="ArrivedOn"></label>
+        <input asp-for="ArrivedOn" class="form-control" />
+        <span asp-validation-for="ArrivedOn" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="CustomerId"></label>
+        <input asp-for="CustomerId" class="form-control" />
+        <span asp-validation-for="CustomerId" style="color:red"></span>
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Update</button>
+</form>
+<a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}
