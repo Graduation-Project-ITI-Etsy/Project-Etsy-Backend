@@ -42,5 +42,34 @@
             }
         </tbody>
     </table>
+   
+
+@{
+    int totalItemCount = ViewBag.TotalItemCount != null ? (int)ViewBag.TotalItemCount : 0; 
+    int itemsPerPage = 5;
+}
+
+<!-- Your existing view code -->
+
+<div class="pagination justify-content-center">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Index", new { pageNumber = 1, itemsPerPage })">First</a>
+        </li>
+        @for (int i = 1; i <= (int)Math.Ceiling((double)totalItemCount / itemsPerPage); i++)
+        {
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = i, itemsPerPage })">@i</a>
+            </li>
+        }
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Index", new { pageNumber = (int)Math.Ceiling((double)totalItemCount / itemsPerPage), itemsPerPage })">Last</a>
+        </li>
+    </ul>
+</div>
+
+
+
+
 </div>
 

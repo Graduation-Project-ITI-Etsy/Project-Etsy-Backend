@@ -13,11 +13,14 @@ namespace Esty_Presentation.Controllers
             _productsServices = productsServices;
         }
 
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index(int pageNumber = 1, int itemsPerPage = 5)
         {
-            var products = await _productsServices.GetAllProducts(100,1);
+            var products = await _productsServices.GetAllProducts(itemsPerPage, pageNumber);
+            ViewBag.TotalItemCount = products.Count;
             return View(products);
         }
+
 
         public IActionResult Create()
         {
