@@ -33,5 +33,8 @@ namespace Esty_Applications.Services.Product
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterPriceDescending(int CategoryId, int ProductsItems, int PageNumber);
 
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> FilterProductsCustomerReview(int CategoryId, int ProductsItems, int PageNumber);
+
+        public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> SearchProducts(string searchTerm, int ProductsItems, int PageNumber);
+
     }
 }

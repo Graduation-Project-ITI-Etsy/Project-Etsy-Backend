@@ -48,7 +48,7 @@ namespace Esty_Applications.Services.Product
                 Count = AllProducts.Count(),
                 Message = "All Products were Retrieved"
             };
-           
+
         }
 
         public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> GetProductsByCategoryId(int CategoryId, int ProductsItems, int PageNumber)
@@ -213,7 +213,7 @@ namespace Esty_Applications.Services.Product
 
         public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> SearchByProductName(string ProductName)
         {
-            var ProductResearched = await  _ProductRepository.SearchProductByName(ProductName);
+            var ProductResearched = await _ProductRepository.SearchProductByName(ProductName);
             var ProductWillBeGet = _mapper.Map<ReturnAddUpdateProductDTO>(ProductResearched);
             if (ProductResearched != null)
                 return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
@@ -376,5 +376,61 @@ namespace Esty_Applications.Services.Product
                 Message = "The Object returned from the Created view is Null !!"
             };
         }
+
+        public async Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> SearchProducts(string searchTerm, int itemsPerPage, int pageNumber)
+        {
+            try
+            {
+                var allProducts = await _ProductRepository.GetAllEntity();
+
+                List<Esty_Models.Products> filteredProducts;
+                if (string.IsNullOrEmpty(searchTerm))
+                {
+                    filteredProducts = allProducts.ToList();
+                }
+                else
+                {
+                    filteredProducts = allProducts.AsEnumerable()
+                        .Where(product => product.ProductNameEN.StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                }
+
+                var paginatedProducts = filteredProducts
+                    .Skip(itemsPerPage * (pageNumber - 1))
+                    .Take(itemsPerPage)
+                    .Select(_products => new ReturnAllProductsDTO
+                    {
+                        ProductId = _products.ProductId,
+                        ProductNameEN = _products.ProductNameEN,
+                        ProductNameAR = _products.ProductNameAR,
+                        ProductPrice = _products.ProductPrice,
+                        ProductStock = _products.ProductStock,
+                        ProductRating = _products.ProductRating,
+                        ProductPublisher = _products.ProductPublisher,
+                        ProductDescriptionEN = _products.ProductDescriptionEN,
+                        ProductDescriptionAR = _products.ProductDescriptionAR,
+                        ProductImage = _products.ProductImage,
+                        CategoryID = _products.CategoryID
+                    }).ToList();
+
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = paginatedProducts,
+                    Count = filteredProducts.Count,
+                    Message = "Products matching the search term were retrieved"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ReturnResultHasObjsDTO<ReturnAllProductsDTO>()
+                {
+                    Entities = null,
+                    Message = ex.Message
+                };
+            }
+        
+
+
     }
+}
 }

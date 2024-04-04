@@ -1,4 +1,6 @@
 ﻿using Esty_Applications.Services.Product;
+using Esty_Models;
+using Etsy_DTO;
 using Etsy_DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,14 +15,44 @@ namespace Esty_Presentation.Controllers
             _productsServices = productsServices;
         }
 
-        
-        public async Task<IActionResult> Index(int pageNumber = 1, int itemsPerPage = 5)
+
+        public async Task<IActionResult> Index(string searchTerm,int categoryId=1, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
         {
-            var products = await _productsServices.GetAllProducts(itemsPerPage, pageNumber);
+            ReturnResultHasObjsDTO<ReturnAllProductsDTO> products;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                products = await _productsServices.SearchProducts(searchTerm, itemsPerPage, pageNumber);
+            }
+            else
+            {
+                switch (filtrationMethod)
+                {
+                    case 1:
+                        products = await _productsServices.FilterPriceAscending(categoryId, itemsPerPage, pageNumber);
+                        break;
+                    case 2:
+                        products = await _productsServices.FilterPriceDescending(categoryId, itemsPerPage, pageNumber);
+                        break;
+                    default:
+                        products = await _productsServices.GetAllProducts(itemsPerPage, pageNumber);
+                        break;
+                }
+            }
+
             ViewBag.TotalItemCount = products.Count;
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.filtrationMethod = filtrationMethod;
+
+
             return View(products);
         }
 
+
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            return RedirectToAction(nameof(Index), new { searchTerm = searchTerm });
+       }
 
         public IActionResult Create()
         {
@@ -49,7 +81,6 @@ namespace Esty_Presentation.Controllers
             return View(product.Entity);
         }
 
-        //Cheek this in services didnt work correctly
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ReturnAddUpdateProductDTO product)
@@ -73,8 +104,7 @@ namespace Esty_Presentation.Controllers
             return View(product.Entity);
         }
 
-        // i want this service to be  Delete(int ProdutcId)
-        //Abanoub: Solve this Problem 
+      
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
