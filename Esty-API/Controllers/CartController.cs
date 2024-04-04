@@ -81,5 +81,33 @@ namespace Esty_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("Delete/{CustomerId}")]
+        public async Task<IActionResult> DeleteCards(string CustomerId)
+        {
+            try
+            {
+                //var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+
+                //var user = await _userManager.FindByIdAsync(userId);
+                //if (user == null)
+                //{
+                //    return NotFound(); // User not found in database
+                //}
+
+                //CustomerId = userId;
+
+                var QueryCards = await CartServices.DeleteCart(CustomerId);
+                if (QueryCards == null)
+                {
+                    return NotFound();
+                }
+                return Ok(QueryCards);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
