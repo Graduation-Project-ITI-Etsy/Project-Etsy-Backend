@@ -127,5 +127,28 @@ namespace Esty_Applications.Services.Carts
                 Message = "The Object returned from the Created view is Null !!"
             };
         }
+
+        public async Task<ReturnResultDTO<ReturnAddUpdateCartDTO>> DeleteCartByCartId(int CartId)
+        {
+
+            try
+            {
+                await _cartRepository.DeleteEntity(CartId);
+
+                return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                {
+                    Message = "Cartr is Deleted"
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                {
+                    Entity = null,
+                    Message = ex.Message
+                };
+            }
+        }
     }
 }

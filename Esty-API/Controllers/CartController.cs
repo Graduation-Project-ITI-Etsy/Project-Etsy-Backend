@@ -109,5 +109,26 @@ namespace Esty_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("DeleteCartId/{CartId:int}")]
+        public async Task<IActionResult> DeleteCardByCartId(int CartId)
+        {
+            try
+            {
+
+                var QueryCards = await CartServices.DeleteCartByCartId(CartId);
+                if (QueryCards == null)
+                {
+                    return NotFound();
+                }
+                return Ok(QueryCards);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
+
+

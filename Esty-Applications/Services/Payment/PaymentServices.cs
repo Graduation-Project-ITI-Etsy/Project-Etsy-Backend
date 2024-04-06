@@ -24,9 +24,14 @@ namespace Esty_Applications.Services.Payment
         public async Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> CreatePayment(ReturnAddUpdatePaymentDTO paymentDto)
         {
             var payment = _mapper.Map<Payments>(paymentDto);
-            var createdPayment = await _Payrepo.CreateEntity(payment); 
-            var createdPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(createdPayment);
-            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = createdPaymentDto, Message = "Payment created successfully" };
+            var createdPayment = await _Payrepo.CreateEntity(payment);
+            if (await _Payrepo.Save() > 0)
+            {
+                var createdPaymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(createdPayment);
+                return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = createdPaymentDto, Message = "Payment created successfully" };
+            }
+
+            return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = null, Message = "Payment created successfully" };
 
          }
 

@@ -17,5 +17,8 @@ namespace Esty_Applications.Services.Carts
         public Task<ReturnResultHasObjsDTO<ReturnAllCartDTO>> GetAllCards(string customerId);
 
         public Task<ReturnResultDTO<ReturnAddUpdateCartDTO>> DeleteCart(string customerId);
+
+        public Task<ReturnResultDTO<ReturnAddUpdateCartDTO>> DeleteCartByCartId(int CartId);
+
     }
 }
