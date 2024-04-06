@@ -82,7 +82,7 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("Delete/{CustomerId}")]
+        [HttpDelete("Delete/{CustomerId}")]
         public async Task<IActionResult> DeleteCards(string CustomerId)
         {
             try
@@ -110,7 +110,7 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("DeleteCartId/{CartId:int}")]
+        [HttpDelete("DeleteCartId/{CartId:int}")]
         public async Task<IActionResult> DeleteCardByCartId(int CartId)
         {
             try
