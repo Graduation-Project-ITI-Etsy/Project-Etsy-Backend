@@ -2,7 +2,7 @@
 @using Etsy_DTO
 @using Etsy_DTO.BaseCategory
 
-<h1> BaseCategories</h1>
+<h1> @ViewBag.Zyad</h1>
 <div class="d-flex justify-content-end mt-3">
     <a class="btn btn-success" asp-action="Create">Create New</a>
 </div>
@@ -10,7 +10,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Name (EN)</th>
+                <th>@ViewBag.NameEN</th>
                 <th>Name (AR)</th>
                 <th>Image</th>
 
