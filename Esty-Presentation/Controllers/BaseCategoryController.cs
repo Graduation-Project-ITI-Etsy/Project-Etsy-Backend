@@ -21,7 +21,16 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Zyad = _localizer[name: "zyad"];
+            ViewBag.Create = _localizer[name: "Create"];
             ViewBag.NameEN = _localizer[name: "NameEN"];
+            ViewBag.NameAR = _localizer[name: "NameAR"];
+            ViewBag.Image = _localizer[name: "Image"];
+            ViewBag.Actions = _localizer[name: "Actions"];
+            ViewBag.Edit = _localizer[name: "Edit"];
+            ViewBag.Delete = _localizer[name: "Delete"];
+
+
+
             var result = await _baseCategoryServices.GetAllBaseCategory();
             return View(result);
         }

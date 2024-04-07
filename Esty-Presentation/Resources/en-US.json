@@ -1,5 +1,11 @@
 {
   "zyad": "BaseCategory",
-  "NameEN": "Name in English"
+  "Create": "Create New",
+  "NameEN": "Name in English",
+  "NameAR": "Name in Arabic",
+  "Image": "Image",
+  "Actions": "Actions",
+  "Edit": "Edit",
+  "Delete": "Delete"
 
 }
