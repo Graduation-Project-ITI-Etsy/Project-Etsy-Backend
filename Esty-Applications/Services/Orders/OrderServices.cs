@@ -12,6 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using Etsy_DTO.Carts;
 
 namespace Esty_Applications.Services.Order
 {
@@ -175,7 +176,6 @@ namespace Esty_Applications.Services.Order
             }
         }
 
-
         public async Task ChangeOrderStatus(int orderId, OrderStatus status)
         {
             try
@@ -199,7 +199,34 @@ namespace Esty_Applications.Services.Order
             }
         }
 
+        public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId)
+        {
+            var OrdersByCustomerId = await _OrderRepository.GetAllCartsByCustomerId(customerId);
 
-    }
+            var OrdersList = OrdersByCustomerId
+					.Select(order => new ReturnAllOrdersDTO
+					{
+						OrdersId = order.OrdersId,
+						Address = order.Address,
+						TotalPrice = order.TotalPrice,
+						ArrivedOn = order.ArrivedOn,
+						CustomerId = order.CustomerId,
+						Status = order.Status
+					}).ToList();
 
+			if (OrdersList != null)
+				return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+				{
+					Entities = OrdersList,
+					Count = OrdersList.Count(),
+					Message = "All Orders were Retrieved"
+				};
+
+			return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+			{
+				Entities = null,
+				Message = "The Object returned from the Created view is Null !!"
+			};
+		}
+	}
 }
