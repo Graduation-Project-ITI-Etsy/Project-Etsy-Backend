@@ -16,7 +16,7 @@ namespace Esty_Presentation.Controllers
         }
 
 
-        public async Task<IActionResult> Index(string searchTerm,int categoryId=1, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
+        public async Task<IActionResult> Index(string searchTerm, int categoryId = 1, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
         {
             ReturnResultHasObjsDTO<ReturnAllProductsDTO> products;
 
@@ -26,26 +26,31 @@ namespace Esty_Presentation.Controllers
             }
             else
             {
-                switch (filtrationMethod)
+                if (categoryId != 0)
                 {
-                    case 1:
-                        products = await _productsServices.FilterPriceAscending(categoryId, itemsPerPage, pageNumber);
-                        break;
-                    case 2:
-                        products = await _productsServices.FilterPriceDescending(categoryId, itemsPerPage, pageNumber);
-                        break;
-                    default:
-                        products = await _productsServices.GetAllProducts(itemsPerPage, pageNumber);
-                        break;
+                    switch (filtrationMethod)
+                    {
+                        case 1:
+                            products = await _productsServices.FilterPriceAscending(categoryId, itemsPerPage, pageNumber);
+                            break;
+                        case 2:
+                            products = await _productsServices.FilterPriceDescending(categoryId, itemsPerPage, pageNumber);
+                            break;
+                        default:
+                            products = await _productsServices.GetProductsByCategoryId(categoryId, itemsPerPage, pageNumber);
+                            break;
+                    }
                 }
+                else { products = await _productsServices.SearchProducts(searchTerm, itemsPerPage, pageNumber); }
             }
 
             ViewBag.TotalItemCount = products.Count;
             ViewBag.SearchTerm = searchTerm;
-            ViewBag.filtrationMethod = filtrationMethod;
-
+            ViewBag.CategoryId = categoryId;
+            ViewBag.FiltrationMethod = filtrationMethod;
 
             return View(products);
+
         }
 
 
