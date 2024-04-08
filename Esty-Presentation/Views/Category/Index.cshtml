@@ -2,10 +2,34 @@
 @using Etsy_DTO
 @using Etsy_DTO.Category
 
+@{
+    int totalItemCount = ViewBag.TotalItemCount;
+    int itemsPerPage = 5;
+}
 <h1>Categories</h1>
 <div class="d-flex justify-content-end mt-3">
     <a class="btn btn-success" asp-action="Create">Create New</a>
 </div>
+<form id="filterForm" asp-action="Index" method="get" class="form-inline">
+    <div class="form-group mr-3">
+        <select class="form-control" name="BaseCategoryId" id="BaseCategoryId">
+            <option value="">base categories </option>>
+            <!-- Populate the dropdown list with categories -->
+            @foreach (var basecategory in ViewBag.baseCategories)
+            {
+                <option value="@basecategory.Id">@basecategory.NameEN</option>
+               
+                   int BaseCategoryId= @basecategory.Id;
+                
+
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" id="applyButton">Apply</button>
+</form>
+
+@if (totalItemCount != 0)
+{
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -20,6 +44,7 @@
         <tbody>
             @foreach (ReturnAllCategoryDTO category in Model.Entities)
             {
+                
                 <tr>
                     <td>@category.NameEN</td>
                     <td>@category.NameAR</td>
@@ -42,3 +67,26 @@
     </table>
 </div>
 
+
+
+    <div class="pagination justify-content-center">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = 1, itemsPerPage })">First</a>
+            </li>
+            @for (int i = 1; i <= (int)Math.Ceiling((double)totalItemCount / itemsPerPage); i++)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { pageNumber = i, itemsPerPage })">@i</a>
+                </li>
+            }
+            <li class="page-item">
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = (int)Math.Ceiling((double)totalItemCount / itemsPerPage), itemsPerPage })">Last</a>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <p>No Category found</p>
+}

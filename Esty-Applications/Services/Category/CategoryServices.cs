@@ -52,20 +52,22 @@ namespace Esty_Applications.Services.Category
             };
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory()
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory(int CategoriesPerPage, int PageNumber)
         {
-            var AllCategoryQuery = await _CategoryRepository.GetAllEntity();
-            var AllCategory = AllCategoryQuery.ToList();
+            var AllCategories = await _CategoryRepository.GetAllEntity();
+            var Categories = AllCategories.Skip(CategoriesPerPage * (PageNumber - 1))
+                                          .Take(CategoriesPerPage)
+                                          .ToList();
 
-            var CategoryDTO = _mapper.Map<List<ReturnAllCategoryDTO>>(AllCategory);
+            var CategoryDTO = _mapper.Map<List<ReturnAllCategoryDTO>>(Categories);
             return new ReturnResultHasObjsDTO<ReturnAllCategoryDTO>
             {
                 Entities = CategoryDTO,
-                Count = AllCategory.Count,
-                Message = "All Categorty were Retrieved"
+                Count = AllCategories.Count(),
+                Message = "Categories were Retrieved"
             };
-
         }
+
 
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> GetCategoryById(int CategoryId)
         {

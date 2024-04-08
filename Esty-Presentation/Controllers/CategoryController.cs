@@ -1,4 +1,7 @@
-﻿using Esty_Applications.Services.Category;
+﻿using Esty_Applications.Services.BaseCategory;
+using Esty_Applications.Services.BaseCategoryServices;
+using Esty_Applications.Services.Category;
+using Esty_Models;
 using Etsy_DTO.Category;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,16 +10,26 @@ namespace Esty_Presentation.Controllers
     public class CategoryController : Controller
     {
             private readonly ICategoryServices _categoryServices;
-
-            public CategoryController(ICategoryServices categoryServices)
+        private readonly IBaseCategoryServices _baseCategoryServices;
+        public CategoryController(ICategoryServices categoryServices ,IBaseCategoryServices baseCategoryServices)
             {
                 _categoryServices = categoryServices;
-            }
+            _baseCategoryServices = baseCategoryServices;
+        }
 
-            public async Task<IActionResult> Index()
+            public async Task<IActionResult> Index(int BaseCategoryId,int pageNumber = 1, int itemsPerPage = 5)
             {
-                var result = await _categoryServices.GetAllCategory();
-                return View(result);
+        var result = await _categoryServices.GetAllCategory(itemsPerPage, pageNumber);
+
+            if (BaseCategoryId !=0)
+            {    
+                result = await _categoryServices.GetCategoriesByBaseCategoryId(BaseCategoryId);
+            }
+            var basecategoriesResult = await _baseCategoryServices.GetAllBaseCategory();
+            ViewBag.baseCategories = basecategoriesResult.Entities;
+            ViewBag.TotalItemCount = result.Count;
+
+            return View(result);
             }
 
             public IActionResult Create()

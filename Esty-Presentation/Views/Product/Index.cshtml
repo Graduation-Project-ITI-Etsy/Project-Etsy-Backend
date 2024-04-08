@@ -25,43 +25,43 @@
     </div>
     <div class="col-md-4">
         <div class="mt-3">
-   
-            <form asp-action="Index" method="get" class="form-inline">
+            <form id="filterForm" asp-action="Index" method="get" class="form-inline">
                 <div class="form-group mr-3">
-                    <select class="form-control" name="categoryId">
+                    <select class="form-control" name="categoryId" id="categoryId">
                         <option value="">All Categories</option>
                         <!-- Populate the dropdown list with categories -->
                         @foreach (var category in ViewBag.Categories)
                         {
-                            <option value="@category.CategoryId">@category.CategoryName</option>
+                            <option value="@category.Id">@category.NameEN</option>
                         }
                     </select>
                 </div>
                 <div class="form-group mr-3">
-                    <select class="form-control" name="filtrationMethod">
+                    <select class="form-control" name="filtrationMethod" id="filtrationMethod">
                         <option value="0">Select Filtration</option>
                         <option value="1">Lowest Price</option>
                         <option value="2">Highest Price</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Apply</button>
+                <button type="submit" class="btn btn-primary" id="applyButton">Apply</button>
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById("filterForm").addEventListener("submit", function (event) {
+            var categoryId = document.getElementById("categoryId").value;
+            var filtrationMethod = document.getElementById("filtrationMethod").value;
+
+            if (categoryId == "") {
+                event.preventDefault();
+                alert("Please select a category.");
+            }
+        });
+    </script>
+
 </div>
 
-
-<script>
-    document.getElementById("filterForm").addEventListener("submit", function (event) {
-        var categoryId = document.getElementById("categoryId").value;
-        var filtrationMethod = document.getElementById("filtrationMethod").value;
-
-        if (categoryId == "" && filtrationMethod != "0") {
-            event.preventDefault();
-            alert("Please select a category.");
-        }
-    });
-</script>
 
 @if (totalItemCount != 0)
 {

@@ -1,22 +1,26 @@
-﻿using Esty_Applications.Services.Product;
+﻿using Esty_Applications.Services.Category;
+using Esty_Applications.Services.Product;
 using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.Products;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Esty_Presentation.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductsServices _productsServices;
+        private readonly ICategoryServices _categoryServices;
 
-        public ProductController(IProductsServices productsServices)
+        public ProductController(IProductsServices productsServices, ICategoryServices categoryServices)
         {
             _productsServices = productsServices;
+            _categoryServices = categoryServices;
         }
 
 
-        public async Task<IActionResult> Index(string searchTerm, int categoryId = 1, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
+        public async Task<IActionResult> Index(string searchTerm, int categoryId, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
         {
             ReturnResultHasObjsDTO<ReturnAllProductsDTO> products;
 
@@ -43,10 +47,16 @@ namespace Esty_Presentation.Controllers
                 }
                 else { products = await _productsServices.SearchProducts(searchTerm, itemsPerPage, pageNumber); }
             }
+            var categoriesResult = await _categoryServices.GetAllCategory(100, 1);
+
+       
+                ViewBag.Categories = categoriesResult.Entities;
+             
+        
+
 
             ViewBag.TotalItemCount = products.Count;
             ViewBag.SearchTerm = searchTerm;
-            ViewBag.CategoryId = categoryId;
             ViewBag.FiltrationMethod = filtrationMethod;
 
             return View(products);
