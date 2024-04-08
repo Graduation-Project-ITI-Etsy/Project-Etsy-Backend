@@ -1,20 +1,35 @@
 ﻿using Esty_Applications.Services.Order;
 using Etsy_DTO.Orders;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
     public class OrderController : Controller
     {
         private readonly IOrderServices _orderServices;
+        private readonly IStringLocalizer<OrderController> _localizer;
 
-        public OrderController(IOrderServices orderServices)
+        public OrderController(IOrderServices orderServices, IStringLocalizer<OrderController> localizer)
         {
             _orderServices = orderServices;
+            _localizer = localizer;
+
         }
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Orders = _localizer[name: "Orders"];
+            ViewBag.Address = _localizer[name: "Address"];
+            ViewBag.TotalPrice = _localizer[name: "TotalPrice"];
+            ViewBag.Actionss = _localizer[name: "Actionss"];
+            ViewBag.Details = _localizer[name: "Details"];
+            ViewBag.Editt = _localizer[name: "Editt"];
+            ViewBag.Deletee = _localizer[name: "Deletee"];
+
+
+
+
             var result = await _orderServices.GetAllOrders();
             return View(result);
         }

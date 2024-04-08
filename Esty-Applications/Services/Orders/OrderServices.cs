@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Esty_Applications.Services.Order
 {
@@ -60,6 +61,7 @@ namespace Esty_Applications.Services.Order
             try
             {
                 var orderEntity = _mapper.Map<Orders>(orderDto);
+                orderEntity.Status = OrderStatus.Placed.ToString();
                 var createdOrder =await _OrderRepository.CreateEntity(orderEntity);
                 await _OrderRepository.Save();
 

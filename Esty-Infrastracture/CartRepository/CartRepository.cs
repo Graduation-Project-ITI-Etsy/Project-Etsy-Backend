@@ -41,39 +41,23 @@ namespace Esty_Infrastracture.CartRepository
                     ProductImage = cart.products.ProductImage,
                     CategoryID = cart.products.CategoryID,
                     Quantity = cart.Quantity
-                    // Include other properties from both tables as needed
                 }).ToListAsync();
-            //var CustomerCarts = await EtsyDbContext.Set<Cart>()
-            //    .Where(c => c.CustomerId == customerId).Join(EtsyDbContext.products,
-            //                                                        carts => carts.ProductId,
-            //                                                        products => products.ProductId,
-            //                                                        (carts, products) => new Products
-            //                                                        {
-            //                                                            ProductNameEN = products.ProductNameEN,
-            //                                                            ProductNameAR = products.ProductNameAR,
-            //                                                            ProductPrice = products.ProductPrice
-            //                                                        }).ToListAsync();
-            //if (CustomerCarts == null)
-            //    return null;
-
+           
             return result.AsQueryable();
+        }
+
+        public async Task<List<Cart>> DeleteCartByCustomerId(string customerId)
+        {
+            var cartItems = EtsyDbContext.carts.Where(c => c.CustomerId == customerId).ToList();
+
+
+            if (cartItems == null)
+                return null!;
+
+            EtsyDbContext.carts.RemoveRange(cartItems);
+
+            return cartItems;
         }
     }
 }
 
-
-//        var customerCartItems = dbContext.Carts
-//.Where(c => c.CustomerId == customerId) // Filter by customer ID
-//.Join(
-//    dbContext.Products, // Join with Products table
-//    cart => cart.ProductId, // Join condition: Cart.ProductId
-//    product => product.Id, // Join condition: Product.Id
-//    (cart, product) => new // Result selector: Create a new object containing cart and product information
-//    {
-//        CartId = cart.Id,
-//        CustomerId = cart.CustomerId,
-//        ProductId = product.Id,
-//        ProductName = product.Name,
-//        // Include other properties as needed
-//    })
-//.ToList();

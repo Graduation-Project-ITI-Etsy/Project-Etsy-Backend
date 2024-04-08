@@ -18,7 +18,7 @@ namespace Esty_Applications.Services.Carts
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
 
-        public CartServices(ICartRepository repo, IMapper mapper,IProductRepository productRepository)
+        public CartServices(ICartRepository repo, IMapper mapper, IProductRepository productRepository)
         {
             _cartRepository = repo;
             _mapper = mapper;
@@ -62,7 +62,7 @@ namespace Esty_Applications.Services.Carts
         public async Task<ReturnResultHasObjsDTO<ReturnAllCartDTO>> GetAllCards(string customerId)
         {
             var CustomerCards = await _cartRepository.GetcartsByCustomerId(customerId);
-            
+
             ReturnAllCartDTO returnAllCartDTO = new ReturnAllCartDTO();
             var FilterCards = CustomerCards
                 .Select(_carts => new ReturnAllCartDTO
@@ -96,6 +96,59 @@ namespace Esty_Applications.Services.Carts
                 Entities = null,
                 Message = "The Object returned from the Created view is Null !!"
             };
+        }
+
+        public async Task<ReturnResultDTO<ReturnAddUpdateCartDTO>> DeleteCart(string customerId)
+        {
+
+            try
+            {
+                await _cartRepository.DeleteCartByCustomerId(customerId);
+                if (await _cartRepository.Save() > 0)
+                {
+                    return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                    {
+                        Message = "Cartr is Deleted"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                {
+                    Entity = null,
+                    Message = ex.Message
+                };
+            }
+
+            return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+            {
+                Entity = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+        }
+
+        public async Task<ReturnResultDTO<ReturnAddUpdateCartDTO>> DeleteCartByCartId(int CartId)
+        {
+
+            try
+            {
+                await _cartRepository.DeleteEntity(CartId);
+
+                return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                {
+                    Message = "Cartr is Deleted"
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                {
+                    Entity = null,
+                    Message = ex.Message
+                };
+            }
         }
     }
 }

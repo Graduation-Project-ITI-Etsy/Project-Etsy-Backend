@@ -11,5 +11,7 @@ namespace Esty_Applications.Contract
     public interface ICartRepository : IRepo<Cart, int>
     {
         public Task<IQueryable<ReturnAllCartDTO>> GetcartsByCustomerId(string customerId);
+
+        public Task<List<Cart>> DeleteCartByCustomerId(string customerId);
     }
 }

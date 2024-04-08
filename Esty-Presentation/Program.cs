@@ -15,7 +15,12 @@ using Esty_Infrastracture.PaymentReposatory;
 using Esty_Infrastracture.ProductRepository;
 using Esty_Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
+using System.Globalization;
 
 
 namespace Esty_Presentation
@@ -61,6 +66,36 @@ namespace Esty_Presentation
             builder.Services.AddScoped<IOrderServices, OrderServices>();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            //For Localization--===>>>>
+            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddLocalization();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
+            builder.Services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    factory.Create(typeof(JsonStringLocalizerFactory));
+                });
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo(name: "en-US"),
+                    new CultureInfo(name: "ar-EG")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture : supportedCultures[0], uiCulture : supportedCultures[0]);
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+            /////===========>>>>>>
+
+
+
 
             var app = builder.Build();
 
@@ -73,13 +108,26 @@ namespace Esty_Presentation
 
             app.UseRouting();
 
+            //Localization------>>>>>>>
+            var supportedCultures = new[] { "ar-EG","en-US" };
+            var localizationOptions = new RequestLocalizationOptions()
+                //.SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+            /////--------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Product}/{action=Index}/{id?}");
+						pattern: "{controller=Product}/{action=Index}/{id?}");
+						//pattern: "{controller=Login}/{action=Index}/{id?}");
 
-            app.Run();
+
+			app.Run();
         }
     }
 }

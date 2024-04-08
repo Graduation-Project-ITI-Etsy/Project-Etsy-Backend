@@ -2,6 +2,7 @@
 using Esty_Applications.Services.Payment;
 using Etsy_DTO.Payment;
 using Esty_Models;
+using Microsoft.Extensions.Localization;
 namespace Esty_Presentation.Controllers
 {
     
@@ -11,14 +12,28 @@ namespace Esty_Presentation.Controllers
         public class PaymentController : Controller
         {
             private readonly IPaymentServices _paymentServices;
+            private readonly IStringLocalizer<PaymentController> _localizer;
 
-            public PaymentController(IPaymentServices paymentServices)
+            public PaymentController(IPaymentServices paymentServices, IStringLocalizer<PaymentController> localizer)
             {
                 _paymentServices = paymentServices;
+                _localizer = localizer;
+
             }
 
             public async Task<IActionResult> Index()
             {
+                ViewBag.Payments = _localizer[name: "Payments"];
+                ViewBag.ID = _localizer[name: "ID"];
+                ViewBag.Price = _localizer[name: "Price"];
+                ViewBag.Response = _localizer[name: "Response"];
+                ViewBag.Actionsss = _localizer[name: "Actionsss"];
+                ViewBag.Edittt = _localizer[name: "Edittt"];
+                ViewBag.Delette = _localizer[name: "Delette"];
+
+
+
+
                 var allPayments = await _paymentServices.GetAllPayment();
                 return View(allPayments);
             }
