@@ -123,9 +123,11 @@ namespace Esty_Presentation
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Product}/{action=Index}/{id?}");
+						pattern: "{controller=Product}/{action=Index}/{id?}");
+						//pattern: "{controller=Login}/{action=Index}/{id?}");
 
-            app.Run();
+
+			app.Run();
         }
     }
 }
