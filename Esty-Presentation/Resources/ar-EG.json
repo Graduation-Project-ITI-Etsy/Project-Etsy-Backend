@@ -1,4 +1,5 @@
 {
+  //Basecategory Localization
   "zyad": "التصنيفات الاولي",
   "Create": "انشاء جديد",
   "NameEN": "الاسم باللغة الاجليزية",
@@ -6,7 +7,16 @@
   "Image": "الصورة",
   "Actions": "أجراءات",
   "Edit": "تعديل",
-  "Delete": "حذف"
+  "Delete": "حذف",
+
+  //Orders Localization
+  "Orders": "الطلبات",
+  "Address": "العنوان",
+  "TotalPrice": "السعر الكلي",
+  "Actionss": "الأجراءات",
+  "Details": "التفاصيل",
+  "Editt": "تعديل",
+  "Deletee": "حذف"
 
 
 }

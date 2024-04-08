@@ -1,4 +1,5 @@
 {
+  //Basecategory Localization
   "zyad": "BaseCategory",
   "Create": "Create New",
   "NameEN": "Name in English",
@@ -6,6 +7,15 @@
   "Image": "Image",
   "Actions": "Actions",
   "Edit": "Edit",
-  "Delete": "Delete"
+  "Delete": "Delete",
+
+  //Orders Localization
+  "Orders" : "Orders",
+  "Address" : "Address",
+  "TotalPrice" : "TotalPrice",
+  "Actionss" : "Actions",
+  "Details" : "Details",
+  "Editt" : "Edit",
+  "Deletee" : "Delete"
 
 }
