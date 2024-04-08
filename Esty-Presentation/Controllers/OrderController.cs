@@ -24,8 +24,8 @@ namespace Esty_Presentation.Controllers
             ViewBag.TotalPrice = _localizer[name: "TotalPrice"];
             ViewBag.Actionss = _localizer[name: "Actionss"];
             ViewBag.Details = _localizer[name: "Details"];
-            ViewBag.Editt = _localizer[name: "Edit"];
-            ViewBag.Deletee = _localizer[name: "Delete"];
+            ViewBag.Editt = _localizer[name: "Editt"];
+            ViewBag.Deletee = _localizer[name: "Deletee"];
 
 
 

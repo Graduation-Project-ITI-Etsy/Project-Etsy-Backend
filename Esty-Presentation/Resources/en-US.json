@@ -10,12 +10,22 @@
   "Delete": "Delete",
 
   //Orders Localization
-  "Orders" : "Orders",
-  "Address" : "Address",
-  "TotalPrice" : "TotalPrice",
-  "Actionss" : "Actions",
-  "Details" : "Details",
-  "Editt" : "Edit",
-  "Deletee" : "Delete"
+  "Orders": "Orders",
+  "Address": "Address",
+  "TotalPrice": "TotalPrice",
+  "Actionss": "Actions",
+  "Details": "Details",
+  "Editt": "Edit",
+  "Deletee": "Delete",
+
+  //Payments Localization
+  "Payments": "All Payments",
+  "ID": "Payment ID",
+  "Price": "Total Price",
+  "Response": "Response",
+  "Actionsss": "Actions",
+  "Edittt": "Edit",
+  "Delette": "Delete"
+
 
 }
