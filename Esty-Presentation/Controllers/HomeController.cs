@@ -1,12 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Esty_Applications.Services.Order;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        private readonly IOrderServices _orderServices;
+  
+
+        public HomeController(IOrderServices orderServices)
         {
-            return View();
+            _orderServices = orderServices;
+  
+
+        }
+        public async Task<IActionResult> Index()
+        {
+            var orderStatusCounts = await _orderServices.GetOrderStatusCounts();
+            return View(orderStatusCounts);
         }
     }
 }

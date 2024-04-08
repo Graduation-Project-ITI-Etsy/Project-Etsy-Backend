@@ -199,34 +199,57 @@ namespace Esty_Applications.Services.Order
             }
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId)
+  //      public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId)
+  //      {
+  //          var OrdersByCustomerId = await _OrderRepository.GetAllCartsByCustomerId(customerId);
+
+  //          var OrdersList = OrdersByCustomerId
+		//			.Select(order => new ReturnAllOrdersDTO
+		//			{
+		//				OrdersId = order.OrdersId,
+		//				Address = order.Address,
+		//				TotalPrice = order.TotalPrice,
+		//				ArrivedOn = order.ArrivedOn,
+		//				CustomerId = order.CustomerId,
+		//				Status = order.Status
+		//			}).ToList();
+
+		//	if (OrdersList != null)
+		//		return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+		//		{
+		//			Entities = OrdersList,
+		//			Count = OrdersList.Count(),
+		//			Message = "All Orders were Retrieved"
+		//		};
+
+		//	return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+		//	{
+		//		Entities = null,
+		//		Message = "The Object returned from the Created view is Null !!"
+		//	};
+		//}
+        public async Task<Dictionary<string, int>> GetOrderStatusCounts()
         {
-            var OrdersByCustomerId = await _OrderRepository.GetAllCartsByCustomerId(customerId);
+            try
+            {
+                var allOrders = await _OrderRepository.GetAllEntity();
 
-            var OrdersList = OrdersByCustomerId
-					.Select(order => new ReturnAllOrdersDTO
-					{
-						OrdersId = order.OrdersId,
-						Address = order.Address,
-						TotalPrice = order.TotalPrice,
-						ArrivedOn = order.ArrivedOn,
-						CustomerId = order.CustomerId,
-						Status = order.Status
-					}).ToList();
+                var orderCountsByStatus = allOrders
+                    .GroupBy(order => order.Status)
+                    .ToDictionary(
+                        group => group.Key ?? "Unknown", 
+                        group => group.Count()
+                    );
 
-			if (OrdersList != null)
-				return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
-				{
-					Entities = OrdersList,
-					Count = OrdersList.Count(),
-					Message = "All Orders were Retrieved"
-				};
+                return orderCountsByStatus;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while retrieving order status counts: {ex.Message}");
+                throw;
+            }
+        }
 
-			return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
-			{
-				Entities = null,
-				Message = "The Object returned from the Created view is Null !!"
-			};
-		}
-	}
+    }
+
 }
