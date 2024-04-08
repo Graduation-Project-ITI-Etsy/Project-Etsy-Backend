@@ -120,10 +120,10 @@ namespace Esty_Presentation
 
 
             app.UseAuthorization();
-
+        
             app.MapControllerRoute(
                 name: "default",
-						pattern: "{controller=Product}/{action=Index}/{id?}");
+						pattern: "{controller=Home}/{action=Index}/{id?}");
 						//pattern: "{controller=Login}/{action=Index}/{id?}");
 
 
