@@ -17,7 +17,7 @@ namespace Etsy_DTO.Orders
         public string? CustomerId { get; set; }
 
 
-		public string? Status { get; set; }
+		public string Status { get; set; }
 
 
 
