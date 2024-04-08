@@ -19,7 +19,7 @@ namespace Esty_Presentation.Controllers
 
             public async Task<IActionResult> Index(int BaseCategoryId,int pageNumber = 1, int itemsPerPage = 5)
             {
-        var result = await _categoryServices.GetAllCategory(itemsPerPage, pageNumber);
+        var result = await _categoryServices.GetAllCategorypag(itemsPerPage, pageNumber);
 
             if (BaseCategoryId !=0)
             {    

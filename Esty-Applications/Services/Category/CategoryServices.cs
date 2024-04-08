@@ -52,7 +52,22 @@ namespace Esty_Applications.Services.Category
             };
         }
 
-        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory(int CategoriesPerPage, int PageNumber)
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategory()
+        {
+            var AllCategoryQuery = await _CategoryRepository.GetAllEntity();
+            var AllCategory = AllCategoryQuery.ToList();
+
+            var CategoryDTO = _mapper.Map<List<ReturnAllCategoryDTO>>(AllCategory);
+            return new ReturnResultHasObjsDTO<ReturnAllCategoryDTO>
+            {
+                Entities = CategoryDTO,
+                Count = AllCategory.Count,
+                Message = "All Categorty were Retrieved"
+            };
+
+        }
+        
+        public async Task<ReturnResultHasObjsDTO<ReturnAllCategoryDTO>> GetAllCategorypag(int CategoriesPerPage, int PageNumber)
         {
             var AllCategories = await _CategoryRepository.GetAllEntity();
             var Categories = AllCategories.Skip(CategoriesPerPage * (PageNumber - 1))
@@ -67,8 +82,6 @@ namespace Esty_Applications.Services.Category
                 Message = "Categories were Retrieved"
             };
         }
-
-
         public async Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> GetCategoryById(int CategoryId)
         {
             var _Category = await _CategoryRepository.GetEntitybyId(CategoryId);

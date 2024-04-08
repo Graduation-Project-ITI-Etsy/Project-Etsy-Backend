@@ -18,7 +18,7 @@ namespace Esty_Presentation.Controllers
             _localizer = localizer;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( int pageNumber = 1, int itemsPerPage = 5)
         {
             ViewBag.Zyad = _localizer[name: "zyad"];
             ViewBag.Create = _localizer[name: "Create"];
@@ -31,7 +31,8 @@ namespace Esty_Presentation.Controllers
 
 
 
-            var result = await _baseCategoryServices.GetAllBaseCategory();
+            var result = await _baseCategoryServices.GetAllBaseCategorypag(pageNumber, itemsPerPage);
+            ViewBag.TotalItemCount = result.Count;
             return View(result);
         }
 

@@ -12,6 +12,7 @@ namespace Esty_Applications.Services.BaseCategory
     {
 
 
+        Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategorypag(int CategoriesPerPage, int PageNumber);
         Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategory();
 
         Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> GetBaseCategoryById(int BaseCategoryId);

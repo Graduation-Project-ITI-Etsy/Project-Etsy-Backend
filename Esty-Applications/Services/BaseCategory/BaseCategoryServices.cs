@@ -66,6 +66,25 @@ namespace Esty_Applications.Services.BaseCategoryServices
             };
            
         }
+   
+        public async Task<ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>> GetAllBaseCategorypag(int CategoriesPerPage, int PageNumber)
+        {
+            var allBaseCategory = await _baseCategoryRepository.GetAllEntity();
+            var BaseCategory = allBaseCategory.Skip(CategoriesPerPage * (PageNumber - 1))
+                                          .Take(CategoriesPerPage)
+                                          .ToList();
+
+
+
+            var BaseCategoryDTO = _mapper.Map<List<ReturnAllBaseCategoryDTO>>(BaseCategory);
+            return new ReturnResultHasObjsDTO<ReturnAllBaseCategoryDTO>
+            {
+                Entities = BaseCategoryDTO,
+                Count = allBaseCategory.Count(),
+                Message = "All Base Category were Retrieved"
+            };
+
+        }
 
         public async Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> GetBaseCategoryById(int BaseCategoryId)
         {

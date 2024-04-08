@@ -47,7 +47,7 @@ namespace Esty_Presentation.Controllers
                 }
                 else { products = await _productsServices.SearchProducts(searchTerm, itemsPerPage, pageNumber); }
             }
-            var categoriesResult = await _categoryServices.GetAllCategory(100, 1);
+            var categoriesResult = await _categoryServices.GetAllCategory();
 
        
                 ViewBag.Categories = categoriesResult.Entities;
