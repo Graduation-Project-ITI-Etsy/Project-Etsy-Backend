@@ -29,10 +29,10 @@
         <input asp-for="CustomerId" class="form-control" />
         <span asp-validation-for="CustomerId" style="color:red"></span>
     </div>
-   
+
     <div class="form-group mr-3">
         <label asp-for="Status">Status</label>
-        <select class="form-control" name="Status :" id="Status">
+        <select class="form-control" asp-for="Status" id="Status">
             <option value="Placed">Placed</option>
             <option value="Confirm">Confirm</option>
             <option value="Shipped">Shipped</option>
@@ -42,6 +42,7 @@
         </select>
         <span asp-validation-for="Status" style="color:red"></span>
     </div>
+
     <button class="btn btn-primary mt-3" type="submit">Update</button>
 </form>
 <a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
