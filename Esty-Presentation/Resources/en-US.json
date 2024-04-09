@@ -47,7 +47,23 @@
   "Detaills": "Details",
   "DDeletee": "Delete",
   "First": "First",
-  "Last": "Last"
+  "Last": "Last",
+
+
+  //   Localization
+  "Categories": "Categories",
+  "Createe": "Create New",
+  "basec": "base Categories",
+  "Appplly": "Apply",
+  "NameENN": "Name in English",
+  "NameARR": "Name in Arabic",
+  "Imagee": "Image",
+  "AActions": "Actions",
+  "Detaillss": "Details",
+  "EEdit": "Edit",
+  "DDelete": "Delete",
+  "Firstt": "First",
+  "Lastt": "Last"
 
 
 }

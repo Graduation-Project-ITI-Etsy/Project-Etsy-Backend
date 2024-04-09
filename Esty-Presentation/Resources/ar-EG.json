@@ -48,7 +48,23 @@
   "Detaills": "التفاصيل",
   "DDeletee": "حذف",
   "First": "الاول",
-  "Last": "الاخير"
+  "Last": "الاخير",
+
+  //   Localization
+  "Categories": "التصنيفات",
+  "Createe": "انشاء جديد",
+  "basec": "التصنيفات الاساسيه",
+  "Appplly": "تقديم",
+  "NameENN": "الاسم باللغة الاجليزية",
+  "NameARR": "الاسم باللغة العربية ",
+  "Imagee": "الصورة",
+  "AActions": "أجراءات",
+  "Detaillss": "التفاصيل",
+  "EEdit": "تعديل",
+  "DDelete": "حذف",
+  "Firstt": "الاول",
+  "Lastt": "الاخير"
+
 
 
 }

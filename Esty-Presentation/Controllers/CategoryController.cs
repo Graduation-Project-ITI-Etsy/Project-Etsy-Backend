@@ -4,22 +4,43 @@ using Esty_Applications.Services.Category;
 using Esty_Models;
 using Etsy_DTO.Category;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
     public class CategoryController : Controller
     {
-            private readonly ICategoryServices _categoryServices;
+        private readonly ICategoryServices _categoryServices;
         private readonly IBaseCategoryServices _baseCategoryServices;
-        public CategoryController(ICategoryServices categoryServices ,IBaseCategoryServices baseCategoryServices)
-            {
-                _categoryServices = categoryServices;
+        private readonly IStringLocalizer<CategoryController> _localizer;
+
+        public CategoryController(ICategoryServices categoryServices ,IBaseCategoryServices baseCategoryServices, IStringLocalizer<CategoryController> localizer)
+        {
+            _categoryServices = categoryServices;
             _baseCategoryServices = baseCategoryServices;
+            _localizer = localizer;
+
         }
 
-            public async Task<IActionResult> Index(int BaseCategoryId,int pageNumber = 1, int itemsPerPage = 5)
+        public async Task<IActionResult> Index(int BaseCategoryId,int pageNumber = 1, int itemsPerPage = 5)
             {
-        var result = await _categoryServices.GetAllCategorypag(itemsPerPage, pageNumber);
+            ViewBag.Categories = _localizer[name: "Categories"];
+            ViewBag.Createe = _localizer[name: "Createe"];
+            ViewBag.basec = _localizer[name: "basec"];
+            ViewBag.Appplly = _localizer[name: "Appplly"];
+            ViewBag.NameENN = _localizer[name: "NameENN"];
+            ViewBag.NameARR = _localizer[name: "NameARR"];
+            ViewBag.Imagee = _localizer[name: "Imagee"];
+            ViewBag.AActions = _localizer[name: "AActions"];
+            ViewBag.Detaillss = _localizer[name: "Detaillss"];
+            ViewBag.EEdit = _localizer[name: "EEdit"];
+            ViewBag.DDelete = _localizer[name: "DDelete"];
+            ViewBag.Firstt = _localizer[name: "Firstt"];
+            ViewBag.Lastt = _localizer[name: "Lastt"];
+
+
+
+            var result = await _categoryServices.GetAllCategorypag(itemsPerPage, pageNumber);
 
             if (BaseCategoryId !=0)
             {    
