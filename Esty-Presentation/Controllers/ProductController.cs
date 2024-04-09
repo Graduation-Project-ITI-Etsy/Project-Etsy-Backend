@@ -3,12 +3,14 @@ using Esty_Applications.Services.Product;
 using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductsServices _productsServices;

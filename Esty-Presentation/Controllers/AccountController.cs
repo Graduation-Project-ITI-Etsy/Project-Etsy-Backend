@@ -2,13 +2,14 @@
 using Esty_Context;
 using Esty_Models;
 using Etsy_DTO.LoginRequest;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Esty_Presentation.Controllers
 {
-    
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly EtsyDbContext _context;

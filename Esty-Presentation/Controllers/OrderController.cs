@@ -1,15 +1,18 @@
 ﻿using Esty_Applications.Services.Order;
 using Etsy_DTO.Orders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
+
 namespace Esty_Presentation.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderServices _orderServices;
         private readonly IStringLocalizer<OrderController> _localizer;
-
+        
         public OrderController(IOrderServices orderServices, IStringLocalizer<OrderController> localizer)
         {
             _orderServices = orderServices;

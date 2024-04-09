@@ -113,26 +113,26 @@ namespace Esty_API.Controllers
             }
         }
 
-        [HttpGet("Orders/{customerId}")]
-		public async Task<IActionResult> GetAllOrdersByCustomerId(string customerId)
-		{
-			try
-			{
-				var order = await _orderService.GetOrdersByCustomerId(customerId);
+  //      [HttpGet("Orders/{customerId}")]
+		//public async Task<IActionResult> GetAllOrdersByCustomerId(string customerId)
+		//{
+		//	try
+		//	{
+		//		var order = await _orderService.GetOrdersByCustomerId(customerId);
 
-				if (order == null)
-				{
-					return NotFound($"Orders not found.");
-				}
+		//		if (order == null)
+		//		{
+		//			return NotFound($"Orders not found.");
+		//		}
 
-				return Ok(new { Order = order, Status = "Success" });
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine($"An error occurred while retrieving order: {ex.Message}");
-				return StatusCode(500, "An error occurred while processing your request.");
-			}
-		}
+		//		return Ok(new { Order = order, Status = "Success" });
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		Console.WriteLine($"An error occurred while retrieving order: {ex.Message}");
+		//		return StatusCode(500, "An error occurred while processing your request.");
+		//	}
+		//}
 
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Esty_Applications.Services.BaseCategory;
 using Esty_Presentation.Models;
 using Etsy_DTO.BaseCategory;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 
 namespace Esty_Presentation.Controllers
 {
+    [Authorize]
     public class BaseCategoryController : Controller
     {
         private readonly IBaseCategoryServices _baseCategoryServices;

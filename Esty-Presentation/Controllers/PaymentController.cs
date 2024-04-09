@@ -3,12 +3,14 @@ using Esty_Applications.Services.Payment;
 using Etsy_DTO.Payment;
 using Esty_Models;
 using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Authorization;
 namespace Esty_Presentation.Controllers
 {
-    
 
+    
     namespace admin.Controllers
     {
+        [Authorize]
         public class PaymentController : Controller
         {
             private readonly IPaymentServices _paymentServices;

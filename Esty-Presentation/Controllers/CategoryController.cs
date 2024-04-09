@@ -3,11 +3,13 @@ using Esty_Applications.Services.BaseCategoryServices;
 using Esty_Applications.Services.Category;
 using Esty_Models;
 using Etsy_DTO.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryServices _categoryServices;

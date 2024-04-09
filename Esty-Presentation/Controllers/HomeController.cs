@@ -1,9 +1,11 @@
 ﻿using Esty_Applications.Services.Order;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
 
@@ -16,10 +18,10 @@ namespace Esty_Presentation.Controllers
   
 
         }
-        public async Task<IActionResult> Index()
-        {
-            var orderStatusCounts = await _orderServices.GetOrderStatusCounts();
-            return View(orderStatusCounts);
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    var orderStatusCounts = await _orderServices.ChangeOrderStatus();
+        //    return View(orderStatusCounts);
+        //}
     }
 }
