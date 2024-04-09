@@ -40,10 +40,14 @@
   "Appply": "Apply",
   "Name": "Name",
   "IImage": "Image",
+  "PPrice": "Price",
+  "Stock": "Stock",
   "AAcctions": "Actions",
   "EEditt": "Edit",
   "Detaills": "Details",
-  "DDeletee": "Delete"
+  "DDeletee": "Delete",
+  "First": "First",
+  "Last": "Last"
 
 
 }

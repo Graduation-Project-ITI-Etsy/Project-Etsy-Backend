@@ -28,7 +28,7 @@
             <form id="filterForm" asp-action="Index" method="get" class="form-inline">
                 <div class="form-group mr-3">
                     <select class="form-control" name="categoryId" id="categoryId">
-                        <option value="">All Categories</option>
+                        <option value="">@ViewBag.AllC</option>
                         <!-- Populate the dropdown list with categories -->
                         @foreach (var category in ViewBag.Categories)
                         {
@@ -112,7 +112,7 @@
     <div class="pagination justify-content-center">
         <ul class="pagination">
             <li class="page-item">
-                <a class="page-link" href="@Url.Action("Index", new { pageNumber = 1, itemsPerPage })">First</a>
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = 1, itemsPerPage })">@ViewBag.First</a>
             </li>
             @for (int i = 1; i <= (int)Math.Ceiling((double)totalItemCount / itemsPerPage); i++)
             {
@@ -121,7 +121,7 @@
                 </li>
             }
             <li class="page-item">
-                <a class="page-link" href="@Url.Action("Index", new { pageNumber = (int)Math.Ceiling((double)totalItemCount / itemsPerPage), itemsPerPage })">Last</a>
+                <a class="page-link" href="@Url.Action("Index", new { pageNumber = (int)Math.Ceiling((double)totalItemCount / itemsPerPage), itemsPerPage })">@ViewBag.Last</a>
             </li>
         </ul>
     </div>

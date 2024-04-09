@@ -41,10 +41,14 @@
   "Appply": "تقديم",
   "Name": "الاسم",
   "IImage": "الصورة",
+  "PPrice": "السعر",
+  "Stock": "المخزون",
   "AAcctions": "أجراءات",
   "EEditt": "تعديل",
   "Detaills": "التفاصيل",
-  "DDeletee": "حذف"
+  "DDeletee": "حذف",
+  "First": "الاول",
+  "Last": "الاخير"
 
 
 }

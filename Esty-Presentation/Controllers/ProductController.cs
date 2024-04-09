@@ -43,6 +43,9 @@ namespace Esty_Presentation.Controllers
             ViewBag.EEditt = _localizer[name: "EEditt"];
             ViewBag.Detaills = _localizer[name: "Detaills"];
             ViewBag.DDeletee = _localizer[name: "DDeletee"];
+            ViewBag.First = _localizer[name: "First"];
+            ViewBag.Last = _localizer[name: "Last"];
+
 
 
 
