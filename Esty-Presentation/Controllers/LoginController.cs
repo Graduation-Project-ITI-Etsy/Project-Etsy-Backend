@@ -44,7 +44,7 @@ namespace Esty_Presentation.Controllers
                     if (found)
                     {
                         await _signInManager.SignInAsync(user, loginView.RememberMe);
-                        return RedirectToAction("Index", "Category");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 ModelState.AddModelError("", "username and password is error ");
