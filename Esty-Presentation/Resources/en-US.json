@@ -26,7 +26,24 @@
   "Response": "Response",
   "Actionsss": "Actions",
   "Edittt": "Edit",
-  "Delette": "Delete"
+  "Delette": "Delete",
+
+
+  //Products Localization
+  "Products": "Products",
+  "CCreate": "Create New",
+  "Search": "Search...",
+  "AllC": "All Categoris",
+  "Select": "Select Filtration",
+  "Lprice": "Lowest Price",
+  "Hprice": "Highest Price",
+  "Appply": "Apply",
+  "Name": "Name",
+  "IImage": "Image",
+  "AAcctions": "Actions",
+  "EEditt": "Edit",
+  "Detaills": "Details",
+  "DDeletee": "Delete"
 
 
 }

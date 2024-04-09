@@ -5,6 +5,7 @@ using Etsy_DTO;
 using Etsy_DTO.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 
 namespace Esty_Presentation.Controllers
 {
@@ -12,16 +13,39 @@ namespace Esty_Presentation.Controllers
     {
         private readonly IProductsServices _productsServices;
         private readonly ICategoryServices _categoryServices;
+        private readonly IStringLocalizer<ProductController> _localizer;
 
-        public ProductController(IProductsServices productsServices, ICategoryServices categoryServices)
+
+        public ProductController(IProductsServices productsServices, ICategoryServices categoryServices, IStringLocalizer<ProductController> localizer)
         {
             _productsServices = productsServices;
             _categoryServices = categoryServices;
+            _localizer = localizer;
         }
 
 
         public async Task<IActionResult> Index(string searchTerm, int categoryId, int filtrationMethod = 0, int pageNumber = 1, int itemsPerPage = 5)
         {
+
+            ViewBag.Products = _localizer[name: "Products"];
+            ViewBag.CCreate = _localizer[name: "CCreate"];
+            ViewBag.Search = _localizer[name: "Search"];
+            ViewBag.AllC = _localizer[name: "AllC"];
+            ViewBag.Select = _localizer[name: "Select"];
+            ViewBag.Lprice = _localizer[name: "Lprice"];
+            ViewBag.Hprice = _localizer[name: "Hprice"];
+            ViewBag.Appply = _localizer[name: "Appply"];
+            ViewBag.Name = _localizer[name: "Name"];
+            ViewBag.IImage = _localizer[name: "IImage"];
+            ViewBag.PPrice = _localizer[name: "PPrice"];
+            ViewBag.Stock = _localizer[name: "Stock"];
+            ViewBag.AAcctions = _localizer[name: "AAcctions"];
+            ViewBag.EEditt = _localizer[name: "EEditt"];
+            ViewBag.Detaills = _localizer[name: "Detaills"];
+            ViewBag.DDeletee = _localizer[name: "DDeletee"];
+
+
+
             ReturnResultHasObjsDTO<ReturnAllProductsDTO> products;
 
             if (!string.IsNullOrEmpty(searchTerm))

@@ -26,7 +26,25 @@
   "Response": "الإجابة",
   "Actionsss": "الأجراءات",
   "Edittt": "تعديل",
-  "Delette": "حذف"
+  "Delette": "حذف",
+
+
+
+  //Products Localization
+  "Products": "المنتجات",
+  "CCreate": "انشاء جديد",
+  "Search": "بحث...",
+  "AllC": "جميع التصنيفات",
+  "Select": "حدد التصفية",
+  "Lprice": "أقل سعر",
+  "Hprice": "اغلى سعر",
+  "Appply": "تقديم",
+  "Name": "الاسم",
+  "IImage": "الصورة",
+  "AAcctions": "أجراءات",
+  "EEditt": "تعديل",
+  "Detaills": "التفاصيل",
+  "DDeletee": "حذف"
 
 
 }
