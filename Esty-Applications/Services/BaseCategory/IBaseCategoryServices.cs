@@ -25,5 +25,8 @@ namespace Esty_Applications.Services.BaseCategory
 
         Task<ReturnResultDTO<ReturnAddUpdateBaseCategoryDTO>> SearchBaseCategoryByName(string Name);
 
+        public Task<int> BaseCategoryCount();
+
+
     }
 }

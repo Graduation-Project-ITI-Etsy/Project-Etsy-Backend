@@ -470,5 +470,12 @@ namespace Esty_Applications.Services.Product
                 Message = "The Object returned from the Updated view is Null !!"
             };
         }
+
+        public async Task<int> ProductCount()
+        {
+            var productsCount = await _ProductRepository.GetAllEntity();
+
+            return productsCount.Count();
+        }
     }
 }

@@ -82,5 +82,12 @@ namespace Esty_Applications.Services.Payment
             var paymentDto = _mapper.Map<ReturnAddUpdatePaymentDTO>(payment);
             return new ReturnResultDTO<ReturnAddUpdatePaymentDTO> { Entity = paymentDto, Message = "Payment found" };
         }
+
+        public async Task<int> PaymentsCount()
+        {
+            var paymentCount = await _Payrepo.GetAllEntity();
+
+            return paymentCount.Count();
+        }
     }
 }

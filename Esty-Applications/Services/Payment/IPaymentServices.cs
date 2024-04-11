@@ -24,6 +24,8 @@ namespace Esty_Applications.Services.Payment
 
         public Task<ReturnResultDTO<ReturnAddUpdatePaymentDTO>> SerachCustomerById(string id);
 
+        public Task<int> PaymentsCount();
+
     }
 
 }

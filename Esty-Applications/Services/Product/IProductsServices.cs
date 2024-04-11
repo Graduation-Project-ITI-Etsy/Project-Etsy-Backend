@@ -37,5 +37,8 @@ namespace Esty_Applications.Services.Product
         public Task<ReturnResultHasObjsDTO<ReturnAllProductsDTO>> SearchProducts(string searchTerm, int ProductsItems, int PageNumber);
 
         public Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProductStock(ProductStockNumDTO _ProductStockNumDTO);
+
+        public Task<int> ProductCount();
+
     }
 }

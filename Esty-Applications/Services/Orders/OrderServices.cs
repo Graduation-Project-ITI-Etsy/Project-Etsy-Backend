@@ -251,6 +251,11 @@ namespace Esty_Applications.Services.Order
             }
         }
 
-    }
+        public async Task<int> OrderCount()
+        {
+            var OrdersCount = await _OrderRepository.GetAllEntity();
 
+            return OrdersCount.Count();
+        }
+    }
 }

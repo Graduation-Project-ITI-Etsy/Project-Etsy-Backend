@@ -7,6 +7,7 @@ using Etsy_DTO.Payment;
 using Esty_Models;
 using Etsy_DTO;
 using Etsy_DTO.Orders;
+using Esty_Applications.Contract;
 
 namespace Esty_Applications.Services.Order
 {
@@ -27,6 +28,8 @@ namespace Esty_Applications.Services.Order
         Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId);
 
         Task<Dictionary<string, int>> GetOrderStatusCounts();
+
+        public Task<int> OrderCount();
 
     }
 }

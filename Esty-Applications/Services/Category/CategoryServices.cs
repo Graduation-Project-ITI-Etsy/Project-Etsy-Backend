@@ -162,5 +162,12 @@ namespace Esty_Applications.Services.Category
                 Message = "The Object returned from the Created view is Null !!"
             };
         }
+
+        public async Task<int> CategoryCount()
+        {
+            var CategoryCount = await _CategoryRepository.GetAllEntity();
+
+            return CategoryCount.Count();
+        }
     }
 }

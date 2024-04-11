@@ -29,5 +29,7 @@ namespace Esty_Applications.Services.Category
 
         public Task<ReturnResultDTO<ReturnAddUpdateCategoryDTO>> SearchCategoryByName(string Name);
 
+        public Task<int> CategoryCount();
+
     }
 }

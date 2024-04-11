@@ -130,5 +130,12 @@ namespace Esty_Applications.Services.BaseCategoryServices
                 Message = "Base Category Updated"
             };
         }
+
+        public async Task<int> BaseCategoryCount()
+        {
+            var BaseCategoryCount = await _baseCategoryRepository.GetAllEntity();
+
+            return BaseCategoryCount.Count();
+        }
     }
 }
