@@ -26,6 +26,10 @@ namespace Esty_Applications.Services.Payment
 
         public Task<int> PaymentsCount();
 
+        public Task<double> CalculateProfit();
+
+        public Task<double> CalculateTotalPricePaymects();
+
     }
 
 }

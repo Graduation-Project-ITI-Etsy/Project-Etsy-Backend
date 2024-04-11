@@ -39,6 +39,8 @@ namespace Esty_Presentation.Controllers
             ViewBag.ProductCount = await _productsServices.ProductCount();
             ViewBag.OrdersCount = await _orderServices.OrderCount();
             ViewBag.Payments = await _paymentServices.PaymentsCount();
+            ViewBag.CalculateProfit = await _paymentServices.CalculateProfit();
+            ViewBag.CalculateTotalPricePaymects = await _paymentServices.CalculateTotalPricePaymects();
             var orderStatusCounts = await _orderServices.GetOrderStatusCounts();
             return View(orderStatusCounts);
         }

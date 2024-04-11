@@ -89,5 +89,33 @@ namespace Esty_Applications.Services.Payment
 
             return paymentCount.Count();
         }
+
+        public async Task<double> CalculateProfit()
+        {
+            double Calculation = 0;
+            var allpayments = await _Payrepo.GetAllEntity();
+        
+            foreach ( var payment in allpayments )
+            {
+                Calculation += (payment.TotalPrice * 50) / 100;
+            }
+            double roundedResult = Math.Round(Calculation, 3);
+
+            return roundedResult;
+        }
+
+        public async Task<double> CalculateTotalPricePaymects()
+        {
+            double Calculation = 0;
+            var allpayments = await _Payrepo.GetAllEntity();
+
+            foreach (var payment in allpayments)
+            {
+                Calculation += payment.TotalPrice;
+            }
+            double roundedResult = Math.Round(Calculation, 3);
+
+            return roundedResult;
+        }
     }
 }
