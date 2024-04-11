@@ -432,5 +432,43 @@ namespace Esty_Applications.Services.Product
 
 
     }
-}
+
+        public async Task<ReturnResultDTO<ReturnAddUpdateProductDTO>> UpdateProductStock(ProductStockNumDTO _ProductStockNumDTO)
+        {
+            if (_ProductStockNumDTO != null)
+            {
+                try
+                {
+                    var product = await _ProductRepository.GetEntitybyId(_ProductStockNumDTO.ProductId);
+
+                    product.ProductStock = product.ProductStock - _ProductStockNumDTO.ProductStock;
+                    //var ProductWillBeUpdated = _mapper.Map<ReturnAddUpdateProductDTO, Products>(product);
+                    await _ProductRepository.UpdateEntity(product);
+                    int result = await _ProductRepository.Save();
+                    if (result > 0)
+                    {
+                        var ProductMapped = _mapper.Map<ReturnAddUpdateProductDTO>(product);
+                        return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
+                        {
+                            Entity = ProductMapped,
+                            Message = "Product Stock is Updated"
+                        };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
+                    {
+                        Entity = null,
+                        Message = ex.Message
+                    };
+                }
+            }
+            return new ReturnResultDTO<ReturnAddUpdateProductDTO>()
+            {
+                Entity = null,
+                Message = "The Object returned from the Updated view is Null !!"
+            };
+        }
+    }
 }

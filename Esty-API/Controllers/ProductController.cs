@@ -1,5 +1,7 @@
 ﻿using Esty_Applications.Services.Product;
+using Etsy_DTO.Products;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Esty_API.Controllers
@@ -38,7 +40,7 @@ namespace Esty_API.Controllers
         {
             try
             {
-                var QueryProduct =await productsServices.SearchByProductID(id);
+                var QueryProduct = await productsServices.SearchByProductID(id);
                 if (QueryProduct == null)
                 {
                     return NotFound();
@@ -56,7 +58,7 @@ namespace Esty_API.Controllers
         {
             try
             {
-                var QueryProduct =await productsServices.SearchByProductName(productName);
+                var QueryProduct = await productsServices.SearchByProductName(productName);
                 if (QueryProduct == null)
                 {
                     return NotFound();
@@ -69,6 +71,26 @@ namespace Esty_API.Controllers
             }
         }
 
+        [HttpPost()]
+        public async Task<IActionResult> EditProduct([FromBody] ProductStockNumDTO productDTO)
+        {
+            try
+            {
+                var QueryProduct = await productsServices.UpdateProductStock(productDTO);
+                if (QueryProduct.Entity != null)
+                {
+                    return Ok(QueryProduct);
+                }
+                else
+                {
+                    return BadRequest("Failed to Edit the Product.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("Filter/{MinPrice:int},{MaxPrice:int},{CategoryId:int}")]
         public async Task<IActionResult> FilterProductByPrice(int MinPrice, int MaxPrice, int CategoryId)
         {
