@@ -28,9 +28,10 @@ namespace Esty_Presentation.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         [AllowAnonymous]
-     
         public async Task<IActionResult> Index(LoginViewMode loginView)
         {
             if (ModelState.IsValid)
@@ -46,8 +47,8 @@ namespace Esty_Presentation.Controllers
                         await _signInManager.SignInAsync(user, loginView.RememberMe);
                         return RedirectToAction("Index", "Home");
                     }
-                }
-                ModelState.AddModelError("", "username and password is error ");
+				}
+				ModelState.AddModelError(string.Empty, "Invalid Email or Password.");
             }
             return View(loginView);
         }
