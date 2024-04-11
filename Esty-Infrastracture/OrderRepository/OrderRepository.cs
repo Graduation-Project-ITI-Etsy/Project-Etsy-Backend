@@ -20,7 +20,7 @@ namespace Esty_Infrastracture.OrderRepository
 		{
 			EtsyDbContext = _etsyDbContext ?? throw new ArgumentNullException(nameof(_etsyDbContext));
 		}
-		public async Task<IQueryable<ReturnAllOrdersDTO>> GetAllCartsByCustomerId(string customerId)
+		public async Task<IQueryable<ReturnAllOrdersDTO>> GetAllOrdersByCustomerId(string customerId)
 		{
 			var QueryResult = await EtsyDbContext.orders
 							.Where(O => O.CustomerId == customerId)

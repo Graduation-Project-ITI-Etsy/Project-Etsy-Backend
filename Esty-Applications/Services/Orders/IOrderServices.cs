@@ -24,8 +24,9 @@ namespace Esty_Applications.Services.Order
 
         Task ChangeOrderStatus(int orderId, OrderStatus status);
 
-  //    Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId);
-     Task<Dictionary<string, int>> GetOrderStatusCounts();
+        Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId);
+
+        Task<Dictionary<string, int>> GetOrderStatusCounts();
 
     }
 }

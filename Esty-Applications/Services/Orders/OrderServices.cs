@@ -199,35 +199,36 @@ namespace Esty_Applications.Services.Order
             }
         }
 
-  //      public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId)
-  //      {
-  //          var OrdersByCustomerId = await _OrderRepository.GetAllCartsByCustomerId(customerId);
+        public async Task<ReturnResultHasObjsDTO<ReturnAllOrdersDTO>> GetOrdersByCustomerId(string customerId)
+        {
+            var OrdersByCustomerId = await _OrderRepository.GetAllOrdersByCustomerId(customerId);
 
-  //          var OrdersList = OrdersByCustomerId
-		//			.Select(order => new ReturnAllOrdersDTO
-		//			{
-		//				OrdersId = order.OrdersId,
-		//				Address = order.Address,
-		//				TotalPrice = order.TotalPrice,
-		//				ArrivedOn = order.ArrivedOn,
-		//				CustomerId = order.CustomerId,
-		//				Status = order.Status
-		//			}).ToList();
+            var OrdersList = OrdersByCustomerId
+                    .Select(order => new ReturnAllOrdersDTO
+                    {
+                        OrdersId = order.OrdersId,
+                        Address = order.Address,
+                        TotalPrice = order.TotalPrice,
+                        ArrivedOn = order.ArrivedOn,
+                        CustomerId = order.CustomerId,
+                        Status = order.Status
+                    }).ToList();
 
-		//	if (OrdersList != null)
-		//		return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
-		//		{
-		//			Entities = OrdersList,
-		//			Count = OrdersList.Count(),
-		//			Message = "All Orders were Retrieved"
-		//		};
+            if (OrdersList != null)
+                return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+                {
+                    Entities = OrdersList,
+                    Count = OrdersList.Count(),
+                    Message = "All Orders were Retrieved"
+                };
 
-		//	return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
-		//	{
-		//		Entities = null,
-		//		Message = "The Object returned from the Created view is Null !!"
-		//	};
-		//}
+            return new ReturnResultHasObjsDTO<ReturnAllOrdersDTO>()
+            {
+                Entities = null,
+                Message = "The Object returned from the Created view is Null !!"
+            };
+        }
+
         public async Task<Dictionary<string, int>> GetOrderStatusCounts()
         {
             try

@@ -10,6 +10,6 @@ namespace Esty_Applications.Contract
 {
     public interface IOrdersRepository : IRepo<Orders, int>
     {
-		public Task<IQueryable<ReturnAllOrdersDTO>> GetAllCartsByCustomerId(string customerId);
+		public Task<IQueryable<ReturnAllOrdersDTO>> GetAllOrdersByCustomerId(string customerId);
 	}
 }
