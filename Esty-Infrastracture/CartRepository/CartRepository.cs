@@ -58,6 +58,16 @@ namespace Esty_Infrastracture.CartRepository
 
             return cartItems;
         }
+
+        public async Task<Cart> CheckProductInCart (int productId)
+        {
+            var checkProduct = EtsyDbContext.carts.FirstOrDefault(c => c.ProductId == productId);
+
+            if(checkProduct == null)
+                return null!;
+
+            return checkProduct;
+        }
     }
 }
 

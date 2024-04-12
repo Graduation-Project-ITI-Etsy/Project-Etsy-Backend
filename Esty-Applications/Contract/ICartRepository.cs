@@ -13,5 +13,8 @@ namespace Esty_Applications.Contract
         public Task<IQueryable<ReturnAllCartDTO>> GetcartsByCustomerId(string customerId);
 
         public Task<List<Cart>> DeleteCartByCustomerId(string customerId);
+
+        public Task<Cart> CheckProductInCart(int productId);
+
     }
 }

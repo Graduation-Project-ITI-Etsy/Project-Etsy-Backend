@@ -32,6 +32,17 @@ namespace Esty_Applications.Services.Carts
                 try
                 {
                     var CartWillBeCreated = _mapper.Map<ReturnAddUpdateCartDTO, Cart>(cart);
+
+                    var CheckProduct = await _cartRepository.CheckProductInCart(CartWillBeCreated.ProductId);
+                    if (CheckProduct != null)
+                    {
+                        var CheckProductMapped = _mapper.Map<ReturnAddUpdateCartDTO>(CheckProduct);
+                        return new ReturnResultDTO<ReturnAddUpdateCartDTO>()
+                        {
+                            Entity = CheckProductMapped,
+                            Message = "Product is already in cart"
+                        };
+                    }
                     await _cartRepository.CreateEntity(CartWillBeCreated);
                     if (await _cartRepository.Save() > 0)
                     {
