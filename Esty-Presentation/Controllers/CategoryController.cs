@@ -105,7 +105,7 @@ namespace Esty_Presentation.Controllers
             ViewBag.CPNEN = _localizer[name: "CPNEN"];
             ViewBag.CPNAR = _localizer[name: "CPNAR"];
             ViewBag.BCID = _localizer[name: "BCID"];
-            ViewBag.DEdit = _localizer[name: "DEdit"];
+            ViewBag.DCEdit = _localizer[name: "DCEdit"];
             ViewBag.DBtl = _localizer[name: "DBtl"];
 
             var category = await _categoryServices.GetCategoryById(id);

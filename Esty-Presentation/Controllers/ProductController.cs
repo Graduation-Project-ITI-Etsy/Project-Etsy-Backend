@@ -117,6 +117,12 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.EditPt = _localizer[name: "EditPt"];
+            ViewBag.UpdatePt = _localizer[name: "UpdatePt"];
+            ViewBag.BtLPt = _localizer[name: "BtLPt"];
+
+
+
             var product = await _productsServices.SearchByProductID(id);
             if (product.Entity == null)
             {
@@ -140,6 +146,23 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            ViewBag.PrDetails = _localizer[name: "PrDetails"];
+            ViewBag.PrID = _localizer[name: "PrID"];
+            ViewBag.PrEN = _localizer[name: "PrEN"];
+            ViewBag.PrAR = _localizer[name: "PrAR"];
+            ViewBag.Publisher = _localizer[name: "Publisher"];
+            ViewBag.PrPrice = _localizer[name: "PrPrice"];
+            ViewBag.PrRating = _localizer[name: "PrRating"];
+            ViewBag.PrStock = _localizer[name: "PrStock"];
+            ViewBag.PrDEN = _localizer[name: "PrDEN"];
+            ViewBag.PrDAR = _localizer[name: "PrDAR"];
+            ViewBag.CatID = _localizer[name: "CatID"];
+            ViewBag.EditPr = _localizer[name: "EditPr"];
+            ViewBag.BtLPr = _localizer[name: "BtLPr"];
+
+
+
+
             var product = await _productsServices.SearchByProductID(id);
             if (product == null)
             {
