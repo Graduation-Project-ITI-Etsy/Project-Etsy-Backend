@@ -50,7 +50,7 @@
   "First": "الاول",
   "Last": "الاخير",
 
-  //   Localization
+  // Category Localization
   "Categories": "التصنيفات",
   "Createe": "انشاء جديد",
   "basec": "التصنيفات الاساسيه",
@@ -63,8 +63,21 @@
   "EEdit": "تعديل",
   "DDelete": "حذف",
   "Firstt": "الاول",
-  "Lastt": "الاخير"
+  "Lastt": "الاخير",
 
+
+
+
+
+  // Charts Localization
+  "countBC": "عدد الفئات الأساسية",
+  "countC": "عدد الفئات",
+  "countP": "عدد المنتجات",
+  "countO": "عدد الطلبات",
+  "countPay": "عدد المدفوعات",
+  "countPayP": "السعر الإجمالي للمدفوعات",
+  "countCP": "حساب الأرباح",
+  "countOD": "الطلبات لكل يوم"
 
 
 }

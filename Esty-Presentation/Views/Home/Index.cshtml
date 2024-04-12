@@ -13,7 +13,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Base Category Count
+                            @ViewBag.countBC
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.BaseCategoryCount</div>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Category Count
+                            @ViewBag.countC
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CategoryCount</div>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Products Count
+                            @ViewBag.CountP
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ProductCount</div>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Orders Count
+                            @ViewBag.countO
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.OrdersCount</div>
                     </div>
@@ -89,7 +89,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Payments Count
+                            @ViewBag.countPay
                         </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Payments</div>
                     </div>
@@ -109,7 +109,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                              <h3>
-                                Payments Total Price
+                                @ViewBag.countPayP
                              </h3>
                         </div>
                         <h3>
@@ -132,7 +132,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             <h3>
-                                Calculate Profits
+                                @ViewBag.countCP
                             </h3>
                         </div>
                         <h3>
@@ -155,7 +155,7 @@
     <div class="col-xl-12 col-lg-12 mt-5">
         <div class="row my-12">
             <div class="col">
-                <h1>Orders Per Day</h1>
+                <h1>@ViewBag.countOD</h1>
             </div>
         </div>
         <div class="row my-9 mt-4">

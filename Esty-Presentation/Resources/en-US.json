@@ -50,7 +50,7 @@
   "Last": "Last",
 
 
-  //   Localization
+  //  Category Localization
   "Categories": "Categories",
   "Createe": "Create New",
   "basec": "base Categories",
@@ -63,7 +63,18 @@
   "EEdit": "Edit",
   "DDelete": "Delete",
   "Firstt": "First",
-  "Lastt": "Last"
+  "Lastt": "Last",
 
 
+
+
+  // Charts Localization
+  "countBC": "Base Category Count",
+  "countC": "CategoryCount",
+  "CountP": "Products Count",
+  "countO": "Orders Count",
+  "countPay": "Payments Count",
+  "countPayP": "Payments Total Price",
+  "countCP": "Calculate Profits",
+  "countOD": "Orders Per Day"
 }
