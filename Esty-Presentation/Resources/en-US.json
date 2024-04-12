@@ -29,6 +29,18 @@
   "Details": "Details",
   "Editt": "Edit",
   "Deletee": "Delete",
+  //Edit Order
+  "EditOr": "Edit Order",
+  "StatusOr": "Status",
+  "Placed": "Placed",
+  "Confirm": "Confirm",
+  "Shipped": "Shipped",
+  "Delivered": "Delivered",
+  "Canceled": "Canceled",
+  "Return": "Return",
+  "UpdateOr": "Update",
+  "BtLOr": "Back to List",
+
 
   //Payments Localization
   "Payments": "All Payments",

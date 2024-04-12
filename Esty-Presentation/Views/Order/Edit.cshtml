@@ -1,7 +1,7 @@
 ﻿@model Etsy_DTO.Orders.ReturnAddUpdateOrderDTO
 @using Etsy_DTO.Orders;
 
-<h1>Edit Category</h1>
+<h1>@ViewBag.EditOr</h1>
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">@TempData["Message"]</div>
@@ -33,19 +33,19 @@
     <div class="form-group mr-3">
         <label asp-for="Status">Status</label>
         <select class="form-control" asp-for="Status" id="Status">
-            <option value="Placed">Placed</option>
-            <option value="Confirm">Confirm</option>
-            <option value="Shipped">Shipped</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Canceled">Canceled</option>
-            <option value="Return">Return</option>
+            <option value="Placed">@ViewBag.Placed</option>
+            <option value="Confirm">@ViewBag.Confirm</option>
+            <option value="Shipped">@ViewBag.Shipped</option>
+            <option value="Delivered">@ViewBag.Delivered</option>
+            <option value="Canceled">@ViewBag.Canceled</option>
+            <option value="Return">@ViewBag.Return</option>
         </select>
         <span asp-validation-for="Status" style="color:red"></span>
     </div>
 
-    <button class="btn btn-primary mt-3" type="submit">Update</button>
+    <button class="btn btn-primary mt-3" type="submit">@ViewBag.UpdateOr</button>
 </form>
-<a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
+<a asp-action="Index" class="btn btn-info mt-3">@ViewBag.BtLOr</a>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

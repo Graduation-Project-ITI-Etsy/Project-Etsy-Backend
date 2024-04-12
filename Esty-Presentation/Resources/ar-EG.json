@@ -29,6 +29,18 @@
   "Details": "التفاصيل",
   "Editt": "تعديل",
   "Deletee": "حذف",
+  //Edit order
+  "EditOr": "تعديل الطلب",
+  "StatusOr": "الحالة",
+  "Placed": "وضعت",
+  "Confirm": "يتأكد",
+  "Shipped": "شحنها",
+  "Delivered": "تم التوصيل",
+  "Canceled": "ألغيت",
+  "Return": "يعود",
+  "UpdateOr": "تحديث",
+  "BtLOr": "العودة للقائمة",
+
 
   //Payments Localization
   "Payments": "جميع المدفوعات",
@@ -87,7 +99,7 @@
   "CPNAR": "المنتج باللغة العربية",
   "BCID": "رقم الفئة الاساسية",
   "DEdit": "تعديل",
-  "DBtl" : "العودة للقائمة",
+  "DBtl": "العودة للقائمة",
 
 
 

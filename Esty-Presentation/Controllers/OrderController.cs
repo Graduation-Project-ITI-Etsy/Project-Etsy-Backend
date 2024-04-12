@@ -41,6 +41,17 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.EditOr = _localizer[name: "EditOr"];
+            ViewBag.StatusOr = _localizer[name: "StatusOr"];
+            ViewBag.Placed = _localizer[name: "Placed"];
+            ViewBag.Confirm = _localizer[name: "Confirm"];
+            ViewBag.Shipped = _localizer[name: "Shipped"];
+            ViewBag.Delivered = _localizer[name: "Delivered"];
+            ViewBag.Canceled = _localizer[name: "Canceled"];
+            ViewBag.Return = _localizer[name: "Return"];
+            ViewBag.UpdateOr = _localizer[name: "UpdateOr"];
+            ViewBag.BtLOr = _localizer[name: "BtLOr"];
+
             var Order = await _orderServices.GetByOrderByID(id);
 
             return View(Order.Entity);
