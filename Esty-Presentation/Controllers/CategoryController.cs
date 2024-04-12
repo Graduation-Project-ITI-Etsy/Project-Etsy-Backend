@@ -74,7 +74,12 @@ namespace Esty_Presentation.Controllers
 
             public async Task<IActionResult> Edit(int id)
             {
-                var category = await _categoryServices.GetCategoryById(id);
+            ViewBag.EditC = _localizer[name: "EditC"];
+            ViewBag.EUpdateC = _localizer[name: "EUpdateC"];
+            ViewBag.BtLC = _localizer[name: "BtLC"];
+
+
+            var category = await _categoryServices.GetCategoryById(id);
              
                 return View(category.Entity);
             }
@@ -95,7 +100,15 @@ namespace Esty_Presentation.Controllers
 
             public async Task<IActionResult> Details(int id)
             {
-                var category = await _categoryServices.GetCategoryById(id);
+            ViewBag.CDetails = _localizer[name: "CDetails"];
+            ViewBag.CID = _localizer[name: "CID"];
+            ViewBag.CPNEN = _localizer[name: "CPNEN"];
+            ViewBag.CPNAR = _localizer[name: "CPNAR"];
+            ViewBag.BCID = _localizer[name: "BCID"];
+            ViewBag.DEdit = _localizer[name: "DEdit"];
+            ViewBag.DBtl = _localizer[name: "DBtl"];
+
+            var category = await _categoryServices.GetCategoryById(id);
                 if (category.Entity == null)
                 {
                     return NotFound();

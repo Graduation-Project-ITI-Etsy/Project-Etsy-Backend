@@ -8,6 +8,17 @@
   "Actions": "Actions",
   "Edit": "Edit",
   "Delete": "Delete",
+  "Firsst": "First",
+  "Lasst": "Last",
+
+  //Edit--->
+  "EditBC": "Edit BaseCategory",
+  //"ENameEN": "NameEN",
+  //"ENameAR": "NameAR",
+  //"BCI": "BaseCategoryImage",
+  "EUpdate": "Update",
+  "BtL": "Back to List",
+
 
   //Orders Localization
   "Orders": "Orders",
@@ -64,6 +75,20 @@
   "DDelete": "Delete",
   "Firstt": "First",
   "Lastt": "Last",
+
+
+  //Edit--->
+  "EditC": "Edit Category",
+  "EUpdateC": "Update",
+  "BtLC": "Back to List",
+  //Details-->
+  "CDetails": "Category Details",
+  "CID": "Category ID",
+  "CPNEN": "Product Name (EN)",
+  "CPNAR": "Product Name (AR)",
+  "BCID": "BaseCategory Id",
+  "DEdit": "Edit",
+  "DBtL": "Back to List",
 
 
 

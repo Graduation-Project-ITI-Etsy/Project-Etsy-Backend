@@ -1,7 +1,7 @@
 ﻿@model Etsy_DTO.Category.ReturnAddUpdateCategoryDTO
 @using Etsy_DTO.Category;
 
-<h1>Edit Category</h1>
+<h1>@ViewBag.EditC</h1>
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-success">@TempData["Message"]</div>
@@ -30,9 +30,9 @@
         <span asp-validation-for="CategoryImage" style="color:red"></span>
     </div>
 
-    <button class="btn btn-primary mt-3" type="submit">Update</button>
+    <button class="btn btn-primary mt-3" type="submit">@ViewBag.EUpdateC</button>
 </form>
-<a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
+<a asp-action="Index" class="btn btn-info mt-3">@ViewBag.BtLC</a>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

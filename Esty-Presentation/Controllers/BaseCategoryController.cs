@@ -30,6 +30,9 @@ namespace Esty_Presentation.Controllers
             ViewBag.Actions = _localizer[name: "Actions"];
             ViewBag.Edit = _localizer[name: "Edit"];
             ViewBag.Delete = _localizer[name: "Delete"];
+            ViewBag.Firsst = _localizer[name: "Firsst"];
+            ViewBag.Lasst = _localizer[name: "Lasst"];
+
 
 
 
@@ -76,6 +79,10 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.EditBC = _localizer[name: "EditBC"];
+            ViewBag.EUpdate = _localizer[name: "EUpdate"];
+            ViewBag.BtL = _localizer[name: "BtL"];
+
             var result = await _baseCategoryServices.GetBaseCategoryById(id);
             return View(result.Entity);
         }
@@ -84,6 +91,7 @@ namespace Esty_Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ReturnAddUpdateBaseCategoryDTO baseCategoryDTO)
         {
+
 
             if (ModelState.IsValid)
             {
