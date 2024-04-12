@@ -72,7 +72,8 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _baseCategoryServices.CreateBaseCategory(baseCategoryDTO);
-                    return RedirectToAction(nameof(Index));
+                TempData["Message"] = "Item created successfully.";
+                return RedirectToAction(nameof(Index));
             }
             return View(baseCategoryDTO);
         }
@@ -97,15 +98,23 @@ namespace Esty_Presentation.Controllers
             {
                 var result = await _baseCategoryServices.UpdateBaseCategory(baseCategoryDTO);
                 if (result.Entity != null)
+                {
+                    TempData["Message"] = "Item updated successfully.";
+
                     return RedirectToAction(nameof(Index));
+                }
             }
             return View(baseCategoryDTO);
         }
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _baseCategoryServices.DeleteBaseCategory(id);
-            TempData["Message"] = result.Message;
+            TempData["Message"] = "Item deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
     }
 }

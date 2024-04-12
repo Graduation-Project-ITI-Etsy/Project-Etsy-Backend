@@ -110,6 +110,8 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _productsServices.CreateProduct(product);
+                TempData["Message"] = "Item created successfully.";
+             
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -132,7 +134,7 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _productsServices.UpdateProduct(product);
-                TempData["Message"] = result.Message;
+                TempData["Message"] = "Item updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -153,7 +155,7 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _productsServices.DeleteProduct(id);
-            TempData["Message"] = result.Message;
+            TempData["Message"] = "Item deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
     }

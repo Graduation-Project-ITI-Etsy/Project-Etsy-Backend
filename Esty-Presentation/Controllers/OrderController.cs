@@ -64,8 +64,8 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _orderServices.UpdateOrder(Order);
-                TempData["Message"] = result.Message;
-
+              
+                TempData["Message"] = "Item updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(Order);
@@ -97,7 +97,7 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _orderServices.DeleteOrder(id);
-            TempData["Message"] = result.Message;
+            TempData["Message"] = "Item deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
 

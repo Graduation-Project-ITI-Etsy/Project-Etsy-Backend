@@ -1,8 +1,13 @@
 ﻿@model ReturnResultHasObjsDTO<ReturnAllOrdersDTO>
 @using Etsy_DTO
 @using Etsy_DTO.Orders
-
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-success">@TempData["Message"]</div>
+    TempData["Message"] = null;
+}
 <h1> @ViewBag.Orders</h1>
+
 
 <div class="table-responsive">
     <table class="table table-striped">
