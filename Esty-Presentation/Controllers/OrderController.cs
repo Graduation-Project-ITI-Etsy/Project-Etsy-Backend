@@ -73,6 +73,17 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            ViewBag.OrDetails = _localizer[name: "OrDetails"];
+            ViewBag.OrID = _localizer[name: "OrID"];
+            ViewBag.PAddress = _localizer[name: "PAddress"];
+            ViewBag.PTPrice = _localizer[name: "PTPrice"];
+            ViewBag.ArrivedOn = _localizer[name: "ArrivedOn"];
+            ViewBag.Stattus = _localizer[name: "Stattus"];
+            ViewBag.CId = _localizer[name: "CId"];
+            ViewBag.DEdit = _localizer[name: "DEdit"];
+            ViewBag.BtlOD = _localizer[name: "BtlOD"];
+
+
             var Order = await _orderServices.GetByOrderByID(id);
             if (Order.Entity == null)
             {

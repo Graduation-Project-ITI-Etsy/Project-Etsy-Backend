@@ -1,7 +1,7 @@
 ﻿@model Etsy_DTO.Orders.ReturnAddUpdateOrderDTO
 
 <div class="container">
-    <h1 class="my-4">Order Details</h1>
+    <h1 class="my-4">@ViewBag.OrDetails</h1>
 
     <div class="card mb-4">
         <div class="card-body">
@@ -9,33 +9,33 @@
               
                 <div class="">
                     <h5 class="card-title">
-                        Order ID: <span class="card-text">@Model.OrdersId</span>
+                        @ViewBag.OrID: <span class="card-text">@Model.OrdersId</span>
                     </h5>
 
 
                     <h5 class="card-title">
-                        Product Address:                    <span class="card-text">@Model.Address</span>
+                        @ViewBag.PAddress:                    <span class="card-text">@Model.Address</span>
                     </h5>
 
                     <h5 class="card-title">
-                        Product TotalPrice:                    <span class="card-text">@Model.TotalPrice</span>
+                        @ViewBag.PTPrice:                    <span class="card-text">@Model.TotalPrice</span>
                     </h5>
                     <h5 class="card-title">
-                        Arrived On:                    <span class="card-text">@Model.ArrivedOn</span>
+                        @ViewBag.ArrivedOn:                    <span class="card-text">@Model.ArrivedOn</span>
                     </h5>
                     <h5 class="card-title">
-                        Status:                    <span class="card-text">@Model.Status</span>
+                        @ViewBag.Stattus:                    <span class="card-text">@Model.Status</span>
                     </h5>
 
                     <h5 class="card-title">
-                        Customer Id:                    <span class="card-text">@Model.CustomerId</span>
+                        @ViewBag.CId:                    <span class="card-text">@Model.CustomerId</span>
                     </h5>
                 </div>
             </div>
         </div>
     </div>
-    <a asp-action="Edit" asp-route-id="@Model.OrdersId" class="btn btn-primary">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.OrdersId" class="btn btn-primary">@ViewBag.DEdit</a> |
 
-    <a class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
+    <a class="btn btn-primary mt-3" asp-action="Index">@ViewBag.BtlOD</a>
 </div>
 

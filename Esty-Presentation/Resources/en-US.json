@@ -40,6 +40,18 @@
   "Return": "Return",
   "UpdateOr": "Update",
   "BtLOr": "Back to List",
+  // Details Order
+  "OrDetails": "Order Details",
+  "OrID": "Order ID",
+  "PAddress": "Product Address",
+  "PTPrice": "Product TotalPrice",
+  "ArrivedOn": "Arrived On",
+  "Stattus": "Status",
+  "CId": "Customer Id",
+  "DEdit": "Edit",
+  "BtlOD": "Back to List",
+
+
 
 
   //Payments Localization
