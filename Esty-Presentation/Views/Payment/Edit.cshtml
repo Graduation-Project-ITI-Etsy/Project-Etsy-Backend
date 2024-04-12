@@ -1,7 +1,7 @@
 ﻿@model Etsy_DTO.Payment.ReturnAddUpdatePaymentDTO
 @using Etsy_DTO.Payment;
 
-<h1 class="mt-4">Edit Payment</h1>
+<h1 class="mt-4">@ViewBag.Editpay</h1>
 
 
 @if (TempData["Message"] != null)
@@ -33,9 +33,9 @@
         <span asp-validation-for="OrderId" style="color:red"></span>
     </div>
 
-    <button class="btn btn-primary mt-3" type="submit">Update</button>
+    <button class="btn btn-primary mt-3" type="submit">@ViewBag.UpdateP</button>
 </form>
-<a asp-action="Index" class="btn btn-info mt-3">Back to List</a>
+<a asp-action="Index" class="btn btn-info mt-3">@ViewBag.BtLP</a>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 

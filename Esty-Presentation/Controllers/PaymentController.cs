@@ -59,6 +59,11 @@ namespace Esty_Presentation.Controllers
 
             public async Task<IActionResult> Edit(int id)
             {
+                ViewBag.Editpay = _localizer[name: "Editpay"];
+                ViewBag.UpdateP = _localizer[name: "UpdateP"];
+                ViewBag.BtLP = _localizer[name: "BtLP"];
+
+
                 var paymentDto = await _paymentServices.SearchByPaymentByID(id);
                 if (paymentDto.Entity == null)
                 {

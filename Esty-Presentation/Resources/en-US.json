@@ -63,6 +63,13 @@
   "Edittt": "Edit",
   "Delette": "Delete",
 
+  //Edit Payments
+  "Editpay": "Edit Payment",
+  "UpdateP": "Update",
+  "BtLP": "Back to List",
+
+
+
 
   //Products Localization
   "Products": "Products",
