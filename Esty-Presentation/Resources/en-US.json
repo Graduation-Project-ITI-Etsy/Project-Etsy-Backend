@@ -70,11 +70,12 @@
 
   // Charts Localization
   "countBC": "Base Category Count",
-  "countC": "CategoryCount",
-  "CountP": "Products Count",
+  "countC": "Category Count",
+  "countP": "Products Count",
   "countO": "Orders Count",
   "countPay": "Payments Count",
   "countPayP": "Payments Total Price",
   "countCP": "Calculate Profits",
-  "countOD": "Orders Per Day"
+  "countOD": "Orders Per Day",
+  "countOrderS": "Order Status Counts"
 }

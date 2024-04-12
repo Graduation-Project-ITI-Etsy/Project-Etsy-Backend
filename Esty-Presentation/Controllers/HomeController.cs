@@ -42,12 +42,13 @@ namespace Esty_Presentation.Controllers
             //Localization
             ViewBag.countBC = _localizer[name: "countBC"];
             ViewBag.countC = _localizer[name: "countC"];
-            ViewBag.CountP = _localizer[name: "CountP"];
+            ViewBag.CountP = _localizer[name: "countP"];
             ViewBag.countO = _localizer[name: "countO"];
             ViewBag.countPay = _localizer[name: "countPay"];
             ViewBag.countPayP = _localizer[name: "countPayP"];
             ViewBag.countCP = _localizer[name: "countCP"];
             ViewBag.countOD = _localizer[name: "countOD"];
+            ViewBag.countOrderS = _localizer[name: "countOrderS"];
 
 
 
