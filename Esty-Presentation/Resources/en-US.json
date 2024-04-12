@@ -8,6 +8,17 @@
   "Actions": "Actions",
   "Edit": "Edit",
   "Delete": "Delete",
+  "Firsst": "First",
+  "Lasst": "Last",
+
+  //Edit--->
+  "EditBC": "Edit Category",
+  //"ENameEN": "NameEN",
+  //"ENameAR": "NameAR",
+  //"BCI": "BaseCategoryImage",
+  "EUpdate": "Update",
+  "BtL": "Back to List",
+
 
   //Orders Localization
   "Orders": "Orders",
