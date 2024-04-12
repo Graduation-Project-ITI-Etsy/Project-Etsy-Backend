@@ -2,10 +2,7 @@
 @using Etsy_DTO.Orders;
 
 <h1>@ViewBag.EditOr</h1>
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">@TempData["Message"]</div>
-}
+
 <form asp-action="Edit">
     <input type="hidden" asp-for="OrdersId" />
     <div>

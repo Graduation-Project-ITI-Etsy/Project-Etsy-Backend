@@ -2,6 +2,11 @@
 @using Etsy_DTO
 @using Etsy_DTO.Products
 
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-success">@TempData["Message"]</div>
+    TempData["Message"] = null;
+}
 @{
     int totalItemCount = ViewBag.TotalItemCount;
     int itemsPerPage = 5;

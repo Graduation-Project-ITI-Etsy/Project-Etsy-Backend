@@ -4,10 +4,7 @@
 <h1 class="mt-4">@ViewBag.Editpay</h1>
 
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">@TempData["Message"]</div>
-}
+
 
 <form asp-action="Edit">
     <input type="hidden" asp-for="PaymentID" />

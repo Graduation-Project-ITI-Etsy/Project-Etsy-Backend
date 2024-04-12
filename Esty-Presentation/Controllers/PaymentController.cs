@@ -51,7 +51,8 @@ namespace Esty_Presentation.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _paymentServices.CreatePayment(paymentDto);
-                    TempData["Message"] = result.Message;
+                    TempData["Message"] = "Item created successfully.";
+                   
                     return RedirectToAction(nameof(Index));
                 }
                 return View(paymentDto);
@@ -78,7 +79,7 @@ namespace Esty_Presentation.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _paymentServices.UpdatePayment(paymentDto);
-                    TempData["Message"] = result.Message;
+                    TempData["Message"] = "Item updated successfully.";
                     return RedirectToAction(nameof(Index));
                 }
                 return View(paymentDto);
@@ -88,7 +89,7 @@ namespace Esty_Presentation.Controllers
             public async Task<IActionResult> Delete(int id)
             {
                 var result = await _paymentServices.DeletePayment(id);
-                TempData["Message"] = result.Message;
+                TempData["Message"] = "Item deleted successfully.";
                 return RedirectToAction(nameof(Index));
             }
         }

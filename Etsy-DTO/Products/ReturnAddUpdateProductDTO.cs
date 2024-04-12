@@ -14,11 +14,11 @@ namespace Etsy_DTO.Products
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Product Name is required !!")]
-        [MaxLength(50, ErrorMessage = "Product name should be less than 50 Characters")]
+  
         public string? ProductNameEN { get; set; }
 
         [Required(ErrorMessage = "Product Name is required !!")]
-        [MaxLength(50, ErrorMessage = "Product name should be less than 50 Characters")]
+   
         public string? ProductNameAR { get; set; }
 
         [Required(ErrorMessage = "Product Price is required !!")]
@@ -34,7 +34,7 @@ namespace Etsy_DTO.Products
         public float ProductRating { get; set; }
 
         [Required(ErrorMessage = "Puvlisher Name is required !!")]
-        [MaxLength(50, ErrorMessage = "Product name should be less than 50 Characters")]
+
         public string? ProductPublisher { get; set; }
 
         [Required(ErrorMessage = "Product Description is required !!")]
