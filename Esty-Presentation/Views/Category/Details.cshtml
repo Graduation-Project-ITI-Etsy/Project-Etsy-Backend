@@ -3,7 +3,7 @@
 @model Etsy_DTO.Category.ReturnAddUpdateCategoryDTO
 
 <div class="container">
-    <h1 class="my-4">Category Details</h1>
+    <h1 class="my-4">@ViewBag.CDetails</h1>
 
     <div class="card mb-4">
         <div class="card-body">
@@ -13,27 +13,27 @@
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title">
-                        Category ID: <span class="card-text">@Model.Id</span>
+                        @ViewBag.CID: <span class="card-text">@Model.Id</span>
                     </h5>
                     
 
                     <h5 class="card-title">
-                        Product Name (EN):                    <span class="card-text">@Model.NameEN</span>
+                        @ViewBag.CPNEN:                    <span class="card-text">@Model.NameEN</span>
                     </h5>
 
                     <h5 class="card-title">
-                        Product Name (AR):                    <span class="card-text">@Model.NameAR</span>
+                        @ViewBag.CPNAR:                    <span class="card-text">@Model.NameAR</span>
                     </h5>
 
                     <h5 class="card-title">
-                        BaseCategory Id:                    <span class="card-text">@Model.BaseCategoryId</span>
+                        @ViewBag.BCID:                    <span class="card-text">@Model.BaseCategoryId</span>
                     </h5>
                 </div>
             </div>
         </div>
     </div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">@ViewBag.DEdit</a> |
 
-    <a class="btn btn-primary mt-3" asp-action="Index">Back to List</a>
+    <a class="btn btn-primary mt-3" asp-action="Index">@ViewBag.DBtL</a>
 </div>
 

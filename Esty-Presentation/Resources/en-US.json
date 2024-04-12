@@ -12,7 +12,7 @@
   "Lasst": "Last",
 
   //Edit--->
-  "EditBC": "Edit Category",
+  "EditBC": "Edit BaseCategory",
   //"ENameEN": "NameEN",
   //"ENameAR": "NameAR",
   //"BCI": "BaseCategoryImage",
@@ -75,6 +75,20 @@
   "DDelete": "Delete",
   "Firstt": "First",
   "Lastt": "Last",
+
+
+  //Edit--->
+  "EditC": "Edit Category",
+  "EUpdateC": "Update",
+  "BtLC": "Back to List",
+  //Details-->
+  "CDetails": "Category Details",
+  "CID": "Category ID",
+  "CPNEN": "Product Name (EN)",
+  "CPNAR": "Product Name (AR)",
+  "BCID": "BaseCategory Id",
+  "DEdit": "Edit",
+  "DBtL": "Back to List",
 
 
 
