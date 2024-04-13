@@ -110,6 +110,8 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _productsServices.CreateProduct(product);
+                TempData["Message"] = "Item created successfully.";
+             
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -117,6 +119,12 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.EditPt = _localizer[name: "EditPt"];
+            ViewBag.UpdatePt = _localizer[name: "UpdatePt"];
+            ViewBag.BtLPt = _localizer[name: "BtLPt"];
+
+
+
             var product = await _productsServices.SearchByProductID(id);
             if (product.Entity == null)
             {
@@ -132,7 +140,7 @@ namespace Esty_Presentation.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _productsServices.UpdateProduct(product);
-                TempData["Message"] = result.Message;
+                TempData["Message"] = "Item updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -140,6 +148,23 @@ namespace Esty_Presentation.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
+            ViewBag.PrDetails = _localizer[name: "PrDetails"];
+            ViewBag.PrID = _localizer[name: "PrID"];
+            ViewBag.PrEN = _localizer[name: "PrEN"];
+            ViewBag.PrAR = _localizer[name: "PrAR"];
+            ViewBag.Publisher = _localizer[name: "Publisher"];
+            ViewBag.PrPrice = _localizer[name: "PrPrice"];
+            ViewBag.PrRating = _localizer[name: "PrRating"];
+            ViewBag.PrStock = _localizer[name: "PrStock"];
+            ViewBag.PrDEN = _localizer[name: "PrDEN"];
+            ViewBag.PrDAR = _localizer[name: "PrDAR"];
+            ViewBag.CatID = _localizer[name: "CatID"];
+            ViewBag.EditPr = _localizer[name: "EditPr"];
+            ViewBag.BtLPr = _localizer[name: "BtLPr"];
+
+
+
+
             var product = await _productsServices.SearchByProductID(id);
             if (product == null)
             {
@@ -153,7 +178,7 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _productsServices.DeleteProduct(id);
-            TempData["Message"] = result.Message;
+            TempData["Message"] = "Item deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
     }

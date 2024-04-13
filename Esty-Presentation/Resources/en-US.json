@@ -91,6 +91,28 @@
   "First": "First",
   "Last": "Last",
 
+  //Edit Products
+  "EditPt": "Edit Products",
+  "UpdatePt": "Update",
+  "BtLPt": "Back to List",
+
+  //Details products
+  "PrDetails": "Product Details",
+  "PrID": "Product ID",
+  "PrEN": "Product Name (EN)",
+  "PrAR": "Product Name (AR)",
+  "Publisher": "Product Publisher",
+  "PrPrice": "Product Price",
+  "PrRating": "Product Rating",
+  "PrStock": "Product Stock",
+  "PrDEN": "Product Description (EN)",
+  "PrDAR": "Product Description (AR)",
+  "CatID": "Category ID",
+  "EditPr": "Edit",
+  "BtLPr": "Back to List",
+
+
+
 
   //  Category Localization
   "Categories": "Categories",
@@ -118,7 +140,7 @@
   "CPNEN": "Product Name (EN)",
   "CPNAR": "Product Name (AR)",
   "BCID": "BaseCategory Id",
-  "DEdit": "Edit",
+  "DCEdit": "Edit",
   "DBtL": "Back to List",
 
 

@@ -67,7 +67,9 @@ namespace Esty_Presentation.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _categoryServices.CreateCategory(category);
-                    return RedirectToAction(nameof(Index));
+                TempData["Message"] = "Item created successfully.";
+                
+                return RedirectToAction(nameof(Index));
                 }
                 return View(category);
             }
@@ -92,7 +94,7 @@ namespace Esty_Presentation.Controllers
                 {
                     var result = await _categoryServices.UpdateCategory(category);
                     TempData["Message"] = result.Message;
-
+                TempData["Message"] = "Item updated successfully.";
                 return RedirectToAction(nameof(Index));
                 }
                 return View(category);
@@ -105,7 +107,7 @@ namespace Esty_Presentation.Controllers
             ViewBag.CPNEN = _localizer[name: "CPNEN"];
             ViewBag.CPNAR = _localizer[name: "CPNAR"];
             ViewBag.BCID = _localizer[name: "BCID"];
-            ViewBag.DEdit = _localizer[name: "DEdit"];
+            ViewBag.DCEdit = _localizer[name: "DCEdit"];
             ViewBag.DBtl = _localizer[name: "DBtl"];
 
             var category = await _categoryServices.GetCategoryById(id);
@@ -121,7 +123,7 @@ namespace Esty_Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _categoryServices.DeleteCategory(id);
-            TempData["Message"] = result.Message;
+            TempData["Message"] = "Item deleted successfully.";
             return RedirectToAction(nameof(Index));
         }
 
