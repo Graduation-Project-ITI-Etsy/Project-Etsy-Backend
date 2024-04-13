@@ -58,11 +58,13 @@ namespace Esty_Applications.Services.Authentication
                 if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
                 {
                     authModel.Message = "Email or Password is incorrect!";
+                    authModel.IsAuthenticated = false;
                     return authModel;
                 }
             } catch 
             {
                 authModel.Message = "Email or Password is incorrect!";
+                authModel.IsAuthenticated = false;
                 return authModel;
             }
 
@@ -82,6 +84,7 @@ namespace Esty_Applications.Services.Authentication
             authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             authModel.Email = user.Email;
             authModel.customer = data;
+            authModel.Message = "login Sucess";
             // authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
             return authModel;
@@ -95,17 +98,17 @@ namespace Esty_Applications.Services.Authentication
                 var existingUserByEmail = await _userManager.FindByEmailAsync(model.Email);
                 if (existingUserByEmail != null)
                 {
-                    return new AuthModel { Message = "Email is already registered!" };
+                    return new AuthModel { Message = "Email is already registered!" ,IsAuthenticated=false };
                 }
                 var existingUserByUsername = await _userManager.FindByNameAsync(model.Username);
                 if (existingUserByUsername != null)
                 {
-                    return new AuthModel { Message = "Username is already registered!" };
+                    return new AuthModel { Message = "Username is already registered!" , IsAuthenticated = false };
                 }
             }
             catch (Exception ex)
             {
-                return new AuthModel { Message = "An error occurred during registration." };
+                return new AuthModel { Message = "An error occurred during registration.", IsAuthenticated = false };
             }
             var user = new Customer
             {
@@ -129,7 +132,7 @@ namespace Esty_Applications.Services.Authentication
                 var createRoleResult = await _roleManager.CreateAsync(newRole);
                 if (!createRoleResult.Succeeded)
                 {
-                    return new AuthModel { Message = "Failed to create user role." };
+                    return new AuthModel { Message = "Failed to create user role." , IsAuthenticated = false };
                 }
             }
             // Add the "User" role to the user
@@ -139,6 +142,7 @@ namespace Esty_Applications.Services.Authentication
             return new AuthModel
             {
                 Email = user.Email,
+                Message="Create Sucess Account",
                 //ExpiresOn = jwtSecurityToken.ValidTo,
                 customer = new UserDto { Email = user.Email, Address = user.Address, PhoneNumber = user.PhoneNumber, Image = user.Image, UserName = user.UserName },
                 IsAuthenticated = true,
