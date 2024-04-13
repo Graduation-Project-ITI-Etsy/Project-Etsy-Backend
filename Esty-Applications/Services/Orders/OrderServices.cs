@@ -203,7 +203,10 @@ namespace Esty_Applications.Services.Order
         {
             var OrdersByCustomerId = await _OrderRepository.GetAllOrdersByCustomerId(customerId);
 
-            var OrdersList = OrdersByCustomerId
+            if (OrdersByCustomerId == null)
+                return null!;
+
+			var OrdersList = OrdersByCustomerId
                     .Select(order => new ReturnAllOrdersDTO
                     {
                         OrdersId = order.OrdersId,

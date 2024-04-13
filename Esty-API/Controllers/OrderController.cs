@@ -124,9 +124,12 @@ namespace Esty_API.Controllers
                 {
                     return NotFound($"Orders not found.");
                 }
+                else
+                {
+					return Ok(new { Order = order, Status = "Success" });
+				}
 
-                return Ok(new { Order = order, Status = "Success" });
-            }
+			}
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while retrieving order: {ex.Message}");

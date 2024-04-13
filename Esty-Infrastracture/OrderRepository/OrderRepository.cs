@@ -33,6 +33,10 @@ namespace Esty_Infrastracture.OrderRepository
 								CustomerId = order.CustomerId,
 								Status = order.Status
 							}).ToListAsync();
+			if (QueryResult.Count() == 0)
+			{
+				return null!;
+			}
 			return QueryResult.AsQueryable();
 		}
 	}
