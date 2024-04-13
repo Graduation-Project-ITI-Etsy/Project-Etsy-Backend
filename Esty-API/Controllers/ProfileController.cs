@@ -1,4 +1,5 @@
 ﻿using Esty_Models;
+using Etsy_DTO;
 using Etsy_DTO.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -58,43 +59,54 @@ namespace Esty_API.Controllers
         //}
 
 
-        #region edit 
         [HttpPut("Edit")]
-        public async Task<IActionResult>  Edit([FromBody]  UserDto userDto)
+        public async Task<IActionResult> Edit([FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            
-            var userId = HttpContext.User.Claims.FirstOrDefault(c=>c.Type== "Sid").Value;
-
-
-            var user = await _userManager.FindByIdAsync(userId);
-                  if (user == null)
-                  {
-                      return NotFound(); // User not found in database
-                   }
-
-                  //Update user properties with data from userDto
-                  user.Image = userDto.Image;
-                  user.UserName = userDto.UserName;
-                  user.Email = userDto.Email;
-                  user.Address = userDto.Address;
-                  user.PhoneNumber = userDto.PhoneNumber;
-
-                  var result = await _userManager.UpdateAsync(user);
-                   if (result.Succeeded)
-                   {
-                       return Ok("Profile updated successfully");
-                  }
-                  else
-                  {
-                             return BadRequest(result.Errors);
+            try
+            {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid")!.Value;
+                if (userId == null)
+                {
+                    return BadRequest(ModelState);
                 }
-               
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
+
+                //Update user properties with data from userDto
+                user.Image = userDto.Image;
+                user.UserName = userDto.UserName;
+                user.Email = userDto.Email;
+                user.Address = userDto.Address;
+                user.PhoneNumber = userDto.PhoneNumber;
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    var final = new ReturnResultDTO<UserDto> { Entity = userDto, Message = "The Profile Updated Sucessfully" };
+                    return Ok(final);
+                }
+                else
+                {
+                    var final = new ReturnResultDTO<UserDto> { Entity = userDto, Message = "ths profile can't upadate " };
+                    return BadRequest(final);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+
+
         }
-        #endregion
+#endregion
 
 
         [HttpDelete("Delete")]
