@@ -27,15 +27,15 @@ namespace Esty_API.Controllers
         {
             try
             {
-                //var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
 
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null)
-                //{
-                //    return NotFound(); // User not found in database
-                //}
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
 
-                //CartDTO.CustomerId = userId;
+                CartDTO.CustomerId = userId;
                 var result = await CartServices.CreateCart(CartDTO);
 
                 if (result.Entity != null)
@@ -59,15 +59,15 @@ namespace Esty_API.Controllers
         {
             try
             {
-                //var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
 
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null)
-                //{
-                //    return NotFound(); // User not found in database
-                //}
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
 
-                //CustomerId = userId;
+                CustomerId = userId;
 
                 var QueryCards = await CartServices.GetAllCards(CustomerId);
                 if (QueryCards == null)
@@ -87,15 +87,15 @@ namespace Esty_API.Controllers
         {
             try
             {
-                //var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
 
-                //var user = await _userManager.FindByIdAsync(userId);
-                //if (user == null)
-                //{
-                //    return NotFound(); // User not found in database
-                //}
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
 
-                //CustomerId = userId;
+                CustomerId = userId;
 
                 var QueryCards = await CartServices.DeleteCart(CustomerId);
                 if (QueryCards == null)

@@ -1,8 +1,10 @@
 ﻿using Esty_Applications.Services.Order;
 using Esty_Applications.Services.Payment;
+using Esty_Models;
 using Etsy_DTO.Orders;
 using Etsy_DTO.Payment;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,9 +17,12 @@ namespace Esty_API.Controllers
     {
 
         private readonly IOrderServices _orderService;
-        public OrderController(IOrderServices orderServices)
+        private readonly UserManager<Customer> _userManager;
+
+        public OrderController(IOrderServices orderServices, UserManager<Customer> userManager)
         {
             _orderService = orderServices;
+            _userManager = userManager;
         }
 
 
@@ -48,6 +53,16 @@ namespace Esty_API.Controllers
         {
             try
             {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
+
+                orderDTO.CustomerId = userId;
+
                 var result =await _orderService.CreateOrder(orderDTO);
 
                 if (result.Entity != null )
@@ -71,6 +86,7 @@ namespace Esty_API.Controllers
         {
             try
             {
+
                 var result = await _orderService.UpdateOrder(orderDTO);
 
                 if (result.Entity != null)
@@ -118,6 +134,15 @@ namespace Esty_API.Controllers
         {
             try
             {
+                var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Sid").Value;
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return NotFound(); // User not found in database
+                }
+
+                customerId = userId;
                 var order = await _orderService.GetOrdersByCustomerId(customerId);
 
                 if (order == null)
