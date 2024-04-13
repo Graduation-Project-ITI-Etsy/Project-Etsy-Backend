@@ -13,7 +13,7 @@ namespace Etsy_DTO.Account
         [Required, StringLength(50)]
         public string Username { get; set; }
 
-        [Required, StringLength(128)]
+        [Required, StringLength(128),EmailAddress]
         public string Email { get; set; }
 
         [Required, StringLength(256)]

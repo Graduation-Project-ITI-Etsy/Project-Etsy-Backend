@@ -39,7 +39,7 @@ namespace Esty_API.Controllers
             var result = await _authService.GetTokenAsync(model);
 
             if (!result.IsAuthenticated)
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
             return Ok(result);
         }
