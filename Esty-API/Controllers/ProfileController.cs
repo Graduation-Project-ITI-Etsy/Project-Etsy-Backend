@@ -106,7 +106,7 @@ namespace Esty_API.Controllers
 
 
         }
-#endregion
+
 
 
         [HttpDelete("Delete")]
