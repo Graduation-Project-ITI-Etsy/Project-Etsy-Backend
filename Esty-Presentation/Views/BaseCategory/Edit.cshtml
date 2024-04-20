@@ -6,6 +6,11 @@
 <form asp-action="Edit">
     <input type="hidden" asp-for="Id" />
     <div>
+        <label asp-for="Id">Base Category Id </label>
+        <input asp-for="Id" class="form-control " disabled />
+        <span asp-validation-for="Id" style="color:red"></span>
+    </div>
+    <div>
         <label asp-for="NameEN"></label>
         <input asp-for="NameEN" class="form-control" />
         <span asp-validation-for="NameEN" style="color:red"></span>
